@@ -1,0 +1,12 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<h1>This site is for signing up</h1>
+   <form class="form form-horizontal" method=""post">
+        {%  csrf_token %}
+        {{ form }}
+        <input type="submit" class="btn btn-primary" value="Sign Up"/>
+    </form>
+
+{% endblock %}

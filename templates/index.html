@@ -10,6 +10,14 @@
 </head>
 <body>
 <h3>Lets have a nav bar here</h3>
+<ul>
+{% if user.is.authenitcated %}
+    <li><a href="{% url 'logout' %}">Logout</a></li>
+{% else %}
+    <li><a href="{% url 'login' %}">Sign in</a></li>
+    <li><a href="{% url 'register' %}">Sign up</a></li>
+{% endif %}
+</ul>
 {% block content %}
 
 {% endblock %}
