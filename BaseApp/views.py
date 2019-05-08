@@ -16,4 +16,4 @@ def terms_index(request):
 
 
 def front_page_index(request):
-    return render(request, 'base/FrontPage.html.html')
+    return render(request, 'base/FrontPage.html')
