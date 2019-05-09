@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 # Create your models here.
@@ -37,4 +38,6 @@ class Details(models.Model):
 
 
 class Properties(models.Model):
-    pass
+    address = models.ForeignKey(Addresses, on_delete=models.CASCADE)
+    detail = models.ForeignKey(Details, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
