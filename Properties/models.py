@@ -11,7 +11,7 @@ class Cities(models.Model):
 class Addresses(models.Model):
     street = models.CharField(max_length=255)
     house_no = models.IntegerField()
-    C_ID = models.ForeignKey(Cities, on_delete=models.CASCADE)
+    Cities = models.ForeignKey(Cities, on_delete=models.CASCADE)
 
 
 class Tags(models.Model):
@@ -29,10 +29,11 @@ class Types(models.Model):
 class Details(models.Model):
     T_ID = models.ForeignKey(Tags, on_delete=models.CASCADE)
     Ty_ID = models.ForeignKey(Types, on_delete=models.CASCADE)
-    size = models.CharField(255)
+    size = models.CharField(max_length=255)
     price = models.FloatField()
     rooms = models.IntegerField()
-    description = models.CharField(999)
+    description = models.CharField(max_length=999)
+    p_image = models.CharField(max_length=999)
 
 
 class Properties(models.Model):
