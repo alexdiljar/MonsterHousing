@@ -42,11 +42,12 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     {% if user.is_authenticated %}
-                        <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
+                        <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
+                        <a class="dropdown-item" href="{% url 'profile' %}">My Account</a>
                     {% else %}
-                        <a class="dropdown-item" href="{% url 'login' %}">Sign in</a>
+                        <a class="dropdown-item" href="{% url 'login' %}">Sign In</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{% url 'register' %}">Sign up</a>
+                        <a class="dropdown-item" href="{% url 'register' %}">Sign Up</a>
                     {% endif %}
                 </div>
             </li>
