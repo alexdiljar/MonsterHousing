@@ -33,7 +33,7 @@ class Details(models.Model):
     price = models.FloatField()
     rooms = models.IntegerField()
     description = models.CharField(max_length=999)
-    p_image = models.CharField(max_length=999)
+    property_image = models.CharField(max_length=999)
 
 
 class Properties(models.Model):

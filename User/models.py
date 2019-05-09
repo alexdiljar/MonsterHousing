@@ -1,3 +1,9 @@
 from django.db import models
+from django.contrib.auth.models import User
+from Properties.models import Addresses
 
-# Create your models here.
+class Profile(models.Model):
+    ssn = models.CharField(max_length=50)
+    phone = models.CharField(max_length=50)
+    address = models.ForeignKey(Addresses, on_delete=models.CASCADE)
+    profile_image = models.CharField(max_length=999)
