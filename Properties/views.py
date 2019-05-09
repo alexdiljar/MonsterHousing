@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-# TODO : connect views/ the urls to html files under user in this file
+# TODO : connect views/ the urls to html files under User in this file
 
 
 # Create your views here.
@@ -12,5 +12,5 @@ def properties(request):
 # /candies/[id]
 def get_properties_by_id(request, id):
 
-    # return render(request, 'Properties/user/Properties/PropertyDetails.html')
+    # return render(request, 'Properties/User/Properties/PropertyDetails.html')
     pass
