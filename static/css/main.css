@@ -1,4 +1,4 @@
-html, body {
+/* html, body {
     height: 100%;
     margin: 0;
     background-color: darkblue;
@@ -12,7 +12,7 @@ div{
 
     /* Equal to height of footer */
     /* But also accounting for potential margin-bottom of last child */
-    margin-bottom: -50px;
+/*    margin-bottom: -50px;
 }
 
 footer{
