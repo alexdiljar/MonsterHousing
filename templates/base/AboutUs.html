@@ -1,27 +1,140 @@
 {% extends 'index.html' %}
-
+{% load static %}
 {% block content %}
+    <div class="faq" style="padding: 5%;">
+        <h1>FAQ</h1>
+        <div class="accordion" id="accordionExample">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+                                aria-expanded="true" aria-controls="collapseOne">
+                            How to buy property?
+                        </button>
+                    </h2>
+                </div>
 
-<h1>FAQ</h1>
-<h1>MEAT THE TEAM</h1>
-    <h1>fasldfn labdfhafkljsdhhhhhhhhhhhhlkasjdflaksjdhfjahdf jhaslkjdfhlkajsdhflkjhlskdhflkasdhfkljshdlkjfhaldshflkhalsdkfhlkahsdljf
-        halksjdhflkjhasldhflkashdkljfhlajshfasldfn labdfhafkljsdhhhhhhhhhhhhlkasjdflaksjdhfjahdf jhaslkjdfhlkajsdhflkjhlskdhflkasdhfkljshdlkjfhaldshflkhalsdkfhlkahsdljfhalksjdhflkjhasldhflkashdkljfhlajshfasldfn labdfhafkljsdhhhhhhhhhhhhlkasjdflaksjdhfjahdf jhaslkjdfhlkajsdhflkjhlskdhflkasdhfkljshdlkjfhaldshflkhalsdkfhlkahsdljfhalksjdhflkjhasldhflkashdkljfhlajshfasldfn labdfhafkljsdhhhhhhhhhhhhlkasjdflaksjdhfjahdf jhaslkjdfhlkajsdhflkjhlskdhflkasdhfkljshdlkjfhaldshflkhalsdkfhlkahsdljfhalksjdhflkjhasldhflkashdkljfhlajshfasldf
-        n labdfhafkljsdhhhhhhhhhhhhlkasjdflaksjdhfjahdf jhaslkjdfhlkajsdhflkjhlskdhflkasdhfkljshdlkjfhaldshflkhalsdkfhlkahsdlj
-        fhalksjdhflkjhasldhflkashdkljfhlajshfasldfn labdfhafkljsdhhhhhhhhhhhhlkasjdflaksjdhfjahdf jhaslkjdfhlkajsdhflkjhlskdhflkasdhfk
-        ljshdlkjfhaldshflkhalsdkfhlkahsdljfhalksjdhflkjhasldhflkashdkljfhlajshfasldfn labdfhafkljsdhhhhhhhhhhhhlkasjdflaksjdhfjahdf jhaslkjd
-        fhlkajsdhflkjhlskdhflkasdhfkljshdlkjfhaldshflkhalsdkfhlkahsdljfhalksjdhflkjhasldhflkashdkljfhlajshfasldfn labdfhafkljsdhhhhhhhhhhhhlk
-        asjdflaksjdhfjahdf jhaslkjdfhlkajsdhflkjhlskdhflkasdhfkljshdlkjfhaldshflkhalsdkfhlkahsdljfhalksjdhflkjhasldhflkashdkljfhlajshfasldfn
-        labdfhafkljsdhhhhhhhhhhhhlkasjdflaksjdhfjahdf jhaslkjdfhlkajsdhflkjhlskdhflkasdhfkljshdlkjfhaldshflkhalsdkfhlkahsdljfhalksjdhflkjhasldhf
-        lkashdkljfhlajshfasldfn labdfhafkljsdhhhhhhhhhhhhlkasjdflaksjdhfjahdf jhaslkjdfhlkajsdhflkjhlskdhflkasdhfkljshdlkjfhaldshflkhalsdkfhlkah
-        sdljfhalksjdhflkjhasldhflkashdkljfhlajshfasldfn labdfhafkljsdhhhhhhhhhhhhlkasjdflaksjdhfjahdf jhaslkjdfhlkajsdhflkjhlskdhflkasdhfkljshdlkj
-        fhaldshflkhalsdkfhlkahsdljfhalksjdhflkjhasldhflkashdkljfhlajshfasldfn labdfhafkljsdhhhhhhhhhhhhlkasjdflaksjdhfjahdf jhaslkjdfhlkajsdhflkjhlsk
-        dhflkasdhfkljshdlkjfhaldshflkhalsdkfhlkahsdljfhalksjdhflkjhasldhflkashdkljfhlajshfasldfn labdfhafkljsdhhhhhhhhhhhhlkasjdflaksjdhfjahdf jhas
-        lkjdfhlkajsdhflkjhlskdhflkasdhfkljshdlkjfhaldshflkhalsdkfhlkahsdljfhalksjdhflkjhasldhflkashdkljfhlajshfasldfn labdfhafkljsdhhhhhhhhhhhhlkas
-        jdflaksjdhfjahdf jhaslkjdfhlkajsdhflkjhlskdhflkasdhfkljshdlkjfhaldshflkhalsdkfhlkahsdljfhalksjdhflkjhasldhflkashdkljfhlajshfasldfn labdfhaf
-        kljsdhhhhhhhhhhhhlkasjdflaksjdhfjahdf jhaslkjdfhlkajsdhflkjhlskdhflkasdhfkljshdlkjfhaldshflkhalsdkfhlkahsdljfhalksjdhflkjhasldhflkashdkljfh
-        lajshfasldfn labdfhafkljsdhhhhhhhhhhhhlkasjdflaksjdhfjahdf jhaslkjdfhlkajsdhflkjhlskdhflkasdhfkljshdlkjfhaldshflkhalsdkfhlkahsdljfhalksjdhf
-        lkjhasldhflkashdkljfhlajshfasldfn labdfhafkljsdhhhhhhhhhhhhlkasjdflaksjdhfjahdf jhaslkjdfhlkajsdhflkjhlskdhflkasdhfkljshdlkjfhaldshflkhalsd
-        kfhlkahsdljfhalksjdhflkjhasldhflkashdkljfhlajshfasldfn labdfhafkljsdhhhhhhhhhhhhlkasjdflaksjdhfjahdf jhaslkjdfhlkajsdhflkjhlskdhflkasdhfkljs
-        hdlkjfhaldshflkhalsdkfhlkahsdljfhalksjdhflkjhasldhflkashdkljfhlajshfasldfn labdfhafkljsdhhhhhhhhhhhhlkasjdflaksjdhfjahdf jhaslkjdfhlkajsdhfl
-        kjhlskdhflkasdhfkljshdlkjfhaldshflkhalsdkfhlkahsdljfhalksjdhflkjhasldhflkashdkljfhlajsh</h1>
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
+                     data-parent="#accordionExample">
+                    <div class="card-body">
+                        <ul>
+                            <li>Start by signing up free of charge <b>Accounts>Sign up</b></li>
+                            <li>Browse for properties, you can customise you search to your needs in the search bar</li>
+                            <li>Proceed to buy properties once you have found the ONE</li>
+                            <li>Follow the payment stepps</li>
+                            <li>Get your new property licence via email</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingTwo">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            How to sell property?
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <ul>
+                            <li>Start by signing up free of charge <b>Accounts>Sign up</b></li>
+                            <li>View your profile and press <b>Add property</b></li>
+                            <li>Fill in the information about your property</li>
+                            <li>Your property will be added now watch as you make some coin</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingThree">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        How to contact seller?
+                    </button>
+                </h2>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div class="card-body">
+                    <ul>
+                        <li>Find a property your intrested in</li>
+                        <li>Click the link to the seller</li>
+                        <li>Send the seller an email regarding the property</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingFour">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        Why we care about monsters?
+                    </button>
+                </h2>
+            </div>
+            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                <div class="card-body">
+                    <p>“You guys know about vampires? … You know, vampires have no reflections in a mirror? There’s this idea that monsters don’t have reflections in a mirror. And what I’ve always thought isn’t that monsters don’t have reflections in a mirror. It’s that if you want to make a human being into a monster, deny them, at the cultural level, any reflection of themselves. And growing up, I felt like a monster in some ways. I didn’t see myself reflected at all. I was like, “Yo, is something wrong with me? That the whole society seems to think that people like me don’t exist?" And part of what inspired me, was this deep desire that before I died, I would make a couple of mirrors. That I would make some mirrors so that kids like me might see themselves reflected back and might not feel so monstrous for it.”
+                        ― <i>Junot Díaz</i></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="the-team" style="margin: 5%;">
+        <h1>MEET THE TEAM</h1>
+        <p>Here we have some text about our group, the creaters of this wonderful site. Maybe a little smth funny maybe
+            smth serious soooo you blaaa blaa blaa this will be made proper in final product but lets have a joke:
+            Did you hear about the monkeys who shared an Amazon account? They were Prime mates.
+            Thats it folks, thats the joke.</p>
+        <div class="card-group">
+            <div class="card">
+                <img src="{% static 'images/alexdilja.png' %}" class="card-img-top" alt="creator-alex">
+                <div class="card-body">
+                    <h5 class="card-title">Alexandra Diljá</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                        additional
+                        content. This content is a little bit longer.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="{% static 'images/arnarut.png' %}" class="card-img-top" alt="creator-arna">
+                <div class="card-body">
+                    <h5 class="card-title">Arna Rut</h5>
+                    <p class="card-text">This card has supporting text below as a natural lead-in to additional
+                        content.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="{% static 'images/bergur.png' %}" class="card-img-top" alt="creator-bergur">
+                <div class="card-body">
+                    <h5 class="card-title">Bergur Þór</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                        additional
+                        content. This card has even longer content than the first to show that equal height action.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="{% static 'images/solla.jpg' %}" class="card-img-top" alt="creator-solrun">
+                <div class="card-body">
+                    <h5 class="card-title">Sólrún Ásta</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                        additional
+                        content. This card has even longer content than the first to show that equal height action.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="{% static 'images/vignir.png' %}" class="card-img-top" alt="creator-vignir">
+                <div class="card-body">
+                    <h5 class="card-title">Vignir</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                        additional
+                        content. This card has even longer content than the first to show that equal height action.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

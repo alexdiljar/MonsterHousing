@@ -1,27 +1,31 @@
-/* html, body {
+* html, body {
     height: 100%;
     margin: 0;
-    background-color: darkblue;
+    background-color: #ffffff;
 }
-div{
-    background-color: magenta;
-}
-.wrapper {
+
+.content {
     background-color: aquamarine;
     min-height: 100%;
 
     /* Equal to height of footer */
     /* But also accounting for potential margin-bottom of last child */
-/*    margin-bottom: -50px;
+    padding: 50px;
+    margin-bottom: 50px;
 }
 
-footer{
-    position: fixed;
+#sign-up-now{
+    margin-bottom: 0%;
+    padding-bottom: 10px;
+}
+
+
+footer {
     left: 0;
     bottom: 0;
     width: 100%;
-    background-color: red;
+    padding-bottom: 0%;
+    background-color: darkblue;
     color: white;
     text-align: center;
 }
-
