@@ -1,9 +1,11 @@
 {% extends 'index.html' %}
 
 {% block content %}
+
     <div class="properties">
         {% for properties in properties %}
             {% include 'Properties/SinglePropertyView.html' with properties=properties %}
         {% endfor %}
     </div>
+
 {% endblock %}

@@ -1,6 +1,7 @@
 {% extends 'index.html' %}
 
 {% block content %}
+
     <div class="property_all">
         <h1>{{ property.address.street }}{{ property.address.house_no }}</h1>
         <h2>{{ property.address.Cities.zip }} {{ property.address.Cities.city }}, {{ property.address.Cities.country }}</h2>
@@ -22,4 +23,5 @@
             <p>{{ property.detail.description }}</p>
         </div>
     </div>
+
 {% endblock %}
