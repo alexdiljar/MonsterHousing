@@ -12,5 +12,5 @@ def properties(request):
 # /candies/[id]
 def get_properties_by_id(request, id):
 
-    # return render(request, 'Properties/User/Properties/PropertyDetails.html')
+    # return render(request, 'Properties/User/Properties/PropertyView.html')
     pass
