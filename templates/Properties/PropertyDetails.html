@@ -1,6 +1,9 @@
 {% extends 'index.html' %}
 
 {% block content %}
+    {% for property in properties %}
 
-<h1>This site is for details about a single property</h1>
+        {% include 'Properties/single_property.html' with property=property %}
+
+    {% endfor %}
 {% endblock %}
