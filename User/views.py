@@ -21,11 +21,11 @@ def profile(request):
     addresses = Addresses.objects.first()
     cities = Cities.objects.first() # gæti þurft að vera stórir stafir í user
     if request.method == "POST":
-        form = ProfileForm(instance=cities, data=request.POST)
-        if form.is_valid():
-            cities = form.save(commit=False)
-            cities.save()
-            form = ProfileForm(instance=profile, data=request.POST)
+#        form = ProfileForm(instance=cities, data=request.POST)
+#        if form.is_valid():
+#            cities = form.save(commit=False)
+#            cities.save()
+        form = ProfileForm(instance=profile, data=request.POST)
         if form.is_valid():
             profile = form.save(commit=False)
             profile.user = request.user
