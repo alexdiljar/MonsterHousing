@@ -20,4 +20,9 @@ def get_properties_by_id(request, id):
     return render(request, 'Properties/PropertyDetails.html', {
         'property': get_object_or_404(Properties, pk=id)
     })
-    # return render(request, 'Properties/User/Properties/PropertyView.html')
+
+
+# This should maybe be in user views, not sure
+def add_new_property(request):
+    pass
+
