@@ -13,6 +13,7 @@ class CitiesForm(ModelForm):
             'city': widgets.Select(attrs={'class': 'form-control'}),
         }
 
+
 class AddressesForm(ModelForm):
     class Meta:
         model = Addresses
@@ -26,11 +27,12 @@ class AddressesForm(ModelForm):
 class ProfileForm(ModelForm):
     CitiesForm(ModelForm)
     AddressesForm(ModelForm)
+
     class Meta:
         model = Profile
         exclude = ['id', 'user', 'address']
         widgets = {
-            'snn': widgets.TextInput(attrs={'class': 'form-control'}),
+            'ssn': widgets.TextInput(attrs={'class': 'form-control'}),
             'phone': widgets.TextInput(attrs={'class': 'form-control'}),
             'profile_image': widgets.TextInput(attrs={'class': 'form-control'}),
             'country': widgets.Select(attrs={'class': 'form-control'}),
