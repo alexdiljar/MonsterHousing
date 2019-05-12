@@ -1,9 +1,9 @@
 {% extends 'index.html' %}
 
 {% block content %}
-<h1>Enter your information here</h1
+<h1>Enter your information here</h1>
 
-     <form class="form form-horizontal" method="post">
+     <form class="form form-horizontal" method="POST">
          {%  csrf_token %}
          {{ profile_form }}
          {{ addresses_form }}
