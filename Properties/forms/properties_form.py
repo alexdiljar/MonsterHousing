@@ -59,8 +59,8 @@ class DetailsForm(ModelForm):
 
 
 class CreatePropertyForm:
-    TagsForm()
-    TypesForm()
-    CitiesForm()
-    AddressesForm()
-    DetailsForm()
+    TagsForm(ModelForm)
+    TypesForm(ModelForm)
+    CitiesForm(ModelForm)
+    AddressesForm(ModelForm)
+    DetailsForm(ModelForm)

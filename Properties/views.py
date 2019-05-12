@@ -28,7 +28,8 @@ def add_new_property(request):
     if request.method == 'POST':
         form = forms.CreateProperty(request.POST, request.FILES)
         if form.is_valid():
-            new_property = form.save(commit=False)
-            new_property
+            instance = form.save(commit=False)
+            instance.user = request.user
+
 
 
