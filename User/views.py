@@ -1,8 +1,8 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
-from User.forms.profile_form import ProfileForm
 from User.models import Profile
 from Properties.models import Cities, Addresses
+from User.forms.profile_form import *
 
 # Create your views here.
 def register(request):
@@ -19,18 +19,23 @@ def register(request):
 def profile(request):
     profile = Profile.objects.filter(user=request.user).first()
     addresses = Addresses.objects.first()
-    cities = Cities.objects.first() # gæti þurft að vera stórir stafir í user
+    cities = Cities.objects.first()  # gæti þurft að vera stórir stafir í user
     if request.method == "POST":
-#        form = ProfileForm(instance=cities, data=request.POST)
-#        if form.is_valid():
-#            cities = form.save(commit=False)
-#            cities.save()
-        form = ProfileForm(instance=profile, data=request.POST)
-        if form.is_valid():
-            profile = form.save(commit=False)
+        profile_form = ProfileForm(instance=profile, data=request.POST)
+        addresses_form = AddressesForm(instance=addresses, data=request.POST)
+        cities_form = CitiesForm(instance=cities, data=request.POST)
+
+        if profile_form.is_valid() and addresses_form.is_valid() and cities_form.is_valid():
+            cities = cities_form.save(commit=False)
+            cities.save()
+            addresses = addresses_form.save(commit=False)
+            addresses.save()
+            profile = profile_form.save(commit=False)
             profile.user = request.user
             profile.save()
             return redirect('profile')
     return render(request, 'User/Account.html', {
-        'form': ProfileForm(instance=profile and cities)
+        'profile_form': ProfileForm(instance=profile),
+        'addresses_form': AddressesForm(instance=addresses),
+        'cities_form': CitiesForm(instance=cities)
     })
