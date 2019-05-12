@@ -47,13 +47,15 @@
                     {% else %}
                         <a class="dropdown-item" href="{% url 'login' %}">Sign In</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{% url 'register' %}">Sign U</a>
+                        <a class="dropdown-item" href="{% url 'register' %}">Sign Up</a>
                     {% endif %}
                 </div>
+
             </li>
-
         </ul>
-
+        {% if user.is_authenticated %}
+           <img src="{{ user.profile.profile_image }}" class="profile-image">
+        {% endif %}
     </div>
 </nav>
 
