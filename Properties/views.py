@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from Properties.models import Properties
+from . import forms
 
 # TODO : connect views/ the urls to html files under User in this file
 
@@ -24,5 +25,10 @@ def get_properties_by_id(request, id):
 
 # This should maybe be in user views, not sure
 def add_new_property(request):
-    pass
+    if request.method == 'POST':
+        form = forms.CreateProperty(request.POST, request.FILES)
+        if form.is_valid():
+            new_property = form.save(commit=False)
+            new_property
+
 

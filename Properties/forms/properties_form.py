@@ -9,14 +9,14 @@ class CitiesForm(ModelForm):
         widgets = {
             'country': widgets.TextInput(attrs={'class': 'form-control'}),
             'zip': widgets.TextInput(attrs={'class': 'form-control'}),
-            'city': widgets.TextInput(attrs={'class': 'form-control'}),
+            'city': widgets.TextInput(attrs={'class': 'form-control'})
         }
 
 
 class AddressesForm(ModelForm):
     class Meta:
         model = Properties.address
-        exclude = ['id', 'Cities_id']
+        exclude = ['id', 'Cities']
         widgets = {
             'street': widgets.TextInput(attrs={'class': 'form-control'}),
             'house_no': widgets.TextInput(attrs={'class': 'form-control'})
@@ -41,7 +41,7 @@ class TypesForm(ModelForm):
         model = Properties.detail.Ty_ID
         exclude = ['id']
         widgets = {
-            'description': widgets.CheckboxInput(attrs={'class': 'form-control'})
+            'description': widgets.CheckboxInput(attrs={'class': 'checkbox'})
         }
 
 
