@@ -1,9 +1,27 @@
 {% extends 'index.html' %}
 
 {% block content %}
-    {% for property in properties %}
 
-        {% include 'Properties/single_property.html' with property=property %}
+    <div class="property_all">
+        <h1>{{ property.address.street }}{{ property.address.house_no }}</h1>
+        <h2>{{ property.address.Cities.zip }} {{ property.address.Cities.city }}, {{ property.address.Cities.country }}</h2>
+        <img src="{{ property.detail.property_image }}" alt="Property image">
+        <div class="detail-banner">
+            <div class="details-about-property">
+                <p>Type: {{ property.detail.Ty_ID.description }}</p>
+                <p>Price: {{ property.detail.price }}</p>
+                <p>Size: {{ property.detail.size }}</p>
+                <p>Rooms: {{ property.detail.rooms }}</p>
+            </div>
+            <div class="tags-for-property">
+                <p>Elevator: {{ property.detail.T_ID.elevator }}</p>
+                <p>Garage: {{ property.detail.T_ID.garage }}</p>
+                <p>Near a blood bank: {{ property.detail.T_ID.near_bloodbank }}</p>
+                <p>Dungeon: {{ property.detail.T_ID.dungeon }}</p>
+                <p>Secret entrance: {{ property.detail.T_ID.seacret_entrence }}</p>
+            </div>
+            <p>{{ property.detail.description }}</p>
+        </div>
+    </div>
 
-    {% endfor %}
 {% endblock %}

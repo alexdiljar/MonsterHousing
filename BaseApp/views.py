@@ -8,9 +8,9 @@ def about_us_index(request):
     return render(request, 'base/AboutUs.html')
 
 
-def catalog_index(request):
-    context = {'properties': Properties.objects.all()}
-    return render(request, 'base/Catalog.html', context)
+# def catalog_index(request):
+#     context = {'properties': Properties.objects.all()}
+#     return render(request, 'base/Catalog.html', context)
 
 
 def terms_index(request):
