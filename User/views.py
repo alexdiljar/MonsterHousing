@@ -29,11 +29,11 @@ def profile(request):
             # cities = cities_form.save(commit=False)
             cities.save()
             addresses = addresses_form.save(commit=False)
-            # addresses.Cities = request.Cities
+            addresses.Cities = cities
             addresses.save()
             profile = profile_form.save(commit=False)
             profile.user = request.user
-            # profile.address = request.address
+            profile.address = addresses
             profile.save()
             return redirect('profile')
     return render(request, 'User/Account.html', {
