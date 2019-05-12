@@ -65,19 +65,20 @@
     {% endblock %}
 </div>
 <!-- Footer -->
-<footer class="page-footer font-small stylish-color-light pt-4">
+<!-- Footer -->
+<footer class="page-footer font-small stylish-color-light ">
 
-    <!-- Footer Links -->
-    <!-- <div class="container text-center text-md-right"> -->
+
 
     <!-- Grid row -->
-    <div class="row">
+    <div class="row text-left">
         <div class="media">
             <img src="{% static 'images/logo.png' %}" class="mr-3" alt="Logo">
             <div class="media-body">
                 <h5 class="font-weight-bold text-uppercase mt-0 mb-4">Monster Housing</h5>
-                <p>info@monsterhousing.com</p>
-                <p>+666-666-666</p>
+                <a href="mailto:info@monsterhousing.com">info@monsterhousing.com</a>
+                <br>
+                <a href="tel:666-666-666">+666-666-666</a>
             </div>
         </div>
         <!-- Grid column -->
@@ -87,10 +88,10 @@
         <hr>
 
         <!-- Grid column -->
-        <div class="col-md-2 mx-auto text-center text-md-right">
+        <div class="col-md-22 mx-auto text-right text-md-right" id="rhsfooterlinks">
 
             <!-- Links -->
-            <h5 class="font-weight-bold text-uppercase mt-8 mb-8">Links</h5>
+            <h5 class="font-weight-bold text-uppercase mt-4 mb-4"></h5>
 
             <ul class="list-unstyled mx-right">
                 <li class="nav-item">
@@ -107,27 +108,14 @@
                 </li>
             </ul>
         </div>
-        <!-- Grid column -->
 
-        <!-- </div> -->
-        <!-- Grid row -->
-        <!-- Footer Links -->
-        {% if not user.is_authenitcated %}
+        {% if not user.is_authenitcated %} -->
 
 
 
             </div>
-            <!-- Call to action -->
-            <ul class="list-unstyled list-inline text-center" id="sign-up-now">
-                <li class="list-inline-item">
-                    <h5 class="mb-1">Register for free</h5>
-                </li>
-                <li class="list-inline-item">
-                    <a href="{% url 'register' %}" class="btn btn-light btn-rounded">Sign up!</a>
-                </li>
-            </ul>
-            <!-- Call to action -->
-        {% endif %}
+
+         {% endif %}-->
 
 
 </footer>
