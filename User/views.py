@@ -19,7 +19,7 @@ def register(request):
 def profile(request):
     profile = Profile.objects.filter(user=request.user).first()
     addresses = Addresses.objects.first()
-    cities = Cities.objects.first()  # gæti þurft að vera stórir stafir í user
+    cities = Cities.objects.first()
     if request.method == "POST":
         profile_form = ProfileForm(instance=profile, data=request.POST)
         addresses_form = AddressesForm(instance=addresses, data=request.POST)
