@@ -4,8 +4,10 @@ from Properties.models import Addresses
 
 
 class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    address = models.ForeignKey(Addresses, on_delete=models.CASCADE)
     ssn = models.CharField(max_length=50, unique=True)
     phone = models.CharField(max_length=50)
-    address = models.ForeignKey(Addresses, on_delete=models.CASCADE)
     profile_image = models.CharField(max_length=999)
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+
