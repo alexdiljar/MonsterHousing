@@ -32,3 +32,5 @@ def get_seller_profile(request, id):
 def add_new_property(request):
     pass
 
+def search_properties(request):
+    pass
