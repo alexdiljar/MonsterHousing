@@ -1,0 +1,19 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+    <div class="account_all">
+        <h1>{{ profile.user.username}}</h1>
+        <img src="{{ profile.profile_image }}" alt="user image">
+        <p>Name:{{ profile.user.first_name }} {{ profile.user.last_name }}</p>
+        <p>SSN: {{ profile.ssn }}</p>
+        <p>Email: {{ profile.user.email }}</p>
+        <p>Phone: {{ profile.phone }}</p>
+        <p>Country: {{ profile.address.Cities.country }}</p>
+        <p>City: {{ profile.address.Cities.city }}</p>
+        <p>Zip: {{ profile.address.Cities.zip }}</p>
+        <p>Street: {{ profile.address.street }}</p>
+        <p>House Number: {{ profile.address.house_no }}</p>
+    </div>
+
+{% endblock %}

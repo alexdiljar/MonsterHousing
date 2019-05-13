@@ -1,8 +1,9 @@
 from django.contrib.auth.forms import UserCreationForm
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from User.models import Profile
 from Properties.models import Cities, Addresses
 from User.forms.profile_form import *
+
 
 # Create your views here.
 def register(request):
@@ -14,6 +15,13 @@ def register(request):
     return render(request, 'User/SignUp.html', {
         'form': UserCreationForm()
     })
+
+
+# def profile(request):
+#     user = user.
+#     return render(request, 'User/AccountDetails.html', {
+#         'profile': get_object_or_404(Profile)
+#     })
 
 
 def profile(request):
