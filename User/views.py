@@ -26,19 +26,25 @@ def profile(request):
         profile_form = ProfileForm(instance=profile, data=request.POST)
         addresses_form = AddressesForm(instance=addresses, data=request.POST)
         cities_form = CitiesForm(instance=cities, data=request.POST)
-
         if profile_form.is_valid() and addresses_form.is_valid() and cities_form.is_valid():
-            # cities = cities_form.save(commit=False)
+            # We save information to db for cities
             cities.save()
+            # We access db and id from prev saved data
+            # We save information to db for addresses
             addresses = addresses_form.save(commit=False)
             addresses.Cities = cities
             addresses.save()
+            # We access db and user and address from prev saved data
+            # We save information to db for profile
             profile = profile_form.save(commit=False)
             profile.user = request.user
             profile.address = addresses
             profile.save()
             return redirect('profile')
     return render(request, 'User/Account.html', {
+
+        # TODO: need to add form for auth user so we can know first, last name and email
+
         # 'auth_user_form': AuthUserForm(instance=auth_user)
         'profile_form': ProfileForm(instance=profile),
         'addresses_form': AddressesForm(instance=addresses),
