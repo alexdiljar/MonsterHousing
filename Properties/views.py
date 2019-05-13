@@ -26,3 +26,5 @@ def get_properties_by_id(request, id):
 def add_new_property(request):
     pass
 
+def search_properties(request):
+    pass
