@@ -1,7 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from Properties.models import Properties
 from . import forms
+from django.contrib.auth.decorators import login_required
 
 # TODO : connect views/ the urls to html files under User in this file
 
@@ -22,6 +23,10 @@ def get_properties_by_id(request, id):
         'property': get_object_or_404(Properties, pk=id)
     })
 
+@login_required
+def get_seller_profile(request):
+    return render(request, 'Properties/SellerDetails.html')
+
 
 # This should maybe be in user views, not sure
 def add_new_property(request):
@@ -33,3 +38,5 @@ def add_new_property(request):
 
 
 
+def search_properties(request):
+    pass
