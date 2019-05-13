@@ -8,8 +8,8 @@ from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
-def properties(request):
-    return HttpResponse('Hello from the properties views')
+# def properties(request):
+#     return HttpResponse('Hello from the properties views')
 
 
 def catalog_index(request):
@@ -18,10 +18,11 @@ def catalog_index(request):
 
 
 # /properties/[id]
-def get_properties_by_id(request, id):
+def get_property_by_id(request, id):
     return render(request, 'Properties/PropertyDetails.html', {
         'property': get_object_or_404(Properties, pk=id)
     })
+
 
 @login_required
 def get_seller_profile(request):
@@ -35,7 +36,6 @@ def add_new_property(request):
         if form.is_valid():
             instance = form.save(commit=False)
             instance.user = request.user
-
 
 
 def search_properties(request):

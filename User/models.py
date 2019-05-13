@@ -9,4 +9,3 @@ class Profile(models.Model):
     ssn = models.CharField(max_length=50, unique=True)
     phone = models.CharField(max_length=50)
     profile_image = models.CharField(max_length=999)
-
