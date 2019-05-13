@@ -18,12 +18,13 @@ def catalog_index(request):
 
 # /properties/[id]
 def get_properties_by_id(request, id):
+    print('in get properties by id')
     return render(request, 'Properties/PropertyDetails.html', {
         'property': get_object_or_404(Properties, pk=id)
     })
 
 @login_required
-def get_seller_profile(request):
+def get_seller_profile(request, id):
     return render(request, 'Properties/SellerDetails.html')
 
 
