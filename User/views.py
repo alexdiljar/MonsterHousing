@@ -56,5 +56,3 @@ def profile(request):
         'addresses_form': AddressesForm(instance=addresses),
         'cities_form': CitiesForm(instance=cities)
     })
-
-
