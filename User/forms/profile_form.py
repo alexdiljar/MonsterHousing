@@ -1,6 +1,7 @@
 from django.forms import ModelForm, widgets
 from User.models import Profile
 from Properties.models import Cities, Addresses
+from django.contrib.auth.models import User
 
 
 class CitiesForm(ModelForm):
@@ -34,9 +35,18 @@ class ProfileForm(ModelForm):
             'profile_image': widgets.TextInput(attrs={'class': 'form-control'}),
         }
 
+
 class AuthUserForm(ModelForm):
     class Meta:
-        pass
+        model = User
+        exclude = ['id', 'last_login', 'is_superuser', 'is_staff', 'is_active', 'date_joined']
+        widgets = {
+            'username': widgets.TextInput(attrs={'class': 'form-control'}),
+            'password': widgets.HiddenInput(attrs={'class': 'form-control'}),
+            'first_name': widgets.TextInput(attrs={'class': 'form-control'}),
+            'last_name': widgets.TextInput(attrs={'class': 'form-control'}),
+            'email': widgets.EmailInput(attrs={'class': 'form-control'})
+        }
 
         # max_length=200,
         # null=True,

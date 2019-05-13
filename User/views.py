@@ -18,7 +18,7 @@ def register(request):
 
 
 def profile(request):
-
+    auth_user = User.objects.filter(username=request.user)
     profile = Profile.objects.filter(user_id=User.objects.filter(username=request.user).first().id).first()
     addresses = Addresses.objects.filter(id=profile.address_id).first()
     cities = Cities.objects.filter(id=addresses.Cities_id).first()
@@ -45,7 +45,7 @@ def profile(request):
 
         # TODO: need to add form for auth user so we can know first, last name and email
 
-        # 'auth_user_form': AuthUserForm(instance=auth_user)
+        'auth_user_form': AuthUserForm(instance=auth_user),
         'profile_form': ProfileForm(instance=profile),
         'addresses_form': AddressesForm(instance=addresses),
         'cities_form': CitiesForm(instance=cities)

@@ -5,6 +5,7 @@
 
      <form class="form form-horizontal" method="POST">
          {%  csrf_token %}
+         {{ auth_user_form }}
          {{ profile_form }}
          {{ addresses_form }}
          {{ cities_form }}
