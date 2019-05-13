@@ -1,4 +1,5 @@
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from User.models import Profile
 from Properties.models import Cities, Addresses
@@ -17,9 +18,10 @@ def register(request):
 
 
 def profile(request):
-    cities = Cities.objects.first()
-    addresses = Addresses.objects.filter(Cities=cities.id).first()
-    profile = Profile.objects.filter(user=request.user, address=addresses.id).first()
+
+    profile = Profile.objects.filter(user_id=User.objects.filter(username=request.user).first().id).first()
+    addresses = Addresses.objects.filter(id=profile.address_id).first()
+    cities = Cities.objects.filter(id=addresses.Cities_id).first()
     if request.method == "POST":
         profile_form = ProfileForm(instance=profile, data=request.POST)
         addresses_form = AddressesForm(instance=addresses, data=request.POST)
