@@ -1,8 +1,8 @@
 from django.contrib.auth.forms import UserCreationForm
-from django.shortcuts import render, redirect
-from User.models import Profile
-from Properties.models import Cities, Addresses
-from User.forms.profile_form import *
+from django.contrib.auth.models import User
+from django.shortcuts import render, redirect, reverse, get_object_or_404
+from User.forms.profile_form import CustomUserChangeForm, ProfileForm, AddressesForm, CitiesForm
+
 
 # Create your views here.
 def register(request):
@@ -16,6 +16,41 @@ def register(request):
     })
 
 
+def profile(request):
+    # profile = Profile.objects.get(user=request.user)
+    user = User.objects.get(pk=request.user.id)
+    if request.method == 'POST':
+        # Step 1: Parse data from POST.
+        user_form = CustomUserChangeForm(instance=user, data=request.POST)
+        profile_form = ProfileForm(instance=user.profile, data=request.POST)
+        addresses_form = AddressesForm(instance=user.profile.address, data=request.POST)
+        cities_form = CitiesForm(instance=user.profile.address.Cities, data=request.POST)
+
+        # Step 2: Validate parsed data.
+        if profile_form.is_valid() and addresses_form.is_valid() and cities_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            addresses_form.save()
+            cities_form.save()
+            return redirect(reverse('profile'))
+        else:
+
+            # Validation failed - return same data parsed from POST.
+            return render(request, 'User/Account.html', {
+                'user_form': user_form,
+                'profile_form': profile_form,
+                'addresses_form': addresses_form,
+                'cities_form': cities_form,
+            })
+    else:
+        return render(request, 'User/Account.html', {
+            'user_form': CustomUserChangeForm(instance=user),
+            'cities_form': CitiesForm(instance=user.profile.address.Cities),
+            'addresses_form': AddressesForm(instance=user.profile.address),
+            'profile_form': ProfileForm(instance=user.profile.id),
+        })
+
+'''
 def profile(request):
     cities = Cities.objects.first()
     addresses = Addresses.objects.filter(Cities=cities.id).first()
@@ -47,6 +82,5 @@ def profile(request):
         'profile_form': ProfileForm(instance=profile),
         'addresses_form': AddressesForm(instance=addresses),
         'cities_form': CitiesForm(instance=cities)
-    })
-
+    })'''
 

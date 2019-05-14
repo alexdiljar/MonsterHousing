@@ -2,7 +2,6 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from Properties.models import Properties
 from django.contrib.auth.decorators import login_required
-from Properties.forms.search_form import SearchForm
 
 # TODO : connect views/ the urls to html files under User in this file
 
@@ -18,14 +17,18 @@ def catalog_index(request):
 
 
 # /properties/[id]
-def get_properties_by_id(request, id):
+def get_property_by_id(request, id):
+    print('in get properties by id')
     return render(request, 'Properties/PropertyDetails.html', {
         'property': get_object_or_404(Properties, pk=id)
     })
 
+# /[property id]/seller_profile
 @login_required
-def get_seller_profile(request):
-    return render(request, 'Properties/SellerDetails.html')
+def get_seller_profile(request, id):
+    seller = {User.objects.get(id=id)}
+    # u_properties = {'u_properties': Properties.objects.filter(user=seller.)}
+    return render(request, 'Properties/SellerDetails.html', seller)
 
 
 # This should maybe be in user views, not sure

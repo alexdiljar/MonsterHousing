@@ -1,3 +1,5 @@
+from django.contrib.auth.forms import UserChangeForm
+from django.contrib.auth.models import User
 from django.forms import ModelForm, widgets
 from User.models import Profile
 from Properties.models import Cities, Addresses
@@ -25,6 +27,11 @@ class AddressesForm(ModelForm):
 
 
 class ProfileForm(ModelForm):
+    country = widgets.TextInput(attrs={'class': 'form-control'})
+    city = widgets.TextInput(attrs={'class': 'form-control'})
+    zip = widgets.TextInput(attrs={'class': 'form-control'})
+    street = widgets.TextInput(attrs={'class': 'form-control'})
+    house_no = widgets.TextInput(attrs={'class': 'form-control'})
     class Meta:
         model = Profile
         exclude = ['id', 'user', 'address']
@@ -34,11 +41,19 @@ class ProfileForm(ModelForm):
             'profile_image': widgets.TextInput(attrs={'class': 'form-control'}),
         }
 
-class AuthUserForm(ModelForm):
+class CustomUserChangeForm(UserChangeForm):
     class Meta:
-        pass
+        model = User
 
-        # max_length=200,
-        # null=True,
-        # blank=True,
-        # help_text='Use puns liberally',
+        fields = [
+            'last_name',
+            'first_name',
+            'email',
+        ]
+
+        widgets = {
+            'last_name': widgets.TextInput(attrs={'class': 'form-control'}),
+            'first_name': widgets.TextInput(attrs={'class': 'form-control'}),
+            'email': widgets.TextInput(attrs={'class': 'form-control'}),
+        }
+
