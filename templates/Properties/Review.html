@@ -1,10 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+
+
+{% extends 'Properties/BuyProperty.html' %}
+
+@login_required
+{% block content %}
+
+    <h1>Review</h1>
+
+    <a class="btn btn-primary" href="{% url 'buy_property_payment' property.id %}">Back</a>
+    <a class="btn btn-primary" href="{% url 'buy_property_confirm' property.id %}">Confirm</a>
+
+
+
+{% endblock %}

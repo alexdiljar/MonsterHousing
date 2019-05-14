@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+
+
+{% extends 'index.html' %}
+
+@login_required
+{% block content %}
+
+    <h1>Banner with links to other payment steps</h1>
+
+
+
+{% endblock %}

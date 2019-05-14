@@ -23,6 +23,7 @@ def get_properties_by_id(request, id):
         'property': get_object_or_404(Properties, pk=id)
     })
 
+
 @login_required
 def get_seller_profile(request, id):
     return render(request, 'Properties/SellerDetails.html')
@@ -32,5 +33,23 @@ def get_seller_profile(request, id):
 def add_new_property(request):
     pass
 
+
 def search_properties(request):
     pass
+
+
+def buy_property(request, id):
+    return render(request, 'Properties/Information.html')
+
+
+def buy_property_payment(request, id):
+    return render(request, 'Properties/Payment.html')
+
+
+def buy_property_review(request, id):
+    return render(request, 'Properties/Review.html')
+
+
+def buy_property_confirm(request, id):
+    return render(request, 'Properties/Confirm.html')
+
