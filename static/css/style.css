@@ -1,31 +1,68 @@
-* html, body {
+body {
     height: 100%;
     margin: 0;
-    background-color: #ffffff;
+    background-color: #add8e6;
 }
 
 .content {
-    background-color: #ffffff;
+    background-color: #add8e6;
     min-height: 100%;
+
 
     /* Equal to height of footer */
     /* But also accounting for potential margin-bottom of last child */
-    padding: 50px;
-    margin-bottom: 50px;
+
 }
 
 #sign-up-now{
     margin-bottom: 0%;
-    padding-bottom: 10px;
+    z-index: -1;
 }
-
 
 footer {
     left: 0;
     bottom: 0;
     width: 100%;
-    padding-bottom: 0%;
-    background-color: darkblue;
+    padding-bottom: 0;
+    background-color: #4169e1;
+    color: #ffffff;
+    text-align: left;
+}
+
+.mr-3 {
+    width: 20vw;
+    height:20vh;
+}
+
+.media {
+     font-size: 12px;
+}
+
+#rhsfooterlinks {
+     font-size: 12px;
+    text-align: right;
+    position: absolute;
+    right: 0px;
     color: white;
+}
+
+#navbar_id{
+    background-color: #4169e1;
+    color: #ffffff;
+    a:hover { color: green; }
+    a:active { color: yellow; }
+}
+
+.container{
     text-align: center;
+    width: 100%;
+    color: white;
+    background-size: cover;
+}
+
+.Links_id {
+    color: #ffffff;
+    a:hover { color: green; }
+    a:active { color: yellow; }
+
 }

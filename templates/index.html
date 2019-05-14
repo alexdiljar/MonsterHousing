@@ -21,7 +21,7 @@
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar7">
+    <div class="collapse navbar-collapse flex-grow-1 text-right" id="navbar_id">
         <ul class="navbar-nav ml-auto flex-nowrap">
             <li class="nav-item active">
                 <a class="nav-link" href="{% url 'front_page_index' %}">Home <span class="sr-only">(current)</span></a>
@@ -62,8 +62,10 @@
 
     {% block content %}
 
+
+
     {% endblock %}
-</div>
+
 <!-- Footer -->
 <footer class="page-footer font-small stylish-color-light pt-4">
 
@@ -87,7 +89,7 @@
         <hr>
 
         <!-- Grid column -->
-        <div class="col-md-2 mx-auto text-center text-md-right">
+        <div class="col-md-2 mx-auto text-right text-md-right" id="Links_id">
 
             <!-- Links -->
             <h5 class="font-weight-bold text-uppercase mt-8 mb-8">Links</h5>
