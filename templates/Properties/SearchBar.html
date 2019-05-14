@@ -1,0 +1,20 @@
+{% extends 'index.html' %}
+
+{% load static %}
+{% block content %}
+    {{ form.subject.label_tag }}
+    {% csrf_token %}
+    {% if 'for="id_type' in form %}
+    {% for field in form %}
+        <div class="col-md-12 dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{{ field.label_tag }}
+                <span class="caret"></span>
+            </button>
+            <div class="dropdown-menu">
+                <div><a href="#">{{ field }}</a></div>
+            </div>
+        </div>
+    {% endfor %}
+    {% endif %}
+    {{ form }}
+{% endblock %}

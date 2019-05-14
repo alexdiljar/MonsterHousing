@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from Properties.models import Properties
 from django.contrib.auth.decorators import login_required
+from Properties.forms.search_form import SearchForm
 
 # TODO : connect views/ the urls to html files under User in this file
 
@@ -31,5 +32,7 @@ def get_seller_profile(request):
 def add_new_property(request):
     pass
 
-def search_properties(request):
-    pass
+def search(request):
+    form = SearchForm()
+    print(form)
+    return render(request, 'Properties/SearchBar.html', {'form': form})
