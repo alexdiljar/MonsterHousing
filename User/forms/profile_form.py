@@ -39,22 +39,16 @@ class ProfileForm(ModelForm):
 class CustomUserChangeForm(UserChangeForm):
     class Meta:
         model = User
+
         fields = [
             'last_name',
             'first_name',
             'email',
         ]
+
         widgets = {
             'last_name': widgets.TextInput(attrs={'class': 'form-control'}),
             'first_name': widgets.TextInput(attrs={'class': 'form-control'}),
             'email': widgets.TextInput(attrs={'class': 'form-control'}),
         }
 
-class AuthUserForm(ModelForm):
-    class Meta:
-        pass
-
-        # max_length=200,
-        # null=True,
-        # blank=True,
-        # help_text='Use puns liberally',

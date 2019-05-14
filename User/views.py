@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
-# from django.contrib.auth.models import User
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, reverse
-from User.forms.profile_form import *
+from User.forms.profile_form import CustomUserChangeForm, ProfileForm, AddressesForm, CitiesForm
 
 
 # Create your views here.
@@ -46,11 +46,10 @@ def profile(request):
     else:
         return render(request, 'User/Account.html', {
             'user_form': CustomUserChangeForm(instance=user),
-            'profile_form': ProfileForm(instance=user.profile),
+            'cities_form': CitiesForm(instance=user.profile.address.Cities),
             'addresses_form': AddressesForm(instance=user.profile.address),
-            'cities_form': CitiesForm(instance=user.profile.address.Cities)
+            'profile_form': ProfileForm(instance=user.profile.id),
         })
-
 
 '''
 def profile(request):
@@ -84,5 +83,5 @@ def profile(request):
         'profile_form': ProfileForm(instance=profile),
         'addresses_form': AddressesForm(instance=addresses),
         'cities_form': CitiesForm(instance=cities)
-    })
-'''
+    })'''
+
