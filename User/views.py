@@ -1,6 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from User.forms.profile_form import CustomUserChangeForm, ProfileForm, AddressesForm, CitiesForm
 
 
@@ -19,7 +19,6 @@ def register(request):
 def profile(request):
     # profile = Profile.objects.get(user=request.user)
     user = User.objects.get(pk=request.user.id)
-
     if request.method == 'POST':
         # Step 1: Parse data from POST.
         user_form = CustomUserChangeForm(instance=user, data=request.POST)
