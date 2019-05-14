@@ -1,8 +1,9 @@
-from django.contrib.auth.forms import UserChangeForm
+from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 from django.contrib.auth.models import User
 from django.forms import ModelForm, widgets
 from User.models import Profile
 from Properties.models import Cities, Addresses
+from django import forms
 
 
 class CitiesForm(ModelForm):
@@ -19,7 +20,7 @@ class CitiesForm(ModelForm):
 class AddressesForm(ModelForm):
     class Meta:
         model = Addresses
-        exclude = ['id', 'Cities']
+        exclude = ['id', 'city']
         widgets = {
             'street': widgets.TextInput(attrs={'class': 'form-control'}),
             'house_no': widgets.TextInput(attrs={'class': 'form-control'}),
@@ -49,11 +50,34 @@ class CustomUserChangeForm(UserChangeForm):
             'last_name',
             'first_name',
             'email',
+            'username',
         ]
 
         widgets = {
             'last_name': widgets.TextInput(attrs={'class': 'form-control'}),
             'first_name': widgets.TextInput(attrs={'class': 'form-control'}),
             'email': widgets.TextInput(attrs={'class': 'form-control'}),
+            'username': widgets.TextInput(attrs={'class': 'form-control'}),
         }
+
+class RegisterForm(UserCreationForm):
+    email = forms.EmailField(label='Email')
+    first_name = forms.CharField(label='First Name')
+    last_name = forms.CharField(label='Last Name')
+    class Meta:
+        model = User
+        fields = (
+            'username',
+            'first_name',
+            'last_name',
+            'email',
+        )
+    def save(self, commit=True):
+        user = super(RegisterForm, self).save(commit=False)
+        user.first_name = self.cleaned_data["first_name"]
+        user.last_name = self.cleaned_data["last_name"]
+        user.email = self.cleaned_data["email"]
+        if commit:
+            user.save()
+        return user
 
