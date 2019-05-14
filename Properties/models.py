@@ -12,7 +12,7 @@ class Cities(models.Model):
 class Addresses(models.Model):
     street = models.CharField(max_length=255)
     house_no = models.IntegerField()
-    Cities = models.ForeignKey(Cities, on_delete=models.CASCADE)
+    city = models.ForeignKey(Cities, on_delete=models.CASCADE)
 
 
 class Tags(models.Model):
@@ -20,7 +20,7 @@ class Tags(models.Model):
     garage = models.BooleanField()
     near_bloodbank = models.BooleanField()
     dungeon = models.BooleanField()
-    seacret_entrence = models.BooleanField()
+    secret_entrence = models.BooleanField()
 
 
 class Types(models.Model):
@@ -28,8 +28,8 @@ class Types(models.Model):
 
 
 class Details(models.Model):
-    T_ID = models.ForeignKey(Tags, on_delete=models.CASCADE)
-    Ty_ID = models.ForeignKey(Types, on_delete=models.CASCADE)
+    tags = models.ForeignKey(Tags, on_delete=models.CASCADE)
+    type = models.ForeignKey(Types, on_delete=models.CASCADE)
     size = models.CharField(max_length=255)
     price = models.FloatField()
     rooms = models.IntegerField()
