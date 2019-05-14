@@ -2,10 +2,12 @@
 
 {% block content %}
 
-    <h1>This site is for signing up</h1>
+    <h1>Fill all necessary information</h1 >
    <form class="form form-horizontal" method="post">
        {%  csrf_token %}
-       {{ form }}
+       {{ profile_form }}
+       {{ addresses_form }}
+       {{ cities_form }}
         <input type="submit" class="btn btn-primary" value="Sign Up"/>
     </form>
 
