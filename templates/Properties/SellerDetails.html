@@ -2,6 +2,16 @@
 
 @login_required
 {% block content %}
-
-<h1>this should ba quick view of seller profile of a specific property</h1>
+    <div class="seller info">
+        <img src="{{ seller.profile.profile_image }}" alt="seller image">
+        {{ seller.username }}
+        {{ seller.email }}
+        {{ seller.profile.phone }}
+    </div>
+    <div class="seller properties">
+        {% for property in properties %}
+            {% include 'Properties/SinglePropertyView.html' with property=property %}
+        {% endfor %}
+    </div>
 {% endblock %}
+

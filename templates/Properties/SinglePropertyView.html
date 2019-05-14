@@ -1,7 +1,7 @@
 <div class="single_property">
     <a href="/properties/{{ properties.id }}">
         <img class="property_image" src="{{ properties.detail.property_image }}" alt="Image of property">
-        <h4>{{ properties.address.street }} {{ properties.address.house_no }}, {{ properties.address.Cities.country }}</h4>
+        <h4>{{ properties.address.street }} {{ properties.address.house_no }}, {{ properties.address.city.country }}</h4>
         <p>{{ properties.detail.price }}</p>
         <p>{{ properties.detail.description }}</p>
     </a>
