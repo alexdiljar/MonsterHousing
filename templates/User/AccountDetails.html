@@ -17,7 +17,7 @@
         <p>House Number: {{ user.profile.address.house_no }}</p>
     </div>
     <div class="account properties">
-        <a href="{% url 'account_properties' properties.id %}"><h2>My Properties</h2></a>
+        <a href="{% url 'account_properties' %}"><h2>My Properties</h2></a>
         {% for properties in properties %}
             {% include 'Properties/SinglePropertyView.html' with properties=properties %}
         {% endfor %}
