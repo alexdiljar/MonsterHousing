@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 
 from User.models import Profile
-from Properties.models import Properties
+from Properties.models import Properties, Addresses, Cities
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from User.forms.profile_form import CustomUserChangeForm, ProfileForm, AddressesForm, CitiesForm, RegisterForm
 
@@ -23,7 +23,6 @@ from User.forms.profile_form import CustomUserChangeForm, ProfileForm, Addresses
 
 def register(request):
     if request.method == "POST":
-        data = request.POST.copy()
         form = RegisterForm(data=request.POST)
         cities_form = CitiesForm(data=request.POST)
         addresses_form = AddressesForm(data=request.POST)
@@ -40,9 +39,6 @@ def register(request):
 
             profile_saved.address = address_saved
             profile_saved.user = form_saved
-            print(data)
-            print()
-            # profile_saved.user =
             profile_saved.save()
 
             return HttpResponseRedirect('login')
@@ -56,14 +52,6 @@ def register(request):
             'addresses_form': AddressesForm(),
             'profile_form': ProfileForm(),
         })
-
-'''return render(request, 'User/Account.html', {
-    'user_form': CustomUserChangeForm(instance=user),
-    'cities_form': CitiesForm(instance=profile.address.city),
-    'addresses_form': AddressesForm(instance=profile.address),
-    'profile_form': ProfileForm(instance=profile),
-})
-'''
 
 
 def profile(request):
