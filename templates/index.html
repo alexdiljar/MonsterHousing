@@ -37,37 +37,32 @@
                     <a class="nav-link" href="{% url 'about_us_index' %}">About us</a>
                 </li>
                 <li class="nav-item dropdown">
+
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                        data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
-                        Account
+                        {% if user.is_authenticated %}
+                            <img src="{{ user.profile.profile_image }}" class="profile-image" alt="profile image">
+                        {% else %}
+                            Account
+                        {% endif %}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         {% if user.is_authenticated %}
-                            <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
                             <a class="dropdown-item" href="{% url 'profile' %}">My Account</a>
+                            <a class="dropdown-item" href="{% url 'account_properties' %} ">My Properties</a>
+                            <a class="dropdown-item" href="{% url 'edit_account' %}">Manage Account</a>
+                            <a class="dropdown-item" href="{% url 'logout' %}">Sign Out</a>
                         {% else %}
                             <a class="dropdown-item" href="{% url 'login' %}">Sign In</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{% url 'register' %}">Sign Up</a>
                         {% endif %}
                     </div>
-
-            </li>
-        </ul>
-        {% if user.is_authenticated %}
-           <img src="{{ user.profile.profile_image }}" class="profile-image" alt="profile image">
-        {% endif %}
-    </div>
-</nav>
                 </li>
             </ul>
-            {% if user.is_authenticated %}
-                <img src="{{ user.profile.profile_image }}" class="profile-image">
-            {% endif %}
         </div>
     </nav>
-
 
     <div class="content" style="margin: 0%">
 

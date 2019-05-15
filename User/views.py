@@ -23,6 +23,7 @@ from User.forms.profile_form import CustomUserChangeForm, ProfileForm, Addresses
 
 def register(request):
     if request.method == "POST":
+        data = request.POST.copy()
         form = RegisterForm(data=request.POST)
         cities_form = CitiesForm(data=request.POST)
         addresses_form = AddressesForm(data=request.POST)
@@ -47,7 +48,7 @@ def register(request):
             pass
     if request.method == "GET":
         return render(request, 'User/SignUp.html', {
-            'form' : RegisterForm(),
+            'form': RegisterForm(),
             'cities_form': CitiesForm(),
             'addresses_form': AddressesForm(),
             'profile_form': ProfileForm(),
@@ -61,13 +62,14 @@ def profile(request):
         # Step 1: Parse data from POST.
         user_form = CustomUserChangeForm(instance=user, data=request.POST)
 
-        cities_form = CitiesForm(instance=Cities.objects.get_or_create(), data=request.POST)
+        cities_form = CitiesForm(instance=Cities.objects.get_or_create(request.user.profile.address.city
+                                                                        ), data=request.POST)
 
-        addresses_form = AddressesForm(instance=Addresses.objects.get_or_create(city=request.user.profile.address.city),
+        addresses_form = AddressesForm(instance=Addresses.objects.get_or_create(city=request.user.profile.address),
                                        data=request.POST)
 
         profile_form = ProfileForm(instance=Profile.objects.get_or_create(user=request.user,
-                                   address=request.user.profile.address), data=request.POST)
+                                   address=request.user.profile), data=request.POST)
 
         # Step 2: Validate parsed data.
         if user_form.is_valid() and cities_form.is_valid() and addresses_form.is_valid() and profile_form.is_valid():

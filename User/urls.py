@@ -10,7 +10,7 @@ urlpatterns = [
     path('profile', views.profile, name='profile'),
     path('account', views.account, name='account'),
     path('edit_account', views.edit_account, name='edit_account'),
-    path('account_properties', views.get_all_user_properties, name='all_user_properties'),
+    path('account_properties', views.get_all_user_properties, name='account_properties'),
     # path('add_property', views.add_property, name='add_property'),
     path('transactions', include('Transactions.urls')),
     # path('edit_property', include('Properties.urls'))
