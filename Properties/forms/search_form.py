@@ -1,7 +1,9 @@
+from django_countries.fields import CountryField
+
 from Properties.models import Tags
 from django import forms
 from django.forms import ModelForm, widgets
-# from django_countries.fields import CountryField
+from django_countries.fields import CountryField
 
 TYPE_CHOICES = (('1', 'Apartment'),
                 ('2', 'Castle'),
@@ -43,7 +45,6 @@ TAGS_CHOICES = (('elevator', 'Elevator'),
 
 class SearchForm(forms.Form):
     # Get all countries
-
 
     country = CountryField(
         blank_label='Country').formfield(

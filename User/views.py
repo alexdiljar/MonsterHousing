@@ -3,11 +3,12 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 
-from Properties.forms.properties_form import TypesForm, TagsForm, DetailsForm, PropertiesForm
+# from Properties.forms.properties_form import TypesForm, TagsForm, DetailsForm, PropertiesForm
 from User.models import Profile
 from Properties.models import Properties, Addresses, Cities
 from django.shortcuts import render, redirect, reverse, get_object_or_404
-from User.forms.profile_form import CustomUserChangeForm, ProfileForm, AddressesForm, CitiesForm, RegisterForm
+# from User.forms.profile_form import CustomUserChangeForm, ProfileForm, AddressesForm, CitiesForm, RegisterForm
+
 
 
 def register(request):

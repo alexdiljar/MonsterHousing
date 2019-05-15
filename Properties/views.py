@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from Properties.models import *
 from django.contrib.auth.decorators import login_required
 from Properties.forms.properties_form import *
-from Properties.forms.search_form import SearchForm
+# from Properties.forms.search_form import SearchForm
 
 
 # TODO : connect views/ the urls to html files under User in this file
