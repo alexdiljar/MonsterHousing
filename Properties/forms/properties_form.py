@@ -1,14 +1,19 @@
+from typing import List
+
 from django.forms import ModelForm, widgets
+from django import forms
 from Properties.models import *
+from django_countries.fields import CountryField
 
 
 class CitiesForm(ModelForm):
     class Meta:
         model = Cities
         exclude = ['id']
+        country = CountryField()
+
         widgets = {
-            'country': widgets.TextInput(attrs={'class': 'form-control'}),
-            'zip': widgets.TextInput(attrs={'class': 'form-control'}),
+            'zip': widgets.NumberInput(attrs={'class': 'form-control', 'min': 0}),
             'city': widgets.TextInput(attrs={'class': 'form-control'})
         }
 
@@ -19,7 +24,7 @@ class AddressesForm(ModelForm):
         exclude = ['id', 'Cities']
         widgets = {
             'street': widgets.TextInput(attrs={'class': 'form-control'}),
-            'house_no': widgets.TextInput(attrs={'class': 'form-control'})
+            'house_no': widgets.NumberInput(attrs={'class': 'form-control', 'min': 0})
         }
 
 
@@ -32,16 +37,18 @@ class TagsForm(ModelForm):
             'garage': widgets.CheckboxInput(attrs={'class': 'checkbox'}),
             'near_bloodbank': widgets.CheckboxInput(attrs={'class': 'checkbox'}),
             'dungeon': widgets.CheckboxInput(attrs={'class': 'checkbox'}),
-            'seacret_entrence': widgets.CheckboxInput(attrs={'class': 'checkbox'})
+            'secret_entrance': widgets.CheckboxInput(attrs={'class': 'checkbox'})
         }
 
 
 class TypesForm(ModelForm):
     class Meta:
+
+        CHOICES = [(types.id, types.type) for types in Types.objects.all()]
         model = Types
         exclude = ['id']
         widgets = {
-            'description': widgets.Select(attrs={'class': 'dropdown'})
+            'description': widgets.Select(attrs={'class': 'dropdown'}, choices=CHOICES)
         }
 
 
@@ -50,11 +57,11 @@ class DetailsForm(ModelForm):
         model = Details
         exclude = ['id', 'T_ID', 'Ty_ID']
         widgets = {
-            'size': widgets.TextInput(attrs={'class': 'form-control'}),
-            'price': widgets.NumberInput(attrs={'class': 'form-control'}),
-            'rooms': widgets.NumberInput(attrs={'class': 'form-control'}),
+            'size': widgets.TextInput(attrs={'class': 'form-control', 'min': 10}),
+            'price': widgets.NumberInput(attrs={'class': 'form-control', 'min': 0}),
+            'rooms': widgets.NumberInput(attrs={'class': 'form-control', 'min': 0}),
             'description': widgets.TextInput(attrs={'class': 'form-control'}),
-            'property_image': widgets.TextInput(attrs={'class': 'form-control'})
+            'property_image': widgets.URLInput(attrs={'class': 'form-control'})
         }
 
 

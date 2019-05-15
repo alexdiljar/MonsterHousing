@@ -49,9 +49,9 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         {% if user.is_authenticated %}
-                            <a class="dropdown-item" href="{% url 'profile' %}">My Account</a>
+                            <a class="dropdown-item" href="{% url 'account' %}">My Account</a>
                             <a class="dropdown-item" href="{% url 'account_properties' %} ">My Properties</a>
-                            <a class="dropdown-item" href="{% url 'edit_account' %}">Manage Account</a>
+                            <a class="dropdown-item" href="#">Manage Account</a>
                             <a class="dropdown-item" href="{% url 'logout' %}">Sign Out</a>
                         {% else %}
                             <a class="dropdown-item" href="{% url 'login' %}">Sign In</a>
