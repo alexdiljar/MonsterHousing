@@ -11,13 +11,13 @@ TYPE_CHOICES = (('1', 'Apartment'),
                 ('6', 'Detached House'),
                 ('7', 'Attached House'))
 
-SIZE_CHOICES = (('10 - 49', '10 - 49'),
-                ('50 - 99', '50 - 99'),
-                ('100 - 199', '100 - 199'),
-                ('200 - 249', '200 - 249'),
-                ('250 - 499', '250 - 499'),
-                ('500 - 749', '500 - 749'),
-                ('750 - 1000+', '750 - 1000+'))
+SIZE_CHOICES = (('[10, 49]', '10 - 49'),
+                ('[50, 99]', '50 - 99'),
+                ('[100, 199]', '100 - 199'),
+                ('[200, 249]', '200 - 249'),
+                ('[250, 499]', '250 - 499'),
+                ('[500, 749]', '500 - 749'),
+                ('[750, 1000]', '750 - 1000+'))
 
 MAX_PRICE = (('NULL', 'any'),
              ('300', '$300'),
@@ -34,6 +34,12 @@ MAX_PRICE = (('NULL', 'any'),
              ('4000', '$4000'),
              ('5000', '$5000'))
 
+TAGS_CHOICES = (('elevator', 'Elevator'),
+                ('garage', 'Garage'),
+                ('near_bloodbank', 'Near Bloodbank'),
+                ('dungeon', 'Dungeon'),
+                ('secret_entrence', 'Secret Entrence'))
+
 
 class SearchForm(forms.Form):
     # Get all countries
@@ -48,10 +54,15 @@ class SearchForm(forms.Form):
     rooms = forms.IntegerField(min_value=1, widget=forms.NumberInput(
         attrs={'size': '10'}), required=False)
     size = forms.ChoiceField(widget=forms.RadioSelect,
-                                     required=False,
-                                     choices=SIZE_CHOICES)
+                             required=False,
+                             choices=SIZE_CHOICES)
     max_price = forms.ChoiceField(widget=forms.RadioSelect,
+                                  required=False,
+                                  choices=MAX_PRICE)
+    tags = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,
                                      required=False,
-                                     choices=MAX_PRICE)
-    # other
-    # sort
+                                     choices=TAGS_CHOICES)
+    sort = forms.ChoiceField(widget=forms.RadioSelect,
+                             required=False,
+                             choices=(('name', 'Name'),
+                                      ('price', 'Price')))

@@ -99,10 +99,13 @@ def search(request):
             # Type is multi select will be returned as list must iterate when comparing
             type_input_list = form.cleaned_data['type']
             size_input = form.cleaned_data['size']
+            max_price_input = form.cleaned_data['max_price']
+            tags_input = form.cleaned_data['tags']
+            sort_input = form.cleaned_data['sort']
 
 
 
-            print(country_input, str(zip_input), type_input_list, size_input)
+            print(country_input, str(zip_input), type_input_list, size_input, max_price_input,tags_input,sort_input)
             for prop in Properties.objects.all():
                 type = prop.detail.type_id
                 for type_input in type_input_list:
