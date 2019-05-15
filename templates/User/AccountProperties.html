@@ -1,6 +1,11 @@
 {% extends 'index.html' %}
 
 {% block content %}
-<h1>Here the user sees their properties for sale</h1>
+<h1>My Properties</h1>
+    {% for properties in properties %}
+        {% include 'Properties/SinglePropertyView.html' with properties=properties %}
+        <a class="btn btn-primary" href="{% url 'edit_property' property.id %}">Edit Property</a>
+        <a class="btn btn-primary" href="{% url 'delete_property' property.id %}">Delete Property</a>
+    {% endfor %}
 
 {% endblock %}

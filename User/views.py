@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 
 from User.models import Profile
-from Properties.models import Addresses, Cities
+from Properties.models import Properties
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from User.forms.profile_form import CustomUserChangeForm, ProfileForm, AddressesForm, CitiesForm, RegisterForm
 
@@ -110,10 +110,10 @@ def profile(request):
             })
 
 
-
 def account(request):
-    return render(request, 'User/Account.html', {
-        'user': get_object_or_404(pk=request.user.id)
+    return render(request, 'User/AccountDetails.html', {
+        'user': get_object_or_404(User, pk=request.user.id),
+        'properties': Properties.objects.filter(user=request.user.id)
     })
 
 
