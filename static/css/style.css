@@ -1,96 +1,37 @@
-* html, body {
-    height: 100%;
-    margin: 0;
-    background-color: #ffffff;
+/* https://medium.freecodecamp.org/how-to-keep-your-footer-where-it-belongs-59c6aa05c59c skoða*/
+#page-container {
+    position: relative;
+    min-height: 100vh;
 }
 
 .content {
     background-color: #ffffff;
-    min-height: 100%;
-
-    /* Equal to height of footer */
-    /* But also accounting for potential margin-bottom of last child */
-    padding: 50px;
-    margin-bottom: 50px;
+    padding-bottom: 2.5rem;
 }
-
-#sign-up-now{
-    margin-bottom: 0%;
-    padding-bottom: 10px;
-}
-
 
 footer {
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    padding-bottom: 0;
-    background-color: #4169e1;
-    color: #ffffff;
-    text-align: left;
-}
-
-.mr-3 {
-    width: 20vw;
-    height:20vh;
-}
-
-.media {
-     font-size: 12px;
-}
-
-#rhsfooterlinks {
-     font-size: 12px;
-    text-align: right;
     position: absolute;
-    right: 0px;
-    color: white;
-}
-
-#navbar_id{
-    background-color: #4169e1;
-    color: #ffffff;
-    a:hover { color: green; }
-    a:active { color: yellow; }
-}
-
-.container{
-    text-align: center;
-    width: 100%;
-    color: white;
-    background-size: cover;
-}
-
-.Links_id {
-    color: #ffffff;
-    a:hover { color: green; }
-    a:active { color: yellow; }
-
-}
-
-
-footer{
-    position: fixed;
     bottom: 0;
     width: 100%;
+    height: 2.5rem;
     background-color: darkblue;
-    color: white;
-    text-align: center;
-}*/
+
+}
+
 
 
 .mr-3 {
     width: 20vw;
-    height:20vh;
+    height: 20vh;
 }
 
 .media {
-     font-size: 12px;
-     position: left;
+    font-size: 12px;
+    position: left;
 
 
 }
 
 #rhsfooterlinks {
-     font-size: 12px;
+    font-size: 12px;
 }

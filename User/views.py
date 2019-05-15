@@ -40,9 +40,6 @@ def register(request):
 
             profile_saved.address = address_saved
             profile_saved.user = form_saved
-            print(data)
-            print()
-            # profile_saved.user =
             profile_saved.save()
 
             return HttpResponseRedirect('login')
@@ -56,14 +53,6 @@ def register(request):
             'addresses_form': AddressesForm(),
             'profile_form': ProfileForm(),
         })
-
-'''return render(request, 'User/Account.html', {
-    'user_form': CustomUserChangeForm(instance=user),
-    'cities_form': CitiesForm(instance=profile.address.city),
-    'addresses_form': AddressesForm(instance=profile.address),
-    'profile_form': ProfileForm(instance=profile),
-})
-'''
 
 
 def profile(request):
@@ -108,75 +97,3 @@ def profile(request):
                 'addresses_form': AddressesForm(instance=profile.address),
                 'profile_form': ProfileForm(instance=profile),
             })
-
-
-'''
-def profile(request):
-    cities = Cities.objects.first()
-    addresses = Addresses.objects.filter(Cities=cities.id).first()
-    profile = Profile.objects.filter(user=request.user, address=addresses.id).first()
-    if request.method == "POST":
-        profile_form = ProfileForm(instance=profile, data=request.POST)
-        addresses_form = AddressesForm(instance=addresses, data=request.POST)
-        cities_form = CitiesForm(instance=cities, data=request.POST)
-        if profile_form.is_valid() and addresses_form.is_valid() and cities_form.is_valid():
-            # We save information to db for cities
-            cities.save()
-            # We access db and id from prev saved data
-            # We save information to db for addresses
-            addresses = addresses_form.save(commit=False)
-            addresses.Cities = cities
-            addresses.save()
-            # We access db and user and address from prev saved data
-            # We save information to db for profile
-            profile = profile_form.save(commit=False)
-            profile.user = request.user
-            profile.address = addresses
-            profile.save()
-            return redirect('profile')
-    return render(request, 'User/Account.html', {
-
-        # TODO: need to add form for auth user so we can know first, last name and email
-
-        # 'auth_user_form': AuthUserForm(instance=auth_user)
-        'profile_form': ProfileForm(instance=profile),
-        'addresses_form': AddressesForm(instance=addresses),
-        'cities_form': CitiesForm(instance=cities)
-    })'''
-
-
-def create_property(request):
-    if request.method == "POST":
-        data = request.POST.copy()
-        type_form = TypeForm(data=request.POST)
-        cities_form = CitiesForm(data=request.POST)
-        addresses_form = AddressesForm(data=request.POST)
-        profile_form = ProfileForm(data=request.POST)
-        if cities_form.is_valid() and addresses_form.is_valid() and profile_form.is_valid and form.is_valid():
-
-            form_saved = form.save()
-            city_saved = cities_form.save()
-            address_saved = addresses_form.save(commit=False)
-            profile_saved = profile_form.save(commit=False)
-
-            address_saved.city = city_saved
-            addresses_form.save()
-
-            profile_saved.address = address_saved
-            profile_saved.user = form_saved
-            print(data)
-            print()
-            # profile_saved.user =
-            profile_saved.save()
-
-            return HttpResponseRedirect('login')
-        else:
-            request.method = "GET"
-            pass
-    if request.method == "GET":
-        return render(request, 'User/SignUp.html', {
-            'form': RegisterForm(),
-            'cities_form': CitiesForm(),
-            'addresses_form': AddressesForm(),
-            'profile_form': ProfileForm(),
-        })

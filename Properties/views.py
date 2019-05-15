@@ -1,7 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse
+from Properties.models import *
 from django.contrib.auth.decorators import login_required
 from Properties.forms.properties_form import *
+from Properties.forms.search_form import SearchForm
 
 # TODO : connect views/ the urls to html files under User in this file
 
@@ -64,3 +67,28 @@ def create_property(request):
             'type_form': TypesForm(),
             'details_form': DetailsForm(),
         })
+
+def search(request):
+    if request.method == "POST":
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            country_input = form.cleaned_data['country']
+            zip_input = form.cleaned_data['zip']
+            # Type is multi select will be returned as list must iterate when comparing
+            type_input_list = form.cleaned_data['type']
+            size_input = form.cleaned_data['size']
+
+
+
+            print(country_input, str(zip_input), type_input_list, size_input)
+            for prop in Properties.objects.all():
+                type = prop.detail.type_id
+                for type_input in type_input_list:
+
+                    if int(type_input) == int(type):
+                        print(prop)
+
+
+    form = SearchForm()
+
+    return render(request, 'Properties/SearchBar.html', {'form': form})
