@@ -1,6 +1,10 @@
 {% extends 'index.html' %}
 
 {% block content %}
-
+    <form class="form form-horizontal" method="post">
+       {%  csrf_token %}
+       {{ create_ }}
+        <input type="submit" class="btn btn-primary" value="Sell property"/>
+    </form>
 
 {% endblock %}

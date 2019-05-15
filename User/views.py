@@ -51,7 +51,7 @@ def register(request):
             pass
     if request.method == "GET":
         return render(request, 'User/SignUp.html', {
-            'form' : RegisterForm(),
+            'form': RegisterForm(),
             'cities_form': CitiesForm(),
             'addresses_form': AddressesForm(),
             'profile_form': ProfileForm(),
@@ -144,3 +144,39 @@ def profile(request):
         'cities_form': CitiesForm(instance=cities)
     })'''
 
+
+def create_property(request):
+    if request.method == "POST":
+        data = request.POST.copy()
+        type_form = TypeForm(data=request.POST)
+        cities_form = CitiesForm(data=request.POST)
+        addresses_form = AddressesForm(data=request.POST)
+        profile_form = ProfileForm(data=request.POST)
+        if cities_form.is_valid() and addresses_form.is_valid() and profile_form.is_valid and form.is_valid():
+
+            form_saved = form.save()
+            city_saved = cities_form.save()
+            address_saved = addresses_form.save(commit=False)
+            profile_saved = profile_form.save(commit=False)
+
+            address_saved.city = city_saved
+            addresses_form.save()
+
+            profile_saved.address = address_saved
+            profile_saved.user = form_saved
+            print(data)
+            print()
+            # profile_saved.user =
+            profile_saved.save()
+
+            return HttpResponseRedirect('login')
+        else:
+            request.method = "GET"
+            pass
+    if request.method == "GET":
+        return render(request, 'User/SignUp.html', {
+            'form': RegisterForm(),
+            'cities_form': CitiesForm(),
+            'addresses_form': AddressesForm(),
+            'profile_form': ProfileForm(),
+        })

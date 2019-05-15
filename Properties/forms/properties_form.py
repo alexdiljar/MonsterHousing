@@ -1,10 +1,10 @@
 from django.forms import ModelForm, widgets
-from Properties.models import Properties
+from Properties.models import *
 
 
 class CitiesForm(ModelForm):
     class Meta:
-        model = Properties.address.Cities
+        model = Cities
         exclude = ['id']
         widgets = {
             'country': widgets.TextInput(attrs={'class': 'form-control'}),
@@ -15,7 +15,7 @@ class CitiesForm(ModelForm):
 
 class AddressesForm(ModelForm):
     class Meta:
-        model = Properties.address
+        model = Addresses
         exclude = ['id', 'Cities']
         widgets = {
             'street': widgets.TextInput(attrs={'class': 'form-control'}),
@@ -25,7 +25,7 @@ class AddressesForm(ModelForm):
 
 class TagsForm(ModelForm):
     class Meta:
-        model = Properties.detail.T_ID
+        model = Tags
         exclude = ['id']
         widgets = {
             'elevator': widgets.CheckboxInput(attrs={'class': 'checkbox'}),
@@ -38,16 +38,16 @@ class TagsForm(ModelForm):
 
 class TypesForm(ModelForm):
     class Meta:
-        model = Properties.detail.Ty_ID
+        model = Types
         exclude = ['id']
         widgets = {
-            'description': widgets.CheckboxInput(attrs={'class': 'checkbox'})
+            'description': widgets.Select(attrs={'class': 'dropdown'})
         }
 
 
 class DetailsForm(ModelForm):
     class Meta:
-        model = Properties.detail
+        model = Details
         exclude = ['id', 'T_ID', 'Ty_ID']
         widgets = {
             'size': widgets.TextInput(attrs={'class': 'form-control'}),
@@ -57,6 +57,11 @@ class DetailsForm(ModelForm):
             'property_image': widgets.TextInput(attrs={'class': 'form-control'})
         }
 
+
+class PropertiesForm(ModelForm):
+    class Meta:
+        model = Properties
+        exclude = ['id', 'address', 'detail', 'user', 'is_active']
 
 class CreatePropertyForm:
     TagsForm(ModelForm)
