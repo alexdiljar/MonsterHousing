@@ -1,10 +1,10 @@
 from django.forms import ModelForm, widgets
-from Properties.models import Properties
+from Properties.models import Properties, Addresses
 
 
 class CitiesForm(ModelForm):
     class Meta:
-        model = Properties.address.Cities
+        model = Addresses.city
         exclude = ['id']
         widgets = {
             'country': widgets.TextInput(attrs={'class': 'form-control'}),

@@ -10,97 +10,22 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}?v={% now "H:i:s" %}">
     <title>Monster Housing</title>
-
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="{% url 'front_page_index' %}">Monster Housing</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+<div id="page-container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{% url 'front_page_index' %}">Monster Housing</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar7">
-        <ul class="navbar-nav ml-auto flex-nowrap">
-            <li class="nav-item active">
-                <a class="nav-link" href="{% url 'front_page_index' %}">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'catalog_index' %}">Catalog</a>
-            </li>
-            <li>
-                <a class="nav-link" href="{% url 'terms_index' %}">Terms & Conditions</a>
-            </li>
-            <li>
-                <a class="nav-link" href="{% url 'about_us_index' %}">About us</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
-                    Account
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    {% if user.is_authenticated %}
-                        <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
-                        <a class="dropdown-item" href="{% url 'profile' %}">My Account</a>
-                    {% else %}
-                        <a class="dropdown-item" href="{% url 'login' %}">Sign In</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{% url 'register' %}">Sign Up</a>
-                    {% endif %}
-                </div>
-
-            </li>
-        </ul>
-        {% if user.is_authenticated %}
-           <img src="{{ user.profile.profile_image }}" class="profile-image">
-        {% endif %}
-    </div>
-</nav>
-
-
-<div class="content">
-
-    {% block content %}
-
-    {% endblock %}
-</div>
-<!-- Footer -->
-
-
-
-<footer class="page-footer font-small stylish-color-light ">
-
-
-
-    <!-- Grid row -->
-    <div class="row text-left">
-        <div class="media">
-            <img src="{% static 'images/logo.png' %}" class="mr-3" alt="Logo">
-            <div class="media-body">
-                <h5 class="font-weight-bold text-uppercase mt-0 mb-4">Monster Housing</h5>
-                <a href="mailto:info@monsterhousing.com">info@monsterhousing.com</a>
-                <br>
-                <a href="tel:666-666-666">+666-666-666</a>
-            </div>
-        </div>
-        <!-- Grid column -->
-
-
-
-        <hr>
-
-        <!-- Grid column -->
-        <div class="col-md-22 mx-auto text-right text-md-right" id="rhsfooterlinks">
-
-            <!-- Links -->
-            <h5 class="font-weight-bold text-uppercase mt-4 mb-4"></h5>
-
-            <ul class="list-unstyled mx-right">
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'front_page_index' %}">Home</a>
+        <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar7">
+            <ul class="navbar-nav ml-auto flex-nowrap">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'front_page_index' %}">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'catalog_index' %}">Catalog</a>
@@ -109,22 +34,112 @@
                     <a class="nav-link" href="{% url 'terms_index' %}">Terms & Conditions</a>
                 </li>
                 <li>
-                    <a class="nav-link" href="{% url 'about_us_index' %}">About</a>
+                    <a class="nav-link" href="{% url 'about_us_index' %}">About us</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Account
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        {% if user.is_authenticated %}
+                            <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
+                            <a class="dropdown-item" href="{% url 'profile' %}">My Account</a>
+                        {% else %}
+                            <a class="dropdown-item" href="{% url 'login' %}">Sign In</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'register' %}">Sign Up</a>
+                        {% endif %}
+                    </div>
+
+            </li>
+        </ul>
+        {% if user.is_authenticated %}
+           <img src="{{ user.profile.profile_image }}" class="profile-image" alt="profile image">
+        {% endif %}
+    </div>
+</nav>
                 </li>
             </ul>
+            {% if user.is_authenticated %}
+                <img src="{{ user.profile.profile_image }}" class="profile-image">
+            {% endif %}
         </div>
-
-        {% if not user.is_authenitcated %} -->
-
+    </nav>
 
 
+    <div class="content" style="margin: 0%">
+
+        {% block content %}
+
+        {% endblock %}
+    </div>
+    <!-- Footer -->
+    <!-- Footer -->
+    <footer class="page-footer font-small stylish-color-light ">
+        <div class="container text-center text-md-left">
+
+            <!-- Grid row -->
+            <div class="row text-left">
+                <div class="media">
+                    <img src="{% static 'images/logo.png' %}" class="mr-3" alt="Logo">
+                    <div class="media-body">
+                        <h5 class="font-weight-bold text-uppercase mt-0 mb-4">Monster Housing</h5>
+                        <a href="mailto:info@monsterhousing.com">info@monsterhousing.com</a>
+                        <br>
+                        <a href="tel:666-666-666">+666-666-666</a>
+                    </div>
+                </div>
+                <!-- Grid column -->
+
+
+                <hr>
+
+                <!-- Grid column -->
+                <div class="col-md-22 mx-auto text-right text-md-right" id="rhsfooterlinks">
+
+                    <!-- Links -->
+                    <h5 class="font-weight-bold text-uppercase mt-4 mb-4"></h5>
+
+                    <ul class="list-unstyled mx-right">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'front_page_index' %}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'catalog_index' %}">Catalog</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="{% url 'terms_index' %}">Terms & Conditions</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="{% url 'about_us_index' %}">About</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
+            <hr>
+            {% if not user.is_authenitcated %}
 
-         {% endif %}-->
+                <!-- Call to action -->
+                <ul class="list-unstyled list-inline text-center py-2">
+                    <li class="list-inline-item">
+                        <h5 class="mb-1">Register for free</h5>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="{% url 'register' %}" class="btn btn-danger btn-rounded">Sign up!</a>
+                    </li>
+                </ul>
+                <!-- Call to action -->
 
 
-</footer>
-<!-- Footer -->
+
+            {% endif %}
+
+
+    </footer>
+    <!-- Footer -->
+</div>
 
 
 <!-- Optional JavaScript -->
