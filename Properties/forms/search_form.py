@@ -1,4 +1,3 @@
-from django_countries.fields import CountryField
 
 from Properties.models import Tags
 from django import forms
