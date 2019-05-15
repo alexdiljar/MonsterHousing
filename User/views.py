@@ -1,5 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.http import HttpResponseRedirect
+
 from User.models import Profile
 from Properties.models import Addresses, Cities
 from django.shortcuts import render, redirect, reverse, get_object_or_404
@@ -7,40 +9,49 @@ from User.forms.profile_form import CustomUserChangeForm, ProfileForm, Addresses
 
 
 # Create your views here.
-def register(request):
+#def register(request):
     # registerin user for the first time, username and password
 
-    if request.method == "POST":
-        form = RegisterForm(data=request.POST)
-        if form.is_valid():
-            user_saved = form.save()
-            return redirect('register2')
-    return render(request, 'User/SignUp.html', {
-        'form': RegisterForm()
-    })
+#    if request.method == "POST":
+#        form = RegisterForm(data=request.POST)
+#        if form.is_valid():
+#            user_saved = form.save()
+#            return redirect('register2')
+#    return render(request, 'User/SignUp.html', {
+#        'form': RegisterForm()
+#    })
 
-def register2(request):
+def register(request):
     if request.method == "POST":
         data = request.POST.copy()
+        form = RegisterForm(data=request.POST)
         cities_form = CitiesForm(data=request.POST)
         addresses_form = AddressesForm(data=request.POST)
         profile_form = ProfileForm(data=request.POST)
-        if cities_form.is_valid() and addresses_form.is_valid() and profile_form.is_valid():
-            city_saved = cities_form.save()
+        if cities_form.is_valid() and addresses_form.is_valid() and profile_form.is_valid and form.is_valid():
 
+            form_saved = form.save()
+            city_saved = cities_form.save()
             address_saved = addresses_form.save(commit=False)
+            profile_saved = profile_form.save(commit=False)
+
             address_saved.city = city_saved
             addresses_form.save()
 
-            profile_saved = profile_form.save(commit=False)
             profile_saved.address = address_saved
+            profile_saved.user = form_saved
             print(data)
             print()
             # profile_saved.user =
             profile_saved.save()
 
+            return HttpResponseRedirect('login')
+        else:
+            request.method = "GET"
+            pass
     if request.method == "GET":
-        return render(request, 'User/SignUp2.html', {
+        return render(request, 'User/SignUp.html', {
+            'form' : RegisterForm(),
             'cities_form': CitiesForm(),
             'addresses_form': AddressesForm(),
             'profile_form': ProfileForm(),
