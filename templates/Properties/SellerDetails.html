@@ -1,16 +1,19 @@
 {% extends 'index.html' %}
+{% load static %}
 
 @login_required
 {% block content %}
-    <div class="seller info">
+    <div class="sellerdetail_all_info">
         <h1>{{ seller.username }}</h1>
         <img src="{{ seller.profile.profile_image }}" alt="seller image">
-        <h3>{{ seller.email }}</h3>
-        <h3>{{ seller.profile.phone }}</h3>
-        <h3>{{ seller.profile.address.city.city }}, {{ seller.profile.address.city.country }}</h3>
+        <div class="sellerdetail_contact_info">
+            <p>Email: {{ seller.email }}</p>
+            <p>Phone: {{ seller.profile.phone }}</p>
+            <p>Hometown: {{ seller.profile.address.city.city }}, {{ seller.profile.address.city.country }}</p>
+        </div>
     </div>
-    <div class="seller properties">
-        <h1>Sellers properties:</h1>
+    <div class="sellerdetail_sellers_properties">
+        <h3>Sellers properties:</h3>
         {% for properties in properties %}
             {% include 'Properties/SinglePropertyView.html' with properties=properties %}
         {% endfor %}

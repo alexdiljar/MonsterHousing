@@ -50,6 +50,25 @@ def profile(request):
             'profile_form': ProfileForm(instance=user.profile.id),
         })
 
+
+def account(request):
+    return render(request, 'User/Account.html', {
+        'user': get_object_or_404(pk=request.user.id)
+    })
+
+
+def edit_account(request):
+    pass
+
+
+def get_all_user_properties(request):
+    pass
+
+
+def add_property(request):
+    pass
+
+
 '''
 def profile(request):
     cities = Cities.objects.first()
