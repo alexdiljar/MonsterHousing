@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 
 from User.models import Profile
-from Properties.models import Addresses, Cities
+from Properties.models import Properties, Addresses, Cities
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from User.forms.profile_form import CustomUserChangeForm, ProfileForm, AddressesForm, CitiesForm, RegisterForm
 
@@ -23,7 +23,6 @@ from User.forms.profile_form import CustomUserChangeForm, ProfileForm, Addresses
 
 def register(request):
     if request.method == "POST":
-        data = request.POST.copy()
         form = RegisterForm(data=request.POST)
         cities_form = CitiesForm(data=request.POST)
         addresses_form = AddressesForm(data=request.POST)
@@ -40,9 +39,6 @@ def register(request):
 
             profile_saved.address = address_saved
             profile_saved.user = form_saved
-            print(data)
-            print()
-            # profile_saved.user =
             profile_saved.save()
 
             return HttpResponseRedirect('login')
@@ -57,14 +53,6 @@ def register(request):
             'profile_form': ProfileForm(),
         })
 
-'''return render(request, 'User/Account.html', {
-    'user_form': CustomUserChangeForm(instance=user),
-    'cities_form': CitiesForm(instance=profile.address.city),
-    'addresses_form': AddressesForm(instance=profile.address),
-    'profile_form': ProfileForm(instance=profile),
-})
-'''
-
 
 def profile(request):
     user = User.objects.get(pk=request.user.id)
@@ -73,13 +61,14 @@ def profile(request):
         # Step 1: Parse data from POST.
         user_form = CustomUserChangeForm(instance=user, data=request.POST)
 
-        cities_form = CitiesForm(instance=Cities.objects.get_or_create(), data=request.POST)
+        cities_form = CitiesForm(instance=Cities.objects.get_or_create(request.user.profile.address.city
+                                                                        ), data=request.POST)
 
-        addresses_form = AddressesForm(instance=Addresses.objects.get_or_create(city=request.user.profile.address.city),
+        addresses_form = AddressesForm(instance=Addresses.objects.get_or_create(city=request.user.profile.address),
                                        data=request.POST)
 
         profile_form = ProfileForm(instance=Profile.objects.get_or_create(user=request.user,
-                                   address=request.user.profile.address), data=request.POST)
+                                   address=request.user.profile), data=request.POST)
 
         # Step 2: Validate parsed data.
         if user_form.is_valid() and cities_form.is_valid() and addresses_form.is_valid() and profile_form.is_valid():
@@ -108,6 +97,25 @@ def profile(request):
                 'addresses_form': AddressesForm(instance=profile.address),
                 'profile_form': ProfileForm(instance=profile),
             })
+
+
+def account(request):
+    return render(request, 'User/AccountDetails.html', {
+        'user': get_object_or_404(User, pk=request.user.id),
+        'properties': Properties.objects.filter(user=request.user.id)
+    })
+
+
+def edit_account(request):
+    pass
+
+
+def get_all_user_properties(request):
+    pass
+
+
+def add_property(request):
+    pass
 
 
 '''

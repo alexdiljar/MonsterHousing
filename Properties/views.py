@@ -4,6 +4,7 @@ from Properties.models import *
 from django.contrib.auth.decorators import login_required
 from Properties.forms.search_form import SearchForm
 
+
 # TODO : connect views/ the urls to html files under User in this file
 
 
@@ -19,17 +20,24 @@ def catalog_index(request):
 
 # /properties/[id]
 def get_property_by_id(request, id):
-    print('in get properties by id')
     return render(request, 'Properties/PropertyDetails.html', {
         'property': get_object_or_404(Properties, pk=id)
     })
 
+
 # /[property id]/seller_profile
 @login_required
 def get_seller_profile(request, id):
-    seller = {'seller': (get_object_or_404(Properties, pk=id)).user, 'properties': (Properties.objects.filter(user=(get_object_or_404(Properties, pk=id)).user)) }
+    seller = {'seller': (get_object_or_404(Properties, pk=id)).user,
+              'properties': (Properties.objects.filter(user=(get_object_or_404(Properties, pk=id)).user))}
     return render(request, 'Properties/SellerDetails.html', seller)
 
+
+def edit_property(request, id):
+    pass
+
+def delete_property(request, id):
+    pass
 
 # This should maybe be in user views, not sure
 def add_new_property(request):
