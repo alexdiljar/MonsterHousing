@@ -33,6 +33,7 @@ class ProfileForm(ModelForm):
     zip = widgets.TextInput(attrs={'class': 'form-control'})
     street = widgets.TextInput(attrs={'class': 'form-control'})
     house_no = widgets.TextInput(attrs={'class': 'form-control'})
+
     class Meta:
         model = Profile
         exclude = ['id', 'user', 'address']
@@ -41,6 +42,7 @@ class ProfileForm(ModelForm):
             'phone': widgets.TextInput(attrs={'class': 'form-control'}),
             'profile_image': widgets.TextInput(attrs={'class': 'form-control'}),
         }
+
 
 class CustomUserChangeForm(UserChangeForm):
     class Meta:
@@ -60,10 +62,12 @@ class CustomUserChangeForm(UserChangeForm):
             'username': widgets.TextInput(attrs={'class': 'form-control'}),
         }
 
+
 class RegisterForm(UserCreationForm):
     email = forms.EmailField(label='Email')
     first_name = forms.CharField(label='First Name')
     last_name = forms.CharField(label='Last Name')
+
     class Meta:
         model = User
         fields = (
@@ -72,6 +76,7 @@ class RegisterForm(UserCreationForm):
             'last_name',
             'email',
         )
+
     def save(self, commit=True):
         user = super(RegisterForm, self).save(commit=False)
         user.first_name = self.cleaned_data["first_name"]
@@ -80,4 +85,3 @@ class RegisterForm(UserCreationForm):
         if commit:
             user.save()
         return user
-

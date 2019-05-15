@@ -24,7 +24,7 @@ class Tags(models.Model):
 
 
 class Types(models.Model):
-    description = models.CharField(max_length=999)
+    type = models.CharField(max_length=999)
 
 
 class Details(models.Model):
