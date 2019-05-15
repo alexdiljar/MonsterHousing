@@ -12,5 +12,4 @@ urlpatterns = [
     path('account_properties', views.account_properties, name='account_properties'),
     path('transactions', include('Transactions.urls')),
     path('edit_property/<int:id>', views.edit_property, name='edit_property'),
-
 ]

@@ -160,3 +160,29 @@ def create_property(request):
             'tags_form': TagsForm(),
             'properties_form': PropertiesForm(),
         })
+
+
+# Skoða þetta profile / account
+def account(request):
+    return render(request, 'User/AccountDetails.html', {
+        'user': get_object_or_404(User, pk=request.user.id),
+        'properties': Properties.objects.filter(user=request.user.id)
+    })
+
+
+# Edits property information
+def edit_property(request, id):
+    return render(request, 'Properties/CreateProperty.html', {
+        'properties': get_object_or_404(Properties, pk=id)
+    })
+
+
+# Deletes property of site and database
+def delete_property(request, id):
+    pass
+
+
+def account_properties(request):
+    return render(request, 'User/AccountProperties.html', {
+        'properties': Properties.objects.filter(user=request.user)
+    })
