@@ -70,7 +70,7 @@ def edit_account(request):
             return redirect(reverse('profile'))
         # Validation failed - return same data parsed from POST.
         else:
-            return render(request, 'User/Account.html', {
+            return render(request, 'User/ManageAccount.html', {
                 'user_form': user_form,
                 'cities_form': cities_form,
                 'addresses_form': addresses_form,
@@ -81,7 +81,7 @@ def edit_account(request):
         # User has logged information and we want to GET all info
         if user.first_name != '':
             profile = Profile.objects.get(user=request.user)
-            return render(request, 'User/Account.html', {
+            return render(request, 'User/ManageAccount.html', {
                 'user_form': CustomUserChangeForm(instance=user),
                 'cities_form': CitiesForm(instance=profile.address.city),
                 'addresses_form': AddressesForm(instance=profile.address),
@@ -93,7 +93,7 @@ def edit_account(request):
 def account(request):
     return render(request, 'User/AccountDetails.html', {
         'user': get_object_or_404(User, pk=request.user.id),
-        'properties': Properties.objects.filter(user=request.user.id)
+        'properties': Properties.objects.filter(user=request.user)
     })
 
 
@@ -165,7 +165,7 @@ def create_property(request):
 def account(request):
     return render(request, 'User/AccountDetails.html', {
         'user': get_object_or_404(User, pk=request.user.id),
-        'properties': Properties.objects.filter(user=request.user.id)
+        'properties': Properties.objects.filter(user=request.user)
     })
 
 
