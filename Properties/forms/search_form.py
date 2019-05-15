@@ -1,7 +1,7 @@
 from Properties.models import Tags
 from django import forms
 from django.forms import ModelForm, widgets
-from django_countries.fields import CountryField
+# from django_countries.fields import CountryField
 
 TYPE_CHOICES = (('1', 'Appartment'),
                 ('2', 'Castle'),
@@ -36,9 +36,9 @@ MAX_PRICE = (('NULL', 'any'),
 
 class SearchForm(forms.Form):
     # Get all countries
-    country = CountryField(
-        blank_label='Country').formfield(
-        required=False)  # forms.ChoiceField(choices=[('iceland','Iceland'), ('usa','USA')])
+    # country = CountryField(
+   #     blank_label='Country').formfield(
+    #       required=False)  # forms.ChoiceField(choices=[('iceland','Iceland'), ('usa','USA')])
     zip = forms.CharField(label='Zip', max_length=15, required=False)
     type = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,
                                      required=False,
