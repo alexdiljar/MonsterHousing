@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    <div class="property_all">
+    <div class="property_all" id="property_all">
         <h1>{{ property.address.street }} {{ property.address.house_no }}</h1>
         <h2>{{ property.address.city.zip }} {{ property.address.city.city }}, {{ property.address.city.country }}</h2>
         <img src="{{ property.detail.property_image }}" alt="Property image">

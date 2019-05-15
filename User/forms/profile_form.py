@@ -23,16 +23,16 @@ class AddressesForm(ModelForm):
         exclude = ['id', 'city']
         widgets = {
             'street': widgets.TextInput(attrs={'class': 'form-control'}),
-            'house_no': widgets.TextInput(attrs={'class': 'form-control'}),
+            'house_no': widgets.NumberInput(attrs={'class': 'form-control'}),
         }
 
 
 class ProfileForm(ModelForm):
     country = widgets.TextInput(attrs={'class': 'form-control'})
     city = widgets.TextInput(attrs={'class': 'form-control'})
-    zip = widgets.TextInput(attrs={'class': 'form-control'})
+    zip = widgets.NumberInput(attrs={'class': 'form-control'})
     street = widgets.TextInput(attrs={'class': 'form-control'})
-    house_no = widgets.TextInput(attrs={'class': 'form-control'})
+    house_no = widgets.NumberInput(attrs={'class': 'form-control'})
 
     class Meta:
         model = Profile
@@ -40,7 +40,7 @@ class ProfileForm(ModelForm):
         widgets = {
             'ssn': widgets.TextInput(attrs={'class': 'form-control'}),
             'phone': widgets.TextInput(attrs={'class': 'form-control'}),
-            'profile_image': widgets.TextInput(attrs={'class': 'form-control'}),
+            'profile_image': widgets.URLInput(attrs={'class': 'form-control'}),
         }
 
 
