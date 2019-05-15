@@ -10,6 +10,7 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from User.forms.profile_form import CustomUserChangeForm, ProfileForm, AddressesForm, CitiesForm, RegisterForm
 
 
+
 def register(request):
     if request.method == "POST":
         data = request.POST.copy()
@@ -71,7 +72,7 @@ def edit_account(request):
             return redirect(reverse('profile'))
         # Validation failed - return same data parsed from POST.
         else:
-            return render(request, 'User/Account.html', {
+            return render(request, 'User/ManageAccount.html', {
                 'user_form': user_form,
                 'cities_form': cities_form,
                 'addresses_form': addresses_form,
@@ -82,7 +83,7 @@ def edit_account(request):
         # User has logged information and we want to GET all info
         if user.first_name != '':
             profile = Profile.objects.get(user=request.user)
-            return render(request, 'User/Account.html', {
+            return render(request, 'User/ManageAccount.html', {
                 'user_form': CustomUserChangeForm(instance=user),
                 'cities_form': CitiesForm(instance=profile.address.city),
                 'addresses_form': AddressesForm(instance=profile.address),
@@ -94,7 +95,7 @@ def edit_account(request):
 def account(request):
     return render(request, 'User/AccountDetails.html', {
         'user': get_object_or_404(User, pk=request.user.id),
-        'properties': Properties.objects.filter(user=request.user.id)
+        'properties': Properties.objects.filter(user=request.user)
     })
 
 
@@ -160,3 +161,29 @@ def create_property(request):
             'tags_form': TagsForm(),
             'properties_form': PropertiesForm(),
         })
+
+
+# Skoða þetta profile / account
+def account(request):
+    return render(request, 'User/AccountDetails.html', {
+        'user': get_object_or_404(User, pk=request.user.id),
+        'properties': Properties.objects.filter(user=request.user)
+    })
+
+
+# Edits property information
+def edit_property(request, id):
+    return render(request, 'Properties/CreateProperty.html', {
+        'properties': get_object_or_404(Properties, pk=id)
+    })
+
+
+# Deletes property of site and database
+def delete_property(request, id):
+    pass
+
+
+def account_properties(request):
+    return render(request, 'User/AccountProperties.html', {
+        'properties': Properties.objects.filter(user=request.user)
+    })

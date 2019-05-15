@@ -20,7 +20,7 @@ a {
     position: relative;
     min-height: 100vh;
     text-align: center;
-    color: white;
+    color: black;
     width: 100%;
 }
 
@@ -29,6 +29,7 @@ a {
     padding-bottom: 2.5rem;
 }
 
+<<<<<<< HEAD
 footer {
     position: absolute;
     bottom: 0;
@@ -39,18 +40,14 @@ footer {
     padding: 0;
     margin: 0;
 }
+=======
+>>>>>>> 7081ae3fe15691291cad18ee9c5e45a1239e93ba
 
 
 .mr-3 {
     width: 12.5vw;
     height: 12.5vh;
 }
-
-.media {
-    font-size: 12px;
-    position: left;
-}
-
 
 #navbarDropdown img {
     width: 15%;

@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'User.apps.UserConfig',
     'Properties.apps.PropertiesConfig',
-   # 'django_countries'
+    'Transactions.apps.TransactionsConfig',
+    'django_countries'
 ]
 
 MIDDLEWARE = [
@@ -130,7 +131,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
 LOGIN_URL = '/User/login'
-LOGIN_REDIRECT_URL = '/account'
+LOGIN_REDIRECT_URL = '/'
 
 
 
