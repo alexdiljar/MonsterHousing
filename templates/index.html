@@ -53,6 +53,13 @@
                         {% endif %}
                     </div>
 
+            </li>
+        </ul>
+        {% if user.is_authenticated %}
+           <img src="{{ user.profile.profile_image }}" class="profile-image" alt="profile image">
+        {% endif %}
+    </div>
+</nav>
                 </li>
             </ul>
             {% if user.is_authenticated %}
