@@ -1,0 +1,15 @@
+
+
+{% extends 'Properties/BuyProperty.html' %}
+
+@login_required
+{% block content %}
+
+    <h1>Confirm</h1>
+
+    <a class="btn btn-primary" href="{% url 'seller_profile' property.user.id %}">Back</a>
+    <a class="btn btn-primary" href="{% url 'buy_property' property.id %}">Continue</a>
+
+
+
+{% endblock %}

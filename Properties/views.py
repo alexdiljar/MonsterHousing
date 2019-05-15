@@ -27,8 +27,7 @@ def get_property_by_id(request, id):
 # /[property id]/seller_profile
 @login_required
 def get_seller_profile(request, id):
-    seller = {User.objects.get(id=id)}
-    # u_properties = {'u_properties': Properties.objects.filter(user=seller.)}
+    seller = {'seller': (get_object_or_404(Properties, pk=id)).user, 'properties': (Properties.objects.filter(user=(get_object_or_404(Properties, pk=id)).user)) }
     return render(request, 'Properties/SellerDetails.html', seller)
 
 
