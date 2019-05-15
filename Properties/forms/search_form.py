@@ -3,20 +3,20 @@ from django import forms
 from django.forms import ModelForm, widgets
 from django_countries.fields import CountryField
 
-TYPE_CHOICES = (('1', 'Appartment'),
+TYPE_CHOICES = (('1', 'Apartment'),
                 ('2', 'Castle'),
                 ('3', 'Loft'),
                 ('4', 'Mansion'),
                 ('5', 'Beach House'),
                 ('6', 'Detached House'))
 
-SIZE_CHOICES = (('10 - 49', '10 - 49'),
-                ('50 - 99', '50 - 99'),
-                ('100 - 199', '100 - 199'),
-                ('200 - 249', '200 - 249'),
-                ('250 - 499', '250 - 499'),
-                ('500 - 749', '500 - 749'),
-                ('750 - 1000+', '750 - 1000+'))
+SIZE_CHOICES = (('[10, 49]', '10 - 49'),
+                ('[50, 99]', '50 - 99'),
+                ('[100, 199]', '100 - 199'),
+                ('[200, 249]', '200 - 249'),
+                ('[250, 499]', '250 - 499'),
+                ('[500, 749]', '500 - 749'),
+                ('[750, 1000]', '750 - 1000+'))
 
 MAX_PRICE = (('NULL', 'any'),
              ('300', '$300'),
