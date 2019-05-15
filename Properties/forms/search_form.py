@@ -18,6 +18,21 @@ SIZE_CHOICES = (('10 - 49', '10 - 49'),
                 ('500 - 749', '500 - 749'),
                 ('750 - 1000+', '750 - 1000+'))
 
+MAX_PRICE = (('NULL', 'any'),
+             ('300', '$300'),
+             ('400', '$400'),
+             ('500', '$500'),
+             ('600', '$600'),
+             ('700', '$700'),
+             ('800', '$800'),
+             ('900', '$900'),
+             ('1000', '$1000'),
+             ('1500', '$1500'),
+             ('2000', '$2000'),
+             ('3000', '$3000'),
+             ('4000', '$4000'),
+             ('5000', '$5000'))
+
 
 class SearchForm(forms.Form):
     # Get all countries
@@ -34,6 +49,8 @@ class SearchForm(forms.Form):
     size = forms.ChoiceField(widget=forms.RadioSelect,
                                      required=False,
                                      choices=SIZE_CHOICES)
-    #price =
+    max_price = forms.ChoiceField(widget=forms.RadioSelect,
+                                     required=False,
+                                     choices=MAX_PRICE)
     # other
     # sort
