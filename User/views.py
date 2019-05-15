@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 
 from User.models import Profile
-from Properties.models import Addresses, Cities
+from Properties.models import Properties, Addresses, Cities
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from User.forms.profile_form import CustomUserChangeForm, ProfileForm, AddressesForm, CitiesForm, RegisterForm
 
@@ -97,3 +97,58 @@ def profile(request):
                 'addresses_form': AddressesForm(instance=profile.address),
                 'profile_form': ProfileForm(instance=profile),
             })
+
+
+def account(request):
+    return render(request, 'User/AccountDetails.html', {
+        'user': get_object_or_404(User, pk=request.user.id),
+        'properties': Properties.objects.filter(user=request.user.id)
+    })
+
+
+def edit_account(request):
+    pass
+
+
+def get_all_user_properties(request):
+    pass
+
+
+def add_property(request):
+    pass
+
+
+'''
+def profile(request):
+    cities = Cities.objects.first()
+    addresses = Addresses.objects.filter(Cities=cities.id).first()
+    profile = Profile.objects.filter(user=request.user, address=addresses.id).first()
+    if request.method == "POST":
+        profile_form = ProfileForm(instance=profile, data=request.POST)
+        addresses_form = AddressesForm(instance=addresses, data=request.POST)
+        cities_form = CitiesForm(instance=cities, data=request.POST)
+        if profile_form.is_valid() and addresses_form.is_valid() and cities_form.is_valid():
+            # We save information to db for cities
+            cities.save()
+            # We access db and id from prev saved data
+            # We save information to db for addresses
+            addresses = addresses_form.save(commit=False)
+            addresses.Cities = cities
+            addresses.save()
+            # We access db and user and address from prev saved data
+            # We save information to db for profile
+            profile = profile_form.save(commit=False)
+            profile.user = request.user
+            profile.address = addresses
+            profile.save()
+            return redirect('profile')
+    return render(request, 'User/Account.html', {
+
+        # TODO: need to add form for auth user so we can know first, last name and email
+
+        # 'auth_user_form': AuthUserForm(instance=auth_user)
+        'profile_form': ProfileForm(instance=profile),
+        'addresses_form': AddressesForm(instance=addresses),
+        'cities_form': CitiesForm(instance=cities)
+    })'''
+
