@@ -1,3 +1,5 @@
+from typing import List
+
 from django.forms import ModelForm, widgets
 from django import forms
 from Properties.models import *
@@ -41,10 +43,12 @@ class TagsForm(ModelForm):
 
 class TypesForm(ModelForm):
     class Meta:
+
+        CHOICES = [(types.id, types.type) for types in Types.objects.all()]
         model = Types
         exclude = ['id']
         widgets = {
-            'description': widgets.Select(attrs={'class': 'dropdown'})
+            'description': widgets.Select(attrs={'class': 'dropdown'}, choices=CHOICES)
         }
 
 
