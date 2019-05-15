@@ -3,12 +3,13 @@ from django import forms
 from django.forms import ModelForm, widgets
 from django_countries.fields import CountryField
 
-TYPE_CHOICES = (('1', 'Appartment'),
+TYPE_CHOICES = (('1', 'Apartment'),
                 ('2', 'Castle'),
                 ('3', 'Loft'),
                 ('4', 'Mansion'),
                 ('5', 'Beach House'),
-                ('6', 'Detached House'))
+                ('6', 'Detached House'),
+                ('7', 'Attached House'))
 
 SIZE_CHOICES = (('10 - 49', '10 - 49'),
                 ('50 - 99', '50 - 99'),
@@ -38,7 +39,7 @@ class SearchForm(forms.Form):
     # Get all countries
     country = CountryField(
         blank_label='Country').formfield(
-        required=False)  # forms.ChoiceField(choices=[('iceland','Iceland'), ('usa','USA')])
+        required=True)  # forms.ChoiceField(choices=[('iceland','Iceland'), ('usa','USA')])
     zip = forms.CharField(label='Zip', max_length=15, required=False)
     type = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,
                                      required=False,
