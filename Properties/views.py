@@ -33,6 +33,7 @@ def get_seller_profile(request, id):
     return render(request, 'Properties/SellerDetails.html', seller)
 
 
+@login_required
 def create_property(request):
     if request.method == "POST":
         type_form = TypesForm(data=request.POST)
@@ -40,6 +41,7 @@ def create_property(request):
         addresses_form = AddressesForm(data=request.POST)
         tags_form = TagsForm(data=request.POST)
         details_form = DetailsForm(data=request.POST)
+        properties_form = PropertiesForm(data=request.POST)
         if cities_form.is_valid() and addresses_form.is_valid() and type_form.is_valid and tags_form.is_valid()\
                 and details_form.is_valid():
 
@@ -48,6 +50,7 @@ def create_property(request):
             type_saved = type_form.save()
             tags_saved = tags_form.save()
             details_saved = details_form.save(commit=False)
+            properties_saved = properties_form.save(commit=False)
 
             address_saved.city = city_saved
             addresses_form.save()
@@ -55,6 +58,11 @@ def create_property(request):
             details_saved.T_ID = tags_saved
             details_saved.Ty_ID = type_saved
             details_form.save()
+
+            properties_saved.address = address_saved
+            properties_saved.detail = details_saved
+            properties_saved.user = request.user
+            properties_saved.save()
 
             return HttpResponseRedirect('profile')
         else:
@@ -66,7 +74,10 @@ def create_property(request):
             'addresses_form': AddressesForm(),
             'type_form': TypesForm(),
             'details_form': DetailsForm(),
+            'tags_form': TagsForm(),
+            'properties_form': PropertiesForm(),
         })
+
 
 def search(request):
     if request.method == "POST":
