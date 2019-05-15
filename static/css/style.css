@@ -25,11 +25,50 @@
     left: 0;
     bottom: 0;
     width: 100%;
-    padding-bottom: 0%;
-    background-color: darkblue;
-    color: white;
-    text-align: center;
+    padding-bottom: 0;
+    background-color: #4169e1;
+    color: #ffffff;
+    text-align: left;
 }
+
+.mr-3 {
+    width: 20vw;
+    height:20vh;
+}
+
+.media {
+     font-size: 12px;
+}
+
+#rhsfooterlinks {
+     font-size: 12px;
+    text-align: right;
+    position: absolute;
+    right: 0px;
+    color: white;
+}
+
+#navbar_id{
+    background-color: #4169e1;
+    color: #ffffff;
+    a:hover { color: green; }
+    a:active { color: yellow; }
+}
+
+.container{
+    text-align: center;
+    width: 100%;
+    color: white;
+    background-size: cover;
+}
+
+.Links_id {
+    color: #ffffff;
+    a:hover { color: green; }
+    a:active { color: yellow; }
+
+}
+
 
 footer{
     position: fixed;
