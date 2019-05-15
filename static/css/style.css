@@ -1,5 +1,22 @@
 /* https://medium.freecodecamp.org/how-to-keep-your-footer-where-it-belongs-59c6aa05c59c skoða*/
-#page-container {
+
+
+p {
+    color: #00008b;
+    text-align: left;
+}
+
+h4 {
+    color: darkblue;
+}
+
+a {
+
+}
+
+#page-container { /* page container is  */
+
+
     position: relative;
     min-height: 100vh;
     text-align: center;
@@ -21,7 +38,6 @@ footer {
     color: white;
     padding: 0;
     margin: 0;
-
 }
 
 
@@ -40,7 +56,58 @@ footer {
     width: 15%;
     height: 7vh;
     border-radius: 50%;
-    opacity: 60%;
+    hover:opacity: 60%;
 } /*mynd sem sést í Navbar, Index.html*/
 
 
+
+.single_property_item img{
+    max-height: 20vh;
+    max-width: 20wh;
+}
+
+.properties {
+    display: flex;
+    justify-content: center;
+}
+
+.single_property_menu{
+
+    color: #fff;
+  /*lex-direction: column; */
+  width: 900px;
+  display: flex;
+  justify-content: flex-start;
+    padding: 15px;
+
+}
+
+.single_property_item {
+  border: 1px solid #fff;
+  justify-content: space-around;
+  color: orangered;
+  background-color: #ffffff;
+  padding: 20px ;
+    width: 500px;
+    height: 500px;
+}
+
+.price_of_property_id { /* verð ætti að vera grænt á litinn. */
+    color: greenyellow;
+}
+
+.the-team {
+    font-weight: bold;
+    padding-block-end: 400px;
+}
+
+.rhs_footer_links {
+    text-align: right;
+    color: white;
+    font-size: 12px;
+}
+
+#article-body_1-0 {
+    margin-left: 200px;
+    margin-right: 200px;
+}

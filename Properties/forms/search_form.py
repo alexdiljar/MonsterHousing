@@ -45,9 +45,9 @@ class SearchForm(forms.Form):
     # Get all countries
 
 
-    country = CountryField(
-        blank_label='Country').formfield(
-        required=True)  # forms.ChoiceField(choices=[('iceland','Iceland'), ('usa','USA')])
+    #country = CountryField(
+      #  blank_label='Country').formfield(
+      #  required=True)  # forms.ChoiceField(choices=[('iceland','Iceland'), ('usa','USA')])
     zip = forms.CharField(label='Zip', max_length=15, required=False)
     type = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,
                                      required=False,
