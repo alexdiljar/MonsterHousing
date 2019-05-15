@@ -23,6 +23,7 @@ from User.forms.profile_form import CustomUserChangeForm, ProfileForm, Addresses
 
 def register(request):
     if request.method == "POST":
+        data = request.POST.copy()
         form = RegisterForm(data=request.POST)
         cities_form = CitiesForm(data=request.POST)
         addresses_form = AddressesForm(data=request.POST)
@@ -47,7 +48,7 @@ def register(request):
             pass
     if request.method == "GET":
         return render(request, 'User/SignUp.html', {
-            'form' : RegisterForm(),
+            'form': RegisterForm(),
             'cities_form': CitiesForm(),
             'addresses_form': AddressesForm(),
             'profile_form': ProfileForm(),
