@@ -3,7 +3,7 @@
     position: relative;
     min-height: 100vh;
     text-align: center;
-    color: white;
+    color: black;
     width: 100%;
 }
 
@@ -12,17 +12,6 @@
     padding-bottom: 2.5rem;
 }
 
-footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 20rem;
-    background-color: darkblue;
-    color: white;
-    padding: 0;
-    margin: 0;
-
-}
 
 
 .mr-3 {
