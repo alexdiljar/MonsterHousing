@@ -3,11 +3,11 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 
-from Properties.forms.properties_form import * #TypesForm, TagsForm, DetailsForm, PropertiesForm, AddressesForm
+from Properties.forms.properties_form import *  # TypesForm, TagsForm, DetailsForm, PropertiesForm, AddressesForm
 from User.models import Profile
 from Properties.models import Properties, Addresses, Cities
 from django.shortcuts import render, redirect, reverse, get_object_or_404
-from User.forms.profile_form import * #CustomUserChangeForm, ProfileForm, AddressesForm, CitiesForm, RegisterForm
+from User.forms.profile_form import *  # CustomUserChangeForm, ProfileForm, AddressesForm, CitiesForm, RegisterForm
 
 
 def register(request):
@@ -140,8 +140,8 @@ def edit_property(request, id):
             address_saved.city = city_saved
             address_saved.save()
 
-            #profile_saved.address = address_saved
-            #profile_form.save()
+            # profile_saved.address = address_saved
+            # profile_form.save()
 
             details_saved.tags = tags_saved
             details_saved.type = Types.objects.get(id=request.POST['type'])
@@ -169,7 +169,7 @@ def edit_property(request, id):
     if request.method == "GET":
         # User has logged information and we want to GET all info
         return render(request, 'Properties/CreateProperty.html', {
-           # 'properties': get_object_or_404(Properties, pk=id),
+            # 'properties': get_object_or_404(Properties, pk=id),
             'tags_form': TagsForm(instance=property.detail.tags),
             'type_form': TypesForm(instance=property.detail.type),
             'cities_form': CitiesForm(instance=property.address.city),
@@ -246,13 +246,6 @@ def account(request):
     return render(request, 'User/AccountDetails.html', {
         'user': get_object_or_404(User, pk=request.user.id),
         'properties': Properties.objects.filter(user=request.user)
-    })
-
-
-# Edits property information
-def edit_property(request, id):
-    return render(request, 'Properties/CreateProperty.html', {
-        'properties': get_object_or_404(Properties, pk=id)
     })
 
 
