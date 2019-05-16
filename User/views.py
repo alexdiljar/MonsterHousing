@@ -10,7 +10,6 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from User.forms.profile_form import CustomUserChangeForm, ProfileForm, AddressesForm, CitiesForm, RegisterForm
 
 
-
 def register(request):
     if request.method == "POST":
         form = RegisterForm(data=request.POST)

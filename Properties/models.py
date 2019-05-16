@@ -41,4 +41,4 @@ class Properties(models.Model):
     address = models.ForeignKey(Addresses, on_delete=models.CASCADE)
     detail = models.ForeignKey(Details, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    is_active = models.BooleanField()
+    is_active = models.BooleanField(default=True)

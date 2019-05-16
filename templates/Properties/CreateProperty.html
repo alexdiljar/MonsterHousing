@@ -1,16 +1,17 @@
 {% extends 'index.html' %}
 
 {% block content %}
-    <form class="form form-horizontal" method="post">
-        {%  csrf_token %}
-        {{ cities_form }}
-        {{ addresses_form }}
-        {{ type_form }}
-        {{ details_form }}
-        {{ tags_form }}
-        {{ properties_form }}
-        <input type="submit" class="btn btn-primary" value="Sell Property"/>
-    </form>
-
+    <div id="page-container">
+        <form class="form form-horizontal" method="post">
+            {% csrf_token %}
+            {{ cities_form }}
+            {{ addresses_form }}
+            {{ type_form }}
+            {{ details_form }}
+            {{ tags_form }}
+            {{ properties_form }}
+            <input type="submit" class="btn btn-primary" value="Sell property"/>
+        </form>
+    </div>
 {% endblock %}
 

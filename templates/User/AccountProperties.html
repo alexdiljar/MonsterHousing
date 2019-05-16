@@ -1,12 +1,12 @@
 {% extends 'index.html' %}
 
 {% block content %}
-<h1>My Properties</h1>
+
+    <h1>My Properties</h1>
     <a class="btn btn-primary" href="{% url 'create_property' %}">Add Property</a>
     {% for properties in properties %}
         {% include 'Properties/SinglePropertyView.html' with properties=properties %}
         <a class="btn btn-primary" href="{% url 'edit_property' properties.id %}">Edit Property</a>
         <a class="btn btn-primary" href="#">Delete Property</a>
     {% endfor %}
-
 {% endblock %}
