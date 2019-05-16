@@ -3,11 +3,11 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 
-from Properties.forms.properties_form import TypesForm, TagsForm, DetailsForm, PropertiesForm
+from Properties.forms.properties_form import * #TypesForm, TagsForm, DetailsForm, PropertiesForm, AddressesForm
 from User.models import Profile
 from Properties.models import Properties, Addresses, Cities
 from django.shortcuts import render, redirect, reverse, get_object_or_404
-from User.forms.profile_form import CustomUserChangeForm, ProfileForm, AddressesForm, CitiesForm, RegisterForm
+from User.forms.profile_form import * #CustomUserChangeForm, ProfileForm, AddressesForm, CitiesForm, RegisterForm
 
 
 def register(request):
@@ -55,14 +55,14 @@ def edit_account(request):
         # Step 1: Parse data from POST.
         user_form = CustomUserChangeForm(instance=user, data=request.POST)
 
-        cities_form = CitiesForm(instance=Cities.objects.get_or_create(request.user.profile.address.city),
+        cities_form = CitiesForm(instance=Cities.objects.get(id=request.user.profile.address.city.id),
                                  data=request.POST)
 
-        addresses_form = AddressesForm(instance=Addresses.objects.get_or_create(city=request.user.profile.address),
+        addresses_form = AddressesForm(instance=Addresses.objects.get(city=request.user.profile.address.city),
                                        data=request.POST)
 
-        profile_form = ProfileForm(instance=Profile.objects.get_or_create(user=request.user,
-                                                                          address=request.user.profile),
+        profile_form = ProfileForm(instance=Profile.objects.get(user=request.user,
+                                                                address=request.user.profile.address),
                                    data=request.POST)
 
         # Step 2: Validate parsed data.
@@ -77,7 +77,7 @@ def edit_account(request):
             addresses_form.save()
             profile_form.save()
 
-            return redirect(reverse('profile'))
+            return redirect(reverse('account'))
         # Validation failed - return same data parsed from POST.
         else:
             return render(request, 'User/ManageAccount.html', {
@@ -140,7 +140,6 @@ def create_property(request):
             country_input = cities_form.cleaned_data['country']
             city_saved = cities_form.save(commit=False)
             address_saved = addresses_form.save(commit=False)
-            type_saved = type_form.save()
             tags_saved = tags_form.save()
             details_saved = details_form.save(commit=False)
             properties_saved = properties_form.save(commit=False)
@@ -152,7 +151,7 @@ def create_property(request):
             addresses_form.save()
 
             details_saved.tags = tags_saved
-            details_saved.type = type_saved
+            details_saved.type = Types.objects.get(id=request.POST['type'])
             details_saved.save()
 
             properties_saved.address = address_saved
@@ -160,6 +159,8 @@ def create_property(request):
             properties_saved.user = request.user
             properties_saved.is_active = True
             properties_saved.save()
+
+
 
             return HttpResponseRedirect('account')
         else:
