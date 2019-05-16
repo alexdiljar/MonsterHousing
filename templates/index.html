@@ -15,7 +15,7 @@
 </head>
 
 <body>
-<div id="main">
+<div id="page-container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="{% url 'front_page_index' %}">Monster Housing</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -23,13 +23,13 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar7">
+        <div class="collapse navbar-collapse flex-grow-1 text-left" id="myNavbar7">
             <ul class="navbar-nav ml-auto flex-nowrap">
                 <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'front_page_index' %}">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link " href="{% url 'front_page_index' %}">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'catalog_index' %}">Catalog</a>
+                    <a class="nav-link " href="{% url 'catalog_index' %}">Catalog</a>
                 </li>
                 <li>
                     <a class="nav-link" href="{% url 'terms_index' %}">Terms & Conditions</a>
@@ -37,11 +37,11 @@
                 <li>
                     <a class="nav-link" href="{% url 'about_us_index' %}">About us</a>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown ">
 
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                        data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false">
+                       aria-haspopup="false" aria-expanded="false">
                         {% if user.is_authenticated %}
                             <img src="{{ user.profile.profile_image }}" class="profile-image" alt="profile image">
                         {% else %}
@@ -65,7 +65,7 @@
         </div>
     </nav>
 
-    <div id="container" style="margin: 0%">
+    <div class="content" style="margin: 0%">
 
         {% block content %}
 
@@ -73,8 +73,8 @@
     </div>
     <!-- Footer -->
     <!-- Footer -->
-    <footer class="page-footer font-small stylish-color-light " id="footer">
-        <div class="container text-center text-md-left">
+    <footer class="page-footer ">
+        <div class="row-12 text-center text-md-right">
 
             <!-- Grid row -->
             <div class="row text-left">
@@ -93,10 +93,10 @@
                 <hr>
 
                 <!-- Grid column -->
-                <div class="col-md-22 mx-auto text-right text-md-right" id="rhsfooterlinks">
+                <div class="row-md-6 mx-auto text-right text-md-right" id="rhs_footer_links">
 
                     <!-- Links -->
-                    <h5 class="font-weight-bold text-uppercase mt-4 mb-4"></h5>
+                    <h5 class="font-weight-bold text-uppercase "></h5>
 
                     <ul class="list-unstyled mx-right">
                         <li class="nav-item">
@@ -115,10 +115,10 @@
                 </div>
             </div>
             <hr>
+            {% if not user.is_authenitcated %}
 
                 <!-- Call to action -->
-             {% if not user.is_authenitcated %}
-                <ul class="list-unstyled list-inline text-center py-2">
+                <ul class="list-unstyled list-inline text-center ">
                     <li class="list-inline-item">
                         <h5 class="mb-1">Register for free</h5>
                     </li>
@@ -126,8 +126,11 @@
                         <a href="{% url 'register' %}" class="btn btn-success btn-rounded">Sign up!</a>
                     </li>
                 </ul>
-            {% endif %}
                 <!-- Call to action -->
+
+
+
+            {% endif %}
 
 
     </footer>
