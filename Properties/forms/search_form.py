@@ -45,7 +45,7 @@ class SearchForm(forms.Form):
     country = CountryField(blank_label='Country').formfield(
         required=False)
 
-    zip = forms.CharField(label='Zip', max_length=5, required=False, initial='Zip')
+    zip = forms.CharField(label='Zip', max_length=5, required=False)
 
     type = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,
                                      required=False,

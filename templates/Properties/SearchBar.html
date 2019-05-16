@@ -2,50 +2,50 @@
 
 {% load static %}
 {% block content %}
+    <div id="page-container">
+        <form method="post" class="searchfrom">
+            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                {% csrf_token %}
+                {% for field in form %}
 
-    <form method="post">
-        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-            {% csrf_token %}
-            {% for field in form %}
+                    {% if field.label == 'Country' %}
+                        {{ field }}
 
-                {% if field.label == 'Country' %}
-                    <div class="btn-group" role="group">
-                        <ul class="col-md-12 dropdown">
-                            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{ field.label_tag }}
-                            </button>
-                            <ul class="dropdown-menu scrollable-menu" role="menu">
-                                {% for country in field %}
-                                    <li><a href="#">{{ country }}</a></li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                    </div>
-
-                {% else %}
-                    <div class="btn-group" role="group">
-                        <div class="col-md-12 dropdown">
-                            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{ field.label_tag }}
-                            </button>
-                            <div class="dropdown-menu">
-                                <div><a href="#">{{ field }}</a></div>
+                    {% else %}
+                        <div class="btn-group" role="group">
+                            <div class="col-md-12 dropdown">
+                                <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{ field.label_tag }}
+                                </button>
+                                <div class="dropdown-menu">
+                                    <div><a href="#">{{ field }}</a></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                {% endif %}
-            {% endfor %}
+                    {% endif %}
+                {% endfor %}
 
-        </div>
+            </div>
 
-        <button type="submit">GO!</button>
+            <button type="submit">GO!</button>
 
-    </form>
+        </form>
+    </div>
 {% endblock %}
 
 
 
-or field.label == 'Rooms'
-field.label == 'Country' or{{ field }}
+<div class="btn-group" role="group">
+    <ul class="col-md-12 dropdown">
+        <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{ field.label_tag }}
+        </button>
+        <ul class="dropdown-menu scrollable-menu" role="menu">
+            {% for country in field %}
+                <li><a href="#">{{ country }}</a></li>
+            {% endfor %}
+        </ul>
+</div>
+</div>

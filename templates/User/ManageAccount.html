@@ -1,17 +1,18 @@
 {% extends 'index.html' %}
 
 {% block content %}
-<h1>Enter your information here</h1>
+    <div id="page-container">
+        <h1>Enter your information here</h1>
 
-     <form class="form form-horizontal" method="POST">
-         {%  csrf_token %}
-         {{ user_form }}
-         {{ profile_form }}
-         {{ addresses_form }}
-         {{ cities_form }}
-        <input type="submit" class="btn btn-primary" value="Update"/>
-    </form>
-
+        <form class="form form-horizontal" method="POST">
+            {% csrf_token %}
+            {{ user_form }}
+            {{ profile_form }}
+            {{ addresses_form }}
+            {{ cities_form }}
+            <input type="submit" class="btn btn-primary" value="Update"/>
+        </form>
+    </div>
 {% endblock %}
 
 

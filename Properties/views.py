@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from Properties.models import *
 from django.contrib.auth.decorators import login_required
 from Properties.forms.properties_form import *
-# from Properties.forms.search_form import SearchForm
+from Properties.forms.search_form import SearchForm
 
 
 # TODO : connect views/ the urls to html files under User in this file
@@ -39,7 +39,7 @@ def search(request):
     if request.method == "POST":
         form = SearchForm(request.POST)
         if form.is_valid():
-            country_input = form.cleaned_data['Country']
+            country_input = form.cleaned_data['country']
             zip_input = form.cleaned_data['zip']
             # Type is multi select will be returned as list must iterate when comparing
             type_input_list = form.cleaned_data['type']
