@@ -3,17 +3,19 @@ from django.contrib.auth.models import User
 from django.forms import ModelForm, widgets
 from User.models import Profile
 from Properties.models import Cities, Addresses
+from django_countries.fields import CountryField
 from django import forms
 
 
 class CitiesForm(ModelForm):
+    country = CountryField(blank_label='Country').formfield(required=True)
+
     class Meta:
         model = Cities
-        exclude = ['id']
+        exclude = ['id', 'country']
         widgets = {
-            'country': widgets.TextInput(attrs={'class': 'form-right'}),
-            'zip': widgets.TextInput(attrs={'class': 'form-left'}),
-            'city': widgets.TextInput(attrs={'class': 'form-right'}),
+            'zip': widgets.NumberInput(attrs={'class': 'form-control', 'min': 0}),
+            'city': widgets.TextInput(attrs={'class': 'form-control'})
         }
 
 
@@ -22,25 +24,25 @@ class AddressesForm(ModelForm):
         model = Addresses
         exclude = ['id', 'city']
         widgets = {
-            'street': widgets.TextInput(attrs={'class': 'form-right'}),
-            'house_no': widgets.NumberInput(attrs={'class': 'form-left'}),
+            'street': widgets.TextInput(attrs={'class': 'form-control'}),
+            'house_no': widgets.NumberInput(attrs={'class': 'form-control'}),
         }
 
 
 class ProfileForm(ModelForm):
-    country = widgets.TextInput(attrs={'class': 'form-right'})
-    city = widgets.TextInput(attrs={'class': 'form-right'})
-    zip = widgets.NumberInput(attrs={'class': 'form-left'})
-    street = widgets.TextInput(attrs={'class': 'form-right'})
-    house_no = widgets.NumberInput(attrs={'class': 'form-left'})
+    country = widgets.TextInput(attrs={'class': 'form-control'})
+    city = widgets.TextInput(attrs={'class': 'form-control'})
+    zip = widgets.NumberInput(attrs={'class': 'form-control'})
+    street = widgets.TextInput(attrs={'class': 'form-control'})
+    house_no = widgets.NumberInput(attrs={'class': 'form-control'})
 
     class Meta:
         model = Profile
         exclude = ['id', 'user', 'address']
         widgets = {
-            'ssn': widgets.TextInput(attrs={'class': 'form-left'}),
-            'phone': widgets.TextInput(attrs={'class': 'form-right'}),
-            'profile_image': widgets.URLInput(attrs={'class': 'form-left'}),
+            'ssn': widgets.TextInput(attrs={'class': 'form-control'}),
+            'phone': widgets.TextInput(attrs={'class': 'form-control'}),
+            'profile_image': widgets.URLInput(attrs={'class': 'form-control'}),
         }
 
 
@@ -56,10 +58,10 @@ class CustomUserChangeForm(UserChangeForm):
         ]
 
         widgets = {
-            'last_name': widgets.TextInput(attrs={}),
-            'first_name': widgets.TextInput(attrs={}),
-            'email': widgets.TextInput(attrs={}),
-            'username': widgets.TextInput(attrs={}),
+            'last_name': widgets.TextInput(attrs={'class': 'form-control'}),
+            'first_name': widgets.TextInput(attrs={'class': 'form-control'}),
+            'email': widgets.TextInput(attrs={'class': 'form-control'}),
+            'username': widgets.TextInput(attrs={'class': 'form-control'}),
         }
 
 

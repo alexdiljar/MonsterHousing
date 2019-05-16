@@ -41,12 +41,6 @@ a {
     padding-bottom: 2.5rem;
 }
 
-footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 20rem;
-}
 
 #footer {
     background-color: darkblue;
@@ -58,30 +52,31 @@ footer {
     width: 100%;
     content: 200px;
 
+
     color: white;
     padding: 0;
+
 }
+
 
 .mr-3 {
     width: 12.5vw;
     height: 12.5vh;
 }
 
-#navbarDropdown img:hover {
-
-    opacity: 60%;
-}
-
 #navbarDropdown img {
     width: 15%;
     height: 7vh;
     border-radius: 50%;
+    hover: opacity: 60%;
 }
 
 /*mynd sem sést í Navbar, Index.html*/
+
+
 .single_property_item img {
     max-height: 20vh;
-    max-width: 20vh;
+    max-width: 20 wh;
 }
 
 .properties {
@@ -137,22 +132,4 @@ footer {
 #article-body_1-0 {
     margin-left: 200px;
     margin-right: 200px;
-}
-
-.form-horizontal span {
-    display: block;
-}
-
-
-.form-left {
-    display: flex;
-
-}
-
-.form-right {
-    display: flex;
-}
-
-label[for=id_phone], label[for=id_street], label[for=id_country], label[for=id_city] {
-
 }
