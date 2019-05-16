@@ -4,9 +4,10 @@
     <form class="form form-horizontal" method="POST">
         {% csrf_token %}
         {{ user_form }}
-        {{ profile_form }}
         {{ addresses_form }}
         {{ cities_form }}
-        <input type="submit" class="btn btn-primary" value="Update"/>
+        <a href="/"><input type="button" class="cancel-link" value="Cancel"></a>
+        <input type="submit" class="btn btn-primary" value="Continue"/>
+
     </form>
 {% endblock %}
