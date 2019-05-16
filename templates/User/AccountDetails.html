@@ -1,12 +1,13 @@
 {% extends 'index.html' %}
 
 {% block content %}
-    <div id="page-container">
+    <div id="page-container-account-details">
+        <h1>My Account</h1>
+        <h2>{{ user.username }}</h2>
         <div class="account_all">
-            <h1>My Account</h1>
-            <h2>{{ user.username }}</h2>
+
             <img src="{{ user.profile.profile_image }}" alt="user image">
-            <p>Name:{{ user.first_name }} {{ user.last_name }}</p>
+            <p>Name:  {{ user.first_name }} {{ user.last_name }}</p>
             <p>SSN: {{ user.profile.ssn }}</p>
             <p>Email: {{ user.email }}</p>
             <p>Phone: {{ user.profile.phone }}</p>
@@ -16,11 +17,17 @@
             <p>Street: {{ user.profile.address.street }}</p>
             <p>House Number: {{ user.profile.address.house_no }}</p>
         </div>
-        <div class="account properties">
+        <div class="account_properties">
+        <div class="link_for_my_properties">
             <a href="{% url 'account_properties' %}"><h2>My Properties</h2></a>
+        </div>
+        </div>
             {% for properties in properties %}
                 {% include 'Properties/SinglePropertyView.html' with properties=properties %}
             {% endfor %}
         </div>
     </div>
+    </div>
+
+
 {% endblock %}

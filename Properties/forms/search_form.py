@@ -1,3 +1,4 @@
+
 from Properties.models import Tags
 from django import forms
 from django.forms import ModelForm, widgets
@@ -8,7 +9,8 @@ TYPE_CHOICES = (('1', 'Apartment'),
                 ('3', 'Loft'),
                 ('4', 'Mansion'),
                 ('5', 'Beach House'),
-                ('6', 'Detached House'))
+                ('6', 'Detached House'),
+                ('7', 'Attached House'))
 
 SIZE_CHOICES = (('[10, 49]', '10 - 49'),
                 ('[50, 99]', '50 - 99'),
@@ -37,7 +39,7 @@ TAGS_CHOICES = (('elevator', 'Elevator'),
                 ('garage', 'Garage'),
                 ('near_bloodbank', 'Near Bloodbank'),
                 ('dungeon', 'Dungeon'),
-                ('secret_entrence', 'Secret Entrence'))
+                ('secret_entrance', 'Secret Entrance'))
 
 
 class SearchForm(forms.Form):
