@@ -8,7 +8,7 @@
 }
 
 .content {
-    background-color: #ffffff;
+    background-color: #A4B9CE;
     padding-bottom: 2.5rem;
 }
 
@@ -43,4 +43,19 @@ footer {
     opacity: 60%;
 } /*mynd sem sést í Navbar, Index.html*/
 
+.form-horizontal {
+    text-align: left;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+.form-horizontal label {
+    display: block;
+    block-size: 25%;
 
+}
+.form-horizontal label + input {
+
+}
+.form-horizontal span {
+    display: block;
+}

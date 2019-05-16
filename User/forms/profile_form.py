@@ -11,9 +11,9 @@ class CitiesForm(ModelForm):
         model = Cities
         exclude = ['id']
         widgets = {
-            'country': widgets.TextInput(attrs={'class': 'form-control'}),
-            'zip': widgets.TextInput(attrs={'class': 'form-control'}),
-            'city': widgets.TextInput(attrs={'class': 'form-control'}),
+            'country': widgets.TextInput(attrs={'class': 'form-right'}),
+            'zip': widgets.TextInput(attrs={'class': 'form-left'}),
+            'city': widgets.TextInput(attrs={'class': 'form-right'}),
         }
 
 
@@ -22,25 +22,25 @@ class AddressesForm(ModelForm):
         model = Addresses
         exclude = ['id', 'city']
         widgets = {
-            'street': widgets.TextInput(attrs={'class': 'form-control'}),
-            'house_no': widgets.NumberInput(attrs={'class': 'form-control'}),
+            'street': widgets.TextInput(attrs={'class': 'form-right'}),
+            'house_no': widgets.NumberInput(attrs={'class': 'form-left'}),
         }
 
 
 class ProfileForm(ModelForm):
-    country = widgets.TextInput(attrs={'class': 'form-control'})
-    city = widgets.TextInput(attrs={'class': 'form-control'})
-    zip = widgets.NumberInput(attrs={'class': 'form-control'})
-    street = widgets.TextInput(attrs={'class': 'form-control'})
-    house_no = widgets.NumberInput(attrs={'class': 'form-control'})
+    country = widgets.TextInput(attrs={'class': 'form-right'})
+    city = widgets.TextInput(attrs={'class': 'form-right'})
+    zip = widgets.NumberInput(attrs={'class': 'form-right'})
+    street = widgets.TextInput(attrs={'class': 'form-right'})
+    house_no = widgets.NumberInput(attrs={'class': 'form-right'})
 
     class Meta:
         model = Profile
         exclude = ['id', 'user', 'address']
         widgets = {
-            'ssn': widgets.TextInput(attrs={'class': 'form-control'}),
-            'phone': widgets.TextInput(attrs={'class': 'form-control'}),
-            'profile_image': widgets.URLInput(attrs={'class': 'form-control'}),
+            'ssn': widgets.TextInput(attrs={'class': 'form-left'}),
+            'phone': widgets.TextInput(attrs={'class': 'form-right'}),
+            'profile_image': widgets.URLInput(attrs={'class': 'form-left'}),
         }
 
 
@@ -56,10 +56,10 @@ class CustomUserChangeForm(UserChangeForm):
         ]
 
         widgets = {
-            'last_name': widgets.TextInput(attrs={'class': 'form-control'}),
-            'first_name': widgets.TextInput(attrs={'class': 'form-control'}),
-            'email': widgets.TextInput(attrs={'class': 'form-control'}),
-            'username': widgets.TextInput(attrs={'class': 'form-control'}),
+            'last_name': widgets.TextInput(attrs={}),
+            'first_name': widgets.TextInput(attrs={}),
+            'email': widgets.TextInput(attrs={}),
+            'username': widgets.TextInput(attrs={}),
         }
 
 
