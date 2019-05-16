@@ -36,6 +36,10 @@ a {
     /*padding-bottom: 2.5rem;*/
     min-height: 100%;
 }
+.content {
+    background-color: #A4B9CE;
+    padding-bottom: 2.5rem;
+}
 
 
 #footer {
@@ -60,30 +64,25 @@ a {
     height: 12.5vh;
 }
 
-
-
-#navbarDropdown img:hover {
-    opacity: 60%;
-}
-
 #navbarDropdown img {
     width: 15%;
     height: 7vh;
     border-radius: 50%;
-} /*mynd sem sést í Navbar, Index.html*/
+    hover: opacity: 60%;
+}
 
+/*mynd sem sést í Navbar, Index.html*/
 
 
 .single_property_item img {
     max-height: 20vh;
-    max-width: 20vh;
+    max-width: 20 wh;
 }
 
-.account_properties {
+.properties {
     display: flex;
-    /*justify-content: center;*/
+    justify-content: center;
 }
-
 
 .single_property_menu {
 

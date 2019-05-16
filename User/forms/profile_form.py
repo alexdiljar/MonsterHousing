@@ -31,12 +31,6 @@ class AddressesForm(ModelForm):
 
 
 class ProfileForm(ModelForm):
-    country = widgets.TextInput(attrs={'class': 'form-control'})
-    city = widgets.TextInput(attrs={'class': 'form-control'})
-    zip = widgets.NumberInput(attrs={'class': 'form-control'})
-    street = widgets.TextInput(attrs={'class': 'form-control'})
-    house_no = widgets.NumberInput(attrs={'class': 'form-control'})
-
     class Meta:
         model = Profile
         exclude = ['id', 'user', 'address']

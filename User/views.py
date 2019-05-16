@@ -11,6 +11,7 @@ from User.forms.profile_form import CustomUserChangeForm, ProfileForm, Addresses
 
 
 def register(request):
+
     if request.method == "POST":
         form = RegisterForm(data=request.POST)
         cities_form = CitiesForm(data=request.POST)
@@ -18,12 +19,16 @@ def register(request):
         profile_form = ProfileForm(data=request.POST)
         if cities_form.is_valid() and addresses_form.is_valid() and profile_form.is_valid and form.is_valid():
 
+            country_input = cities_form.cleaned_data['country']
+            cities_saved = cities_form.save(commit=False)
+            cities_saved.country = country_input
+            cities_saved.save()
+
             form_saved = form.save()
-            city_saved = cities_form.save()
             address_saved = addresses_form.save(commit=False)
             profile_saved = profile_form.save(commit=False)
 
-            address_saved.city = city_saved
+            address_saved.city = cities_saved
             addresses_form.save()
 
             profile_saved.address = address_saved
@@ -62,8 +67,13 @@ def edit_account(request):
 
         # Step 2: Validate parsed data.
         if user_form.is_valid() and cities_form.is_valid() and addresses_form.is_valid() and profile_form.is_valid():
+
+            country_input = cities_form.cleaned_data['country']
+            cities_saved = cities_form.save(commit=False)
+            cities_saved.country = country_input
+
             user_form.save()
-            cities_form.save()
+            cities_saved.save()
             addresses_form.save()
             profile_form.save()
 
@@ -126,22 +136,24 @@ def create_property(request):
         properties_form = PropertiesForm(data=request.POST)
         if cities_form.is_valid() and addresses_form.is_valid() and type_form.is_valid and tags_form.is_valid() \
                 and details_form.is_valid():
-            # first we clean data
-            type_form = type_form.cleaned_data['country']
-            # second we save data and add dependencies
-            city_saved = cities_form.save()
+            # We need to clean 'country' data
+            country_input = cities_form.cleaned_data['country']
+            city_saved = cities_form.save(commit=False)
             address_saved = addresses_form.save(commit=False)
             type_saved = type_form.save()
             tags_saved = tags_form.save()
             details_saved = details_form.save(commit=False)
             properties_saved = properties_form.save(commit=False)
 
+            city_saved.country = country_input
+            city_saved.save()
+
             address_saved.city = city_saved
             addresses_form.save()
 
             details_saved.tags = tags_saved
             details_saved.type = type_saved
-            details_saved = details_form.save()
+            details_saved.save()
 
             properties_saved.address = address_saved
             properties_saved.detail = details_saved
