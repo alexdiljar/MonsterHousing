@@ -16,10 +16,7 @@ h4 {
     color: darkblue;
 }
 
-    /* visited link */
-a:visited {
-    background-color: gray;
-}
+
 
 /* áberandi litur þegar þú setur mús yfir link */
 a:hover {
@@ -38,22 +35,21 @@ a:active {
 #page-container { /* page container is  */
 
     overflow: auto;
-    padding-bottom: 250px;
-    /*position: relative;
-    min-height: 100vh;
     text-align: center;
-    color: #000000;
-    width: 100%;*/
+    position: relative;
+    /* min-height: 500vh; */
+
 }
 
 #container {
-    background-color: #ffffff;
+    background-color: lightblue;
     /*padding-bottom: 2.5rem;*/
     min-height: 100%;
 }
 .content {
     background-color: #A4B9CE;
     padding-bottom: 2.5rem;
+    padding-block-end: 400px;
 }
 
 
@@ -61,13 +57,10 @@ a:active {
     background-color: darkblue;
     position: relative;
     height: 300px;
-    margin-top: -200px;
     margin-bottom: 0;
     clear: both;
     width: 100%;
     content: 200px;
-
-
     color: white;
     padding: 0;
     margin: 0;
@@ -131,20 +124,19 @@ a:active {
     height: 500px;
 }
 
-.price_of_property_id { /* verð ætti að vera grænt á litinn. */
-    color: greenyellow;
+#price_of_property_id { /* verð ætti að vera grænt á litinn. */
+    color: green;
 }
 
 .the-team {
     font-weight: bold;
-    padding-block-end: 400px;
 }
 
-.rhs_footer_links {
+#rhs_footer_links {
     text-align: right;
     color: white;
     font-size: 12px;
-    position: left;
+    position: right;
 
 
 }
@@ -172,7 +164,7 @@ a:active {
 #rhs_footer_links {    /* minnka bootstrap svo það komi footer með lægri hæð */
         margin-block-start: 0em;
     margin-block-end: 0em;
-        padding-inline-start: 40px;
+        padding-inline-start: 0px;
     padding: 0.1rem;   /* minnkar footer og navigation bar */
 }
 
@@ -181,4 +173,42 @@ a:active {
 }
 
 
-#
+#SignUp_Title_id {
+    color: green;
+}
+
+.account_all img {
+    width: 400px;
+    height: 400px;
+    float: left;         /* mynd á að vera vinstra megin við texta*/
+    position: right;
+    margin-right: 25px;  /* fá bil á milli img og textaupplýsinga*/
+    position: relative;
+
+
+
+}
+
+.account_all {
+    color: white;
+    font-weight: bold;
+    margin-left:35%;  /* texti á að byrja í miðjunni, og þá endar mynd í miðjunni */
+     position: relative;
+}
+
+
+#page-container-account-details{
+        position: relative;
+}
+
+
+.account_properties{
+    position: absolute;
+    bottom: 0;
+}
+
+#link_for_my_properties{
+    margin-top: 100px;
+    text-align: center;
+}
+
