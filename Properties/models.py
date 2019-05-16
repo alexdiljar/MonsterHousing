@@ -20,7 +20,7 @@ class Tags(models.Model):
     garage = models.BooleanField()
     near_bloodbank = models.BooleanField()
     dungeon = models.BooleanField()
-    secret_entrence = models.BooleanField()
+    secret_entrance = models.BooleanField()
 
 
 class Types(models.Model):
