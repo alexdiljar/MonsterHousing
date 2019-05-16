@@ -8,6 +8,7 @@ from django_countries.fields import CountryField
 
 class CitiesForm(ModelForm):
     country = CountryField(blank_label='Country').formfield(required=True)
+
     class Meta:
         model = Cities
         exclude = ['id', 'country']

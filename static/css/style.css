@@ -1,6 +1,12 @@
+/* https://medium.freecodecamp.org/how-to-keep-your-footer-where-it-belongs-59c6aa05c59c skoða*/
+*{
+    margin: 0;
+    padding: 0;
+}
 
-
-
+html,body{
+    height: 100%
+}
 p {
     color: #00008b;
     text-align: left;
@@ -31,26 +37,37 @@ a:active {
 
 #page-container { /* page container is  */
 
-
-    position: relative;
-    min-height: 90vh;
+    overflow: auto;
+    padding-bottom: 250px;
+    /*position: relative;
+    min-height: 100vh;
     text-align: center;
-    color: darkblue;
-    width: 100%;
+    color: #000000;
+    width: 100%;*/
 }
 
-.content {
+#container {
     background-color: #ffffff;
+    /*padding-bottom: 2.5rem;*/
+    min-height: 100%;
+}
+.content {
+    background-color: #A4B9CE;
     padding-bottom: 2.5rem;
-    overflow: scroll;
 }
 
 
-footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
+#footer {
     background-color: darkblue;
+    position: relative;
+    height: 300px;
+    margin-top: -200px;
+    margin-bottom: 0;
+    clear: both;
+    width: 100%;
+    content: 200px;
+
+
     color: white;
     padding: 0;
     margin: 0;
@@ -63,6 +80,12 @@ footer {
     height: 12.5vh;
 }
 
+
+
+#navbarDropdown img:hover {
+    opacity: 60%;
+}
+
 #navbarDropdown img {
     width: 15%;
     height: 7vh;
@@ -71,9 +94,9 @@ footer {
 
 
 
-.single_property_item img{
-    height: 15vh;
-    width: 15wh;
+.single_property_item img {
+    max-height: 20vh;
+    max-width: 20vh;
 }
 
 
@@ -83,10 +106,11 @@ footer {
 
 .properties {
     display: flex;
-    justify-content: center;
+    /*justify-content: center;*/
 }
 
-.single_property_menu{
+
+.single_property_menu {
 
     color: #fff;
   /*flex-direction: column; */
@@ -98,16 +122,16 @@ footer {
 }
 
 .single_property_item {
-  border: 1px solid #fff;
-  justify-content: space-around;
-  color: orangered;
-  background-color: #ffffff;
-  padding: 20px ;
+    border: 1px solid #fff;
+    justify-content: space-around;
+    color: orangered;
+    background-color: #ffffff;
+    padding: 20px;
     width: 500px;
     height: 500px;
 }
 
-#price_of_property_id { /* verð ætti að vera grænt á litinn. */
+.price_of_property_id { /* verð ætti að vera grænt á litinn. */
     color: greenyellow;
 }
 
@@ -116,10 +140,19 @@ footer {
     padding-block-end: 400px;
 }
 
-#rhs_footer_links {
+.rhs_footer_links {
     text-align: right;
     color: white;
-    font-size: 16px;
+    font-size: 12px;
+    position: left;
+
+
+}
+
+.scrollable-menu {
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
 }
 
 #article-body_1-0 {
