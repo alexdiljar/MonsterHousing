@@ -55,14 +55,14 @@ def edit_account(request):
         # Step 1: Parse data from POST.
         user_form = CustomUserChangeForm(instance=user, data=request.POST)
 
-        cities_form = CitiesForm(instance=Cities.objects.get_or_create(request.user.profile.address.city
-                                                                       ), data=request.POST)
+        cities_form = CitiesForm(instance=Cities.objects.get(id=request.user.profile.address.city.id),
+                                 data=request.POST)
 
-        addresses_form = AddressesForm(instance=Addresses.objects.get_or_create(city=request.user.profile.address),
+        addresses_form = AddressesForm(instance=Addresses.objects.get(city=request.user.profile.address.city),
                                        data=request.POST)
 
-        profile_form = ProfileForm(instance=Profile.objects.get_or_create(user=request.user,
-                                                                          address=request.user.profile),
+        profile_form = ProfileForm(instance=Profile.objects.get(user=request.user,
+                                                                address=request.user.profile.address),
                                    data=request.POST)
 
         # Step 2: Validate parsed data.
@@ -77,7 +77,7 @@ def edit_account(request):
             addresses_form.save()
             profile_form.save()
 
-            return redirect(reverse('profile'))
+            return redirect(reverse('account'))
         # Validation failed - return same data parsed from POST.
         else:
             return render(request, 'User/ManageAccount.html', {
