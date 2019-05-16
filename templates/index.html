@@ -115,9 +115,9 @@
                 </div>
             </div>
             <hr>
-            {% if not user.is_authenitcated %}
-
-                <!-- Call to action -->
+            {% if request.user.is_authenticated %}
+                <p style="text-align: center">Hello {{ request.user.username }} <p/>
+           {% else %}
                 <ul class="list-unstyled list-inline text-center ">
                     <li class="list-inline-item">
                         <h5 class="mb-1">Register for free</h5>
@@ -126,10 +126,6 @@
                         <a href="{% url 'register' %}" class="btn btn-success btn-rounded">Sign up!</a>
                     </li>
                 </ul>
-                <!-- Call to action -->
-
-
-
             {% endif %}
 
 
