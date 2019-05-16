@@ -169,7 +169,7 @@ def edit_property(request, id):
     if request.method == "GET":
         # User has logged information and we want to GET all info
         return render(request, 'Properties/CreateProperty.html', {
-            'properties': get_object_or_404(Properties, pk=id),
+           # 'properties': get_object_or_404(Properties, pk=id),
             'tags_form': TagsForm(instance=property.detail.tags),
             'type_form': TypesForm(instance=property.detail.type),
             'cities_form': CitiesForm(instance=property.address.city),
