@@ -159,13 +159,10 @@ a:active {
     padding-block-end: 600px;
 }
 
-.navbarDropdown{
-    width:0px;
+.form form-horizontal {
+    width: 400px;
 }
 
-.nav-item dropdown {
-
-}
 
 
 .banner  {            /* hvítur litur á forsíðunni */
@@ -216,3 +213,20 @@ a:active {
     text-align: center;
 }
 
+.form-control{
+    max-width: 40%;
+    display: inline-block;
+
+}
+
+.form-horizontal {
+    text-align: left;
+    width: 25%;
+    padding-left: 3%;
+    padding-top: 5%;
+}
+
+.form-horizontal label {
+    width: 15%;
+    display: inline-block;
+}
