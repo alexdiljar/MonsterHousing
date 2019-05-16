@@ -16,7 +16,22 @@ h4 {
     color: darkblue;
 }
 
-a {
+    /* visited link */
+a:visited {
+    background-color: gray;
+}
+
+/* áberandi litur þegar þú setur mús yfir link */
+a:hover {
+  color: darkgreen;
+    background-color: lightgreen;
+    text-decoration: underline black;
+}
+
+/* selected link */
+a:active {
+  color: black;
+    background-color: yellow;
 
 }
 
@@ -36,6 +51,10 @@ a {
     /*padding-bottom: 2.5rem;*/
     min-height: 100%;
 }
+.content {
+    background-color: #A4B9CE;
+    padding-bottom: 2.5rem;
+}
 
 
 #footer {
@@ -51,8 +70,9 @@ a {
 
     color: white;
     padding: 0;
-
+    margin: 0;
 }
+
 
 
 .mr-3 {
@@ -60,33 +80,43 @@ a {
     height: 12.5vh;
 }
 
+
+
+#navbarDropdown img:hover {
+    opacity: 60%;
+}
+
 #navbarDropdown img {
     width: 15%;
     height: 7vh;
     border-radius: 50%;
-    hover: opacity: 60%;
-}
+} /*mynd sem sést í Navbar, Index.html*/
 
-/*mynd sem sést í Navbar, Index.html*/
 
 
 .single_property_item img {
     max-height: 20vh;
-    max-width: 20 wh;
+    max-width: 20vh;
+}
+
+
+.single_property_item img:hover{
+    opacity: 70%;
 }
 
 .properties {
     display: flex;
-    justify-content: center;
+    /*justify-content: center;*/
 }
+
 
 .single_property_menu {
 
     color: #fff;
-    /*lex-direction: column; */
-    width: 900px;
-    display: flex;
-    justify-content: flex-start;
+  /*flex-direction: column; */
+  width: 900px;
+  display: flex;
+  justify-content: space-around;
     padding: 15px;
 
 }
@@ -128,4 +158,27 @@ a {
 #article-body_1-0 {
     margin-left: 200px;
     margin-right: 200px;
+    padding-block-end: 600px;
 }
+
+.navbarDropdown{
+    width:0px;
+}
+
+.nav-item dropdown {
+    width: 100%;
+}
+
+#rhs_footer_links {    /* minnka bootstrap svo það komi footer með lægri hæð */
+        margin-block-start: 0em;
+    margin-block-end: 0em;
+        padding-inline-start: 40px;
+    padding: 0.1rem;   /* minnkar footer og navigation bar */
+}
+
+.banner  {            /* hvítur litur á forsíðunni */
+    color: white;
+}
+
+
+#

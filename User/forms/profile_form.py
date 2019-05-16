@@ -3,17 +3,19 @@ from django.contrib.auth.models import User
 from django.forms import ModelForm, widgets
 from User.models import Profile
 from Properties.models import Cities, Addresses
+from django_countries.fields import CountryField
 from django import forms
 
 
 class CitiesForm(ModelForm):
+    country = CountryField(blank_label='Country').formfield(required=True)
+
     class Meta:
         model = Cities
-        exclude = ['id']
+        exclude = ['id', 'country']
         widgets = {
-            'country': widgets.TextInput(attrs={'class': 'form-control'}),
-            'zip': widgets.TextInput(attrs={'class': 'form-control'}),
-            'city': widgets.TextInput(attrs={'class': 'form-control'}),
+            'zip': widgets.NumberInput(attrs={'class': 'form-control', 'min': 0}),
+            'city': widgets.TextInput(attrs={'class': 'form-control'})
         }
 
 
@@ -28,12 +30,6 @@ class AddressesForm(ModelForm):
 
 
 class ProfileForm(ModelForm):
-    country = widgets.TextInput(attrs={'class': 'form-control'})
-    city = widgets.TextInput(attrs={'class': 'form-control'})
-    zip = widgets.NumberInput(attrs={'class': 'form-control'})
-    street = widgets.TextInput(attrs={'class': 'form-control'})
-    house_no = widgets.NumberInput(attrs={'class': 'form-control'})
-
     class Meta:
         model = Profile
         exclude = ['id', 'user', 'address']
