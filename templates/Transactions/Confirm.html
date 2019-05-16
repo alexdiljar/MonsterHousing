@@ -2,10 +2,11 @@
 
 {% block content2 %}
 
-    <h1>Confirm</h1>
+    <div id="page-container">
+        <h1>Confirm</h1>
 
-    <a class="btn btn-primary" href="{% url 'seller_profile' property.user.id %}">Back</a>
-    <a class="btn btn-primary" href="{% url 'buy_property' property.id %}">Continue</a>
-
+        <a class="btn btn-primary" href="{% url 'seller_profile' property.user.id %}">Back</a>
+        <a class="btn btn-primary" href="{% url 'buy_property' property.id %}">Continue</a>
+    </div>
 
 {% endblock %}
