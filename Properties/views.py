@@ -50,7 +50,7 @@ def search(request):
 
             print(country_input, str(zip_input), type_input_list, size_input, max_price_input, tags_input, sort_input)
             for prop in Properties.objects.all():
-                type = prop.detail.type_id
+                type = prop.detail.type
                 for type_input in type_input_list:
 
                     if int(type_input) == int(type):

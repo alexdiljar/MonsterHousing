@@ -14,6 +14,7 @@ class CitiesForm(ModelForm):
         model = Cities
         exclude = ['id', 'country']
         widgets = {
+
             'zip': widgets.NumberInput(attrs={'class': 'form-control', 'min': 0}),
             'city': widgets.TextInput(attrs={'class': 'form-control'})
         }

@@ -50,8 +50,8 @@ def edit_account(request):
         # Step 1: Parse data from POST.
         user_form = CustomUserChangeForm(instance=user, data=request.POST)
 
-        cities_form = CitiesForm(instance=Cities.objects.get_or_create(request.user.profile.address.city
-                                                                       ), data=request.POST)
+        cities_form = CitiesForm(instance=Cities.objects.get_or_create(request.user.profile.address.city),
+                                 data=request.POST)
 
         addresses_form = AddressesForm(instance=Addresses.objects.get_or_create(city=request.user.profile.address),
                                        data=request.POST)
@@ -126,7 +126,9 @@ def create_property(request):
         properties_form = PropertiesForm(data=request.POST)
         if cities_form.is_valid() and addresses_form.is_valid() and type_form.is_valid and tags_form.is_valid() \
                 and details_form.is_valid():
-
+            # first we clean data
+            type_form = type_form.cleaned_data['country']
+            # second we save data and add dependencies
             city_saved = cities_form.save()
             address_saved = addresses_form.save(commit=False)
             type_saved = type_form.save()
