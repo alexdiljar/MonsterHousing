@@ -19,11 +19,12 @@ h4 {
 a {
 
 }
-
+#main{
+    min-height: 100%;
+}
 #page-container { /* page container is  */
-
     overflow: auto;
-    padding-bottom: 250px;
+    padding-bottom: 300px;
     /*position: relative;
     min-height: 100vh;
     text-align: center;
