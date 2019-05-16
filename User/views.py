@@ -140,7 +140,6 @@ def create_property(request):
             print(country_input)
             city_saved = cities_form.save(commit=False)
             address_saved = addresses_form.save(commit=False)
-            type_saved = type_form.save()
             tags_saved = tags_form.save()
             details_saved = details_form.save(commit=False)
             properties_saved = properties_form.save(commit=False)
@@ -152,7 +151,7 @@ def create_property(request):
             addresses_form.save()
 
             details_saved.tags = tags_saved
-            details_saved.type = type_saved
+            details_saved.type = Types.objects.get(id=request.POST['type'])
             details_saved.save()
 
             properties_saved.address = address_saved
@@ -160,6 +159,8 @@ def create_property(request):
             properties_saved.user = request.user
             properties_saved.is_active = True
             properties_saved.save()
+
+
 
             return HttpResponseRedirect('account')
         else:
