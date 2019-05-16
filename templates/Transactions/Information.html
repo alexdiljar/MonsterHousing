@@ -1,9 +1,12 @@
 {% extends 'Properties/BuyProperty.html' %}
 
 {% block content2 %}
-
-    <h1>Information</h1>
-    <h4>Your Informations:</h4>
-    <p>Check if they are all correct</p>
-    <p>Here there will be a form to input all your information</p>
+    <form class="form form-horizontal" method="POST">
+        {% csrf_token %}
+        {{ user_form }}
+        {{ profile_form }}
+        {{ addresses_form }}
+        {{ cities_form }}
+        <input type="submit" class="btn btn-primary" value="Update"/>
+    </form>
 {% endblock %}

@@ -6,5 +6,5 @@ from Properties.models import Properties
 # Create your models here.
 class Transactions(models.Model):
     buyer = models.ForeignKey(User, on_delete=models.CASCADE)
-    transaction_date = models.DateTimeField()
+    transaction_date = models.DateField(auto_now=True)
     property = models.ForeignKey(Properties, on_delete=models.CASCADE)
