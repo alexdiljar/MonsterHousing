@@ -6,10 +6,12 @@
 {% block content %}
     <div id="page-container">
         <h1>Review</h1>
-
-        <a class="btn btn-primary" href="{% url 'buy_property_payment' property.id %}">Back</a>
-        <a class="btn btn-primary" href="{% url 'buy_property_confirm' property.id %}">Confirm</a>
+        {{ payment_form }}
+        <a class="btn btn-primary" href="#">Back</a>
+        <a class="btn btn-primary" href="#">Confirm</a>
 
     </div>
 
 {% endblock %}
+{#{% url 'payment_information_purchase' property.id %}#}
+{#{% url 'confirm_purchase' property.id %}#}

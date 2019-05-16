@@ -25,7 +25,7 @@
             <div class="button-banner">
                 {% if user.is_authenticated %}
                     <a class="btn btn-primary" href="{% url 'seller_profile' property.id %}">Contact Seller</a>
-                    <a class="btn btn-primary" href="{% url 'buy_property' property.id %}">Buy Property</a>
+                    <a class="btn btn-primary" href="{% url 'user_information_purchase' property.id %}">Buy Property</a>
                 {% endif %}
             </div>
         </div>

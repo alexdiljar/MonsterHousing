@@ -1,13 +1,16 @@
 {% extends 'Properties/BuyProperty.html' %}
 
 {% block content2 %}
+
     <form class="form form-horizontal" method="POST">
         {% csrf_token %}
         {{ user_form }}
         {{ addresses_form }}
         {{ cities_form }}
-        <a href="/"><input type="button" class="cancel-link" value="Cancel"></a>
-        <input type="submit" class="btn btn-primary" value="Continue"/>
-
+        <a href='#'><input type="button" class="cancel-link" value="Cancel"></a>
+        <a href='{% url 'payment_information_purchase' %}'><input type="submit" class="btn btn-primary" value="Continue"/></a>
     </form>
+
 {% endblock %}
+{#{% url 'property_details' properties.id %}#}
+{#{% url 'payment' %}#}
