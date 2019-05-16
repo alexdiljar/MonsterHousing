@@ -109,9 +109,7 @@ def account(request):
 
 # Edits property information
 def edit_property(request, id):
-    return render(request, 'Properties/CreateProperty.html', {
-        'properties': get_object_or_404(Properties, pk=id)
-    })
+    return render(request, 'Properties/CreateProperty.html', id)
 
 
 # Deletes property of site and database
@@ -189,6 +187,7 @@ def account(request):
 def edit_property(request, id):
     return render(request, 'Properties/CreateProperty.html', {
         'properties': get_object_or_404(Properties, pk=id)
+
     })
 
 
