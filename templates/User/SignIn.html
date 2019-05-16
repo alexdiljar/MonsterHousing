@@ -1,14 +1,15 @@
 {% extends 'index.html' %}
 
 {% block content %}
+    <div id="page-container">
+        <h1>This site is for signing in </h1>
 
-<h1>This site is for signing in </h1>
-
-    <form class="form form-horizontal" method="post">
-        {%  csrf_token %}
-        {{ form }}
-        <input type="submit" class="btn btn-primary" value="Login"/>
-    </form>
+        <form class="form form-horizontal" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" class="btn btn-primary" value="Login"/>
+        </form>
+    </div>
 
 {% endblock %}
 

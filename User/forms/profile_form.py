@@ -30,9 +30,9 @@ class AddressesForm(ModelForm):
 class ProfileForm(ModelForm):
     country = widgets.TextInput(attrs={'class': 'form-right'})
     city = widgets.TextInput(attrs={'class': 'form-right'})
-    zip = widgets.NumberInput(attrs={'class': 'form-right'})
+    zip = widgets.NumberInput(attrs={'class': 'form-left'})
     street = widgets.TextInput(attrs={'class': 'form-right'})
-    house_no = widgets.NumberInput(attrs={'class': 'form-right'})
+    house_no = widgets.NumberInput(attrs={'class': 'form-left'})
 
     class Meta:
         model = Profile
