@@ -42,25 +42,30 @@ TAGS_CHOICES = (('elevator', 'Elevator'),
 
 class SearchForm(forms.Form):
     # Get all countries
-    country = CountryField(
-        blank_label='Country').formfield(
-        required=False)  # forms.ChoiceField(choices=[('iceland','Iceland'), ('usa','USA')])
-    zip = forms.CharField(label='Zip', max_length=15, required=False)
+    country = CountryField(blank_label='Country').formfield(
+        required=False)
+
+    zip = forms.CharField(label='Zip', max_length=5, required=False, initial='Zip')
+
     type = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,
                                      required=False,
                                      choices=TYPE_CHOICES)
     # make rooms and size into slider
-    rooms = forms.IntegerField(min_value=1, widget=forms.NumberInput(
-        attrs={'size': '10'}), required=False)
+    rooms = forms.IntegerField(min_value=1, label='Rooms', widget=forms.NumberInput(
+        attrs={'size': '10'}), required=False, initial='Rooms')
+
     size = forms.ChoiceField(widget=forms.RadioSelect,
                              required=False,
                              choices=SIZE_CHOICES)
+
     max_price = forms.ChoiceField(widget=forms.RadioSelect,
                                   required=False,
                                   choices=MAX_PRICE)
+
     tags = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,
                                      required=False,
                                      choices=TAGS_CHOICES)
+
     sort = forms.ChoiceField(widget=forms.RadioSelect,
                              required=False,
                              choices=(('name', 'Name'),

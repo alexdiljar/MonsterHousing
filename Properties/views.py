@@ -94,7 +94,7 @@ def search(request):
     if request.method == "POST":
         form = SearchForm(request.POST)
         if form.is_valid():
-            country_input = form.cleaned_data['country']
+            country_input = form.cleaned_data['Country']
             zip_input = form.cleaned_data['zip']
             # Type is multi select will be returned as list must iterate when comparing
             type_input_list = form.cleaned_data['type']

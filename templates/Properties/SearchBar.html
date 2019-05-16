@@ -4,22 +4,48 @@
 {% block content %}
 
     <form method="post">
-        {% csrf_token %}
-        {% for field in form %}
+        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+            {% csrf_token %}
+            {% for field in form %}
 
-                <div class="col-md-12 dropdown">
-                    <button class="btn btn-primary dropdown-toggle" type="button"
-                            data-toggle="dropdown">{{ field.label_tag }}
-                        <span class="caret"></span>
-                    </button>
-                    <div class="dropdown-menu">
-                        <div><a href="#">{{ field }}</a></div>
+                {% if field.label == 'Country' %}
+                    <div class="btn-group" role="group">
+                        <ul class="col-md-12 dropdown">
+                            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ field.label_tag }}
+                            </button>
+                            <ul class="dropdown-menu scrollable-menu" role="menu">
+                                {% for country in field %}
+                                    <li><a href="#">{{ country }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
                     </div>
-                </div>
 
-        {% endfor %}
-        {{ form }}
+                {% else %}
+                    <div class="btn-group" role="group">
+                        <div class="col-md-12 dropdown">
+                            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ field.label_tag }}
+                            </button>
+                            <div class="dropdown-menu">
+                                <div><a href="#">{{ field }}</a></div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+
+        </div>
 
         <button type="submit">GO!</button>
+
     </form>
 {% endblock %}
+
+
+
+or field.label == 'Rooms'
+field.label == 'Country' or{{ field }}
