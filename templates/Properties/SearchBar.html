@@ -8,10 +8,11 @@
                 {% csrf_token %}
                 {% for field in form %}
 
+
                     {% if field.label == 'Country' %}
                         {{ field }}
 
-                    {% else %}
+                    {% elif field.label != 'Text' %}
                         <div class="btn-group" role="group">
                             <div class="col-md-12 dropdown">
                                 <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle"
@@ -24,16 +25,34 @@
                             </div>
                         </div>
                     {% endif %}
+
+                {% endfor %}
+            </div>
+            <div id="searchbar">
+                {% for field in form %}
+                    {% if field.label == 'Text' %}
+
+                        {{ field }}
+                    {% endif %}
                 {% endfor %}
 
+                <button type="submit">GO!</button>
             </div>
-
-            <button type="submit">GO!</button>
-
         </form>
-    </div>
-{% endblock %}
+        {% block content1 %}
 
+        {% endblock %}
+
+    </div>
+
+
+
+
+    </div>
+
+
+
+{% endblock %}
 
 
 <div class="btn-group" role="group">
