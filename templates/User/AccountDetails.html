@@ -10,14 +10,14 @@
         <p>SSN: {{ user.profile.ssn }}</p>
         <p>Email: {{ user.email }}</p>
         <p>Phone: {{ user.profile.phone }}</p>
-        <p>Country: {{ user.profile.address.Cities.country }}</p>
-        <p>City: {{ user.profile.address.Cities.city }}</p>
-        <p>Zip: {{ user.profile.address.Cities.zip }}</p>
+        <p>Country: {{ user.profile.address.city.country }}</p>
+        <p>City: {{ user.profile.address.city.city }}</p>
+        <p>Zip: {{ user.profile.address.city.zip }}</p>
         <p>Street: {{ user.profile.address.street }}</p>
         <p>House Number: {{ user.profile.address.house_no }}</p>
     </div>
     <div class="account properties">
-        <a href="AccountProperties.html"><h2>My Properties</h2></a>
+        <a href="{% url 'account_properties' %}"><h2>My Properties</h2></a>
         {% for properties in properties %}
             {% include 'Properties/SinglePropertyView.html' with properties=properties %}
         {% endfor %}

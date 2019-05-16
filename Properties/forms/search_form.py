@@ -1,3 +1,4 @@
+
 from Properties.models import Tags
 from django import forms
 from django.forms import ModelForm, widgets
@@ -44,10 +45,16 @@ TAGS_CHOICES = (('elevator', 'Elevator'),
 class SearchForm(forms.Form):
     # Get all countries
 
+<<<<<<< HEAD
 
+    #country = CountryField(
+      #  blank_label='Country').formfield(
+      #  required=True)  # forms.ChoiceField(choices=[('iceland','Iceland'), ('usa','USA')])
+=======
     country = CountryField(
         blank_label='Country').formfield(
         required=True)  # forms.ChoiceField(choices=[('iceland','Iceland'), ('usa','USA')])
+>>>>>>> 7081ae3fe15691291cad18ee9c5e45a1239e93ba
     zip = forms.CharField(label='Zip', max_length=15, required=False)
     type = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,
                                      required=False,

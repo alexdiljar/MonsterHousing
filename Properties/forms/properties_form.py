@@ -3,14 +3,14 @@ from typing import List
 from django.forms import ModelForm, widgets
 from django import forms
 from Properties.models import *
-from django_countries.fields import CountryField
+# from django_countries.fields import CountryField
 
 
 class CitiesForm(ModelForm):
     class Meta:
         model = Cities
         exclude = ['id']
-        country = CountryField()
+#        country = CountryField()
 
         widgets = {
             'zip': widgets.NumberInput(attrs={'class': 'form-control', 'min': 0}),
