@@ -39,38 +39,35 @@ TAGS_CHOICES = (('elevator', 'Elevator'),
                 ('garage', 'Garage'),
                 ('near_bloodbank', 'Near Bloodbank'),
                 ('dungeon', 'Dungeon'),
-                ('secret_entrence', 'Secret Entrence'))
+                ('secret_entrance', 'Secret Entrance'))
 
 
 class SearchForm(forms.Form):
     # Get all countries
+    country = CountryField(blank_label='Country').formfield(
+        required=False)
 
-<<<<<<< HEAD
+    zip = forms.CharField(label='Zip', max_length=5, required=False)
 
-    #country = CountryField(
-      #  blank_label='Country').formfield(
-      #  required=True)  # forms.ChoiceField(choices=[('iceland','Iceland'), ('usa','USA')])
-=======
-    country = CountryField(
-        blank_label='Country').formfield(
-        required=True)  # forms.ChoiceField(choices=[('iceland','Iceland'), ('usa','USA')])
->>>>>>> 7081ae3fe15691291cad18ee9c5e45a1239e93ba
-    zip = forms.CharField(label='Zip', max_length=15, required=False)
     type = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,
                                      required=False,
                                      choices=TYPE_CHOICES)
     # make rooms and size into slider
-    rooms = forms.IntegerField(min_value=1, widget=forms.NumberInput(
-        attrs={'size': '10'}), required=False)
+    rooms = forms.IntegerField(min_value=1, label='Rooms', widget=forms.NumberInput(
+        attrs={'size': '10'}), required=False, initial='Rooms')
+
     size = forms.ChoiceField(widget=forms.RadioSelect,
                              required=False,
                              choices=SIZE_CHOICES)
+
     max_price = forms.ChoiceField(widget=forms.RadioSelect,
                                   required=False,
                                   choices=MAX_PRICE)
+
     tags = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,
                                      required=False,
                                      choices=TAGS_CHOICES)
+
     sort = forms.ChoiceField(widget=forms.RadioSelect,
                              required=False,
                              choices=(('name', 'Name'),

@@ -20,7 +20,7 @@ class Tags(models.Model):
     garage = models.BooleanField()
     near_bloodbank = models.BooleanField()
     dungeon = models.BooleanField()
-    secret_entrence = models.BooleanField()
+    secret_entrance = models.BooleanField()
 
 
 class Types(models.Model):
@@ -41,4 +41,4 @@ class Properties(models.Model):
     address = models.ForeignKey(Addresses, on_delete=models.CASCADE)
     detail = models.ForeignKey(Details, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    is_active = models.BooleanField()
+    is_active = models.BooleanField(default=True)

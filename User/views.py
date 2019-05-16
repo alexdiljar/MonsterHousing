@@ -10,10 +10,8 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from User.forms.profile_form import CustomUserChangeForm, ProfileForm, AddressesForm, CitiesForm, RegisterForm
 
 
-
 def register(request):
     if request.method == "POST":
-        data = request.POST.copy()
         form = RegisterForm(data=request.POST)
         cities_form = CitiesForm(data=request.POST)
         addresses_form = AddressesForm(data=request.POST)
@@ -139,26 +137,27 @@ def create_property(request):
             address_saved.city = city_saved
             addresses_form.save()
 
-            details_saved.T_ID = tags_saved
-            details_saved.Ty_ID = type_saved
-            details_form.save()
+            details_saved.tags = tags_saved
+            details_saved.type = type_saved
+            details_saved = details_form.save()
 
             properties_saved.address = address_saved
             properties_saved.detail = details_saved
             properties_saved.user = request.user
+            properties_saved.is_active = True
             properties_saved.save()
 
-            return HttpResponseRedirect('profile')
+            return HttpResponseRedirect('account')
         else:
             request.method = "GET"
             pass
     if request.method == "GET":
         return render(request, 'Properties/CreateProperty.html', {
+            'type_form': TypesForm(),
             'cities_form': CitiesForm(),
             'addresses_form': AddressesForm(),
-            'type_form': TypesForm(),
-            'details_form': DetailsForm(),
             'tags_form': TagsForm(),
+            'details_form': DetailsForm(),
             'properties_form': PropertiesForm(),
         })
 

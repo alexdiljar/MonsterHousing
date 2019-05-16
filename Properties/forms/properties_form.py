@@ -3,25 +3,29 @@ from typing import List
 from django.forms import ModelForm, widgets
 from django import forms
 from Properties.models import *
-# from django_countries.fields import CountryField
+from django_countries.fields import CountryField
 
 
 class CitiesForm(ModelForm):
+    country = CountryField(blank_label='Country').formfield(required=True)
     class Meta:
         model = Cities
-        exclude = ['id']
-#        country = CountryField()
-
+        exclude = ['id', 'country']
         widgets = {
             'zip': widgets.NumberInput(attrs={'class': 'form-control', 'min': 0}),
             'city': widgets.TextInput(attrs={'class': 'form-control'})
         }
 
+    '''
+    country = CountryField(
+        blank_label='Country').formfield(
+        required=True)
+        '''
 
 class AddressesForm(ModelForm):
     class Meta:
         model = Addresses
-        exclude = ['id', 'Cities']
+        exclude = ['id', 'city']
         widgets = {
             'street': widgets.TextInput(attrs={'class': 'form-control'}),
             'house_no': widgets.NumberInput(attrs={'class': 'form-control', 'min': 0})
@@ -48,14 +52,14 @@ class TypesForm(ModelForm):
         model = Types
         exclude = ['id']
         widgets = {
-            'description': widgets.Select(attrs={'class': 'dropdown'}, choices=CHOICES)
+            'type': widgets.Select(attrs={'class': 'dropdown'}, choices=CHOICES)
         }
 
 
 class DetailsForm(ModelForm):
     class Meta:
         model = Details
-        exclude = ['id', 'T_ID', 'Ty_ID']
+        exclude = ['id', 'tags', 'type']
         widgets = {
             'size': widgets.TextInput(attrs={'class': 'form-control', 'min': 10}),
             'price': widgets.NumberInput(attrs={'class': 'form-control', 'min': 0}),

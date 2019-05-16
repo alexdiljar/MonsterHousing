@@ -10,7 +10,22 @@ h4 {
     color: darkblue;
 }
 
-a {
+    /* visited link */
+a:visited {
+    background-color: gray;
+}
+
+/* áberandi litur þegar þú setur mús yfir link */
+a:hover {
+  color: darkgreen;
+    background-color: lightgreen;
+    text-decoration: underline black;
+}
+
+/* selected link */
+a:active {
+  color: black;
+    background-color: yellow;
 
 }
 
@@ -27,6 +42,7 @@ a {
 .content {
     background-color: #ffffff;
     padding-bottom: 2.5rem;
+    overflow: scroll;
 }
 
 
@@ -91,7 +107,7 @@ footer {
     height: 500px;
 }
 
-.price_of_property_id { /* verð ætti að vera grænt á litinn. */
+#price_of_property_id { /* verð ætti að vera grænt á litinn. */
     color: greenyellow;
 }
 
@@ -100,8 +116,8 @@ footer {
     padding-block-end: 400px;
 }
 
-.rhs_footer_links {
-    text-align: left;
+#rhs_footer_links {
+    text-align: right;
     color: white;
     font-size: 16px;
 }
@@ -120,10 +136,16 @@ footer {
     width: 100%;
 }
 
-.rhs_footer_links {    /* minnka bootstrap svo það komi footer með lægri hæð */
+#rhs_footer_links {    /* minnka bootstrap svo það komi footer með lægri hæð */
         margin-block-start: 0em;
     margin-block-end: 0em;
         padding-inline-start: 40px;
     padding: 0.1rem;   /* minnkar footer og navigation bar */
 }
 
+.banner  {            /* hvítur litur á forsíðunni */
+    color: white;
+}
+
+
+#
