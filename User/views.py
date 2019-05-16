@@ -1,29 +1,17 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 
+from Properties.forms.properties_form import TypesForm, TagsForm, DetailsForm, PropertiesForm
 from User.models import Profile
 from Properties.models import Properties, Addresses, Cities
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from User.forms.profile_form import CustomUserChangeForm, ProfileForm, AddressesForm, CitiesForm, RegisterForm
 
 
-# Create your views here.
-#def register(request):
-    # registerin user for the first time, username and password
-
-#    if request.method == "POST":
-#        form = RegisterForm(data=request.POST)
-#        if form.is_valid():
-#            user_saved = form.save()
-#            return redirect('register2')
-#    return render(request, 'User/SignUp.html', {
-#        'form': RegisterForm()
-#    })
-
 def register(request):
     if request.method == "POST":
-        data = request.POST.copy()
         form = RegisterForm(data=request.POST)
         cities_form = CitiesForm(data=request.POST)
         addresses_form = AddressesForm(data=request.POST)
@@ -55,7 +43,7 @@ def register(request):
         })
 
 
-def profile(request):
+def edit_account(request):
     user = User.objects.get(pk=request.user.id)
     if request.method == 'POST':
         # User has some saved information and need to update them
@@ -63,13 +51,14 @@ def profile(request):
         user_form = CustomUserChangeForm(instance=user, data=request.POST)
 
         cities_form = CitiesForm(instance=Cities.objects.get_or_create(request.user.profile.address.city
-                                                                        ), data=request.POST)
+                                                                       ), data=request.POST)
 
         addresses_form = AddressesForm(instance=Addresses.objects.get_or_create(city=request.user.profile.address),
                                        data=request.POST)
 
         profile_form = ProfileForm(instance=Profile.objects.get_or_create(user=request.user,
-                                   address=request.user.profile), data=request.POST)
+                                                                          address=request.user.profile),
+                                   data=request.POST)
 
         # Step 2: Validate parsed data.
         if user_form.is_valid() and cities_form.is_valid() and addresses_form.is_valid() and profile_form.is_valid():
@@ -81,7 +70,7 @@ def profile(request):
             return redirect(reverse('profile'))
         # Validation failed - return same data parsed from POST.
         else:
-            return render(request, 'User/Account.html', {
+            return render(request, 'User/ManageAccount.html', {
                 'user_form': user_form,
                 'cities_form': cities_form,
                 'addresses_form': addresses_form,
@@ -92,7 +81,7 @@ def profile(request):
         # User has logged information and we want to GET all info
         if user.first_name != '':
             profile = Profile.objects.get(user=request.user)
-            return render(request, 'User/Account.html', {
+            return render(request, 'User/ManageAccount.html', {
                 'user_form': CustomUserChangeForm(instance=user),
                 'cities_form': CitiesForm(instance=profile.address.city),
                 'addresses_form': AddressesForm(instance=profile.address),
@@ -100,56 +89,99 @@ def profile(request):
             })
 
 
+# Skoða þetta profile / account
 def account(request):
     return render(request, 'User/AccountDetails.html', {
         'user': get_object_or_404(User, pk=request.user.id),
-        'properties': Properties.objects.filter(user=request.user.id)
+        'properties': Properties.objects.filter(user=request.user)
     })
 
 
-def edit_account(request):
+# Edits property information
+def edit_property(request, id):
+    return render(request, 'Properties/CreateProperty.html', {
+        'properties': get_object_or_404(Properties, pk=id)
+    })
+
+
+# Deletes property of site and database
+def delete_property(request, id):
     pass
 
 
-def get_all_user_properties(request):
-    pass
+def account_properties(request):
+    return render(request, 'User/AccountProperties.html', {
+        'properties': Properties.objects.filter(user=request.user)
+    })
 
 
-def add_property(request):
-    pass
-
-
-'''
-def profile(request):
-    cities = Cities.objects.first()
-    addresses = Addresses.objects.filter(Cities=cities.id).first()
-    profile = Profile.objects.filter(user=request.user, address=addresses.id).first()
+@login_required
+def create_property(request):
     if request.method == "POST":
-        profile_form = ProfileForm(instance=profile, data=request.POST)
-        addresses_form = AddressesForm(instance=addresses, data=request.POST)
-        cities_form = CitiesForm(instance=cities, data=request.POST)
-        if profile_form.is_valid() and addresses_form.is_valid() and cities_form.is_valid():
-            # We save information to db for cities
-            cities.save()
-            # We access db and id from prev saved data
-            # We save information to db for addresses
-            addresses = addresses_form.save(commit=False)
-            addresses.Cities = cities
-            addresses.save()
-            # We access db and user and address from prev saved data
-            # We save information to db for profile
-            profile = profile_form.save(commit=False)
-            profile.user = request.user
-            profile.address = addresses
-            profile.save()
-            return redirect('profile')
-    return render(request, 'User/Account.html', {
+        type_form = TypesForm(data=request.POST)
+        cities_form = CitiesForm(data=request.POST)
+        addresses_form = AddressesForm(data=request.POST)
+        tags_form = TagsForm(data=request.POST)
+        details_form = DetailsForm(data=request.POST)
+        properties_form = PropertiesForm(data=request.POST)
+        if cities_form.is_valid() and addresses_form.is_valid() and type_form.is_valid and tags_form.is_valid() \
+                and details_form.is_valid():
 
-        # TODO: need to add form for auth user so we can know first, last name and email
+            city_saved = cities_form.save()
+            address_saved = addresses_form.save(commit=False)
+            type_saved = type_form.save()
+            tags_saved = tags_form.save()
+            details_saved = details_form.save(commit=False)
+            properties_saved = properties_form.save(commit=False)
 
-        # 'auth_user_form': AuthUserForm(instance=auth_user)
-        'profile_form': ProfileForm(instance=profile),
-        'addresses_form': AddressesForm(instance=addresses),
-        'cities_form': CitiesForm(instance=cities)
-    })'''
+            address_saved.city = city_saved
+            addresses_form.save()
 
+            details_saved.T_ID = tags_saved
+            details_saved.Ty_ID = type_saved
+            details_form.save()
+
+            properties_saved.address = address_saved
+            properties_saved.detail = details_saved
+            properties_saved.user = request.user
+            properties_saved.save()
+
+            return HttpResponseRedirect('profile')
+        else:
+            request.method = "GET"
+            pass
+    if request.method == "GET":
+        return render(request, 'Properties/CreateProperty.html', {
+            'cities_form': CitiesForm(),
+            'addresses_form': AddressesForm(),
+            'type_form': TypesForm(),
+            'details_form': DetailsForm(),
+            'tags_form': TagsForm(),
+            'properties_form': PropertiesForm(),
+        })
+
+
+# Skoða þetta profile / account
+def account(request):
+    return render(request, 'User/AccountDetails.html', {
+        'user': get_object_or_404(User, pk=request.user.id),
+        'properties': Properties.objects.filter(user=request.user)
+    })
+
+
+# Edits property information
+def edit_property(request, id):
+    return render(request, 'Properties/CreateProperty.html', {
+        'properties': get_object_or_404(Properties, pk=id)
+    })
+
+
+# Deletes property of site and database
+def delete_property(request, id):
+    pass
+
+
+def account_properties(request):
+    return render(request, 'User/AccountProperties.html', {
+        'properties': Properties.objects.filter(user=request.user)
+    })

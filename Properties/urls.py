@@ -7,7 +7,5 @@ urlpatterns = [
     path('<int:id>/seller_profile', views.get_seller_profile, name="seller_profile"),
     path('<int:id>', views.get_property_by_id, name="property_details"),
     path('<int:id>/buy_property', include('Transactions.urls')),
-    path('edit_property/<int:id>', views.edit_property, name='edit_property'),
-    path('delete_property/<int:id>', views.delete_property, name='delete_property'),
-    path('search', views.search, name="search")
+    path('search', views.search, name="search"),
 ]
