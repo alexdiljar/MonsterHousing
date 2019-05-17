@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 
+from django.contrib import messages
 from Properties.forms.properties_form import *
 from User.models import Profile
 from Properties.models import Properties, Addresses, Cities
@@ -34,6 +35,7 @@ def register(request):
             profile_saved.user = form_saved
             profile_saved.save()
 
+            messages.info(request, 'Your have created a new account successfully!')
             return HttpResponseRedirect('login')
         else:
             request.method = "GET"
