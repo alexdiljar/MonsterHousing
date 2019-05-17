@@ -5,7 +5,7 @@
     margin-left: 5%;
     margin-right: 5%;
     width: 100%;
-    height: 17cm;
+    height: auto;
 }
 
 
@@ -24,9 +24,9 @@ a:active {
     color: orangered;
     font-size: 16px;
     float: right;
-    margin-right: 50px;
+    margin-right: 0;
     padding: 0;
-      margin-block-start: 0em;
+    margin-block-start: 0em;
     margin-block-end: 0em;
     padding-inline-start: 0px;  /* minnkar footer og navigation bar */
 }
@@ -34,14 +34,16 @@ a:active {
 #footer {
     background-color: darkblue;
     position: relative;
-    height: 250px;
+    height: 300px;
+    margin-top: -200px;
     margin-bottom: 0;
     clear: both;
     width: 100%;
     content: 200px;
+
+
     color: white;
     padding: 0;
-    margin: 0;
 }
 
 /* logo in footer: */
@@ -62,12 +64,6 @@ a:active {
     height: 10vh;
     width:7vw;
     border-radius: 50%;
-}
-
-.scrollable-menu {
-    height: auto;
-    max-height: 200px;
-    overflow-x: hidden;
 }
 
 /* article body in TermsAndConditions.html: */
@@ -117,14 +113,14 @@ a:active {
     padding: 0%;
     width: 100%;
     height: 12cm;
-    color: lightslategray;
+    color: ghostwhite;
     background-repeat: no-repeat;
 }
 
 .card-img-top {
-    width: 100%;
+    width: 250px;
     height: auto;
-    max-width: 20px; /////////////////
+
 }
 
 
@@ -133,12 +129,28 @@ a:active {
     padding: 5%;
 }
 
-.about_us_h1 {
-    text-align: center;
-}
-
 .card-body_cc {
     padding: 5%;
 }
 
+.about_us_h1 {
+    text-align: center;
+}
+.card-columns {
+  @include media-breakpoint-only(lg) {
+    column-count: 4;
+  }
+
+}
+.property_all{
+    margin: 50px;
+}
+#prop-img{
+    width: 750px;
+    height: auto;
+}
+
+/* need to change add property form */
+/* need to change sign in */
+/* need to change sign up */
 

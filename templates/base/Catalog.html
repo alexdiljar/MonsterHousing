@@ -2,12 +2,13 @@
 
 
 {% block content1 %}
+
     <div id="page-container">
-        <div class="card-deck">
+
             {% for properties in properties %}
                 {% include 'Properties/SinglePropertyView.html' with properties=properties %}
             {% endfor %}
-        </div>
+
     </div>
 {% endblock %}
 
