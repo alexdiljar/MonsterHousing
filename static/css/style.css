@@ -8,7 +8,10 @@
     height: auto;
 }
 
-
+.account_all img{
+    width: 20%;
+    height: 20%;
+}
 /* css for links in different states: */
 a:hover {
   color: darkblue;
@@ -146,8 +149,8 @@ a:active {
     margin: 50px;
 }
 #prop-img{
-    width: 750px;
-    height: auto;
+    width: 20%;
+    height: 20%;
 }
 
 /* need to change add property form */
