@@ -50,6 +50,7 @@ a:active {
     background-color: #A4B9CE;
     padding-bottom: 2.5rem;
     padding-block-end: 400px;
+    min-height: 100%;
 }
 
 

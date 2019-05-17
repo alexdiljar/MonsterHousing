@@ -1,16 +1,14 @@
+import required as required
 
-from Properties.models import Tags
-from django import forms
+from Search.models import Search
 from django.forms import ModelForm, widgets
+from typing import List
+
+from django import forms
+from Properties.models import *
 from django_countries.fields import CountryField
 
-TYPE_CHOICES = (('1', 'Apartment'),
-                ('2', 'Castle'),
-                ('3', 'Loft'),
-                ('4', 'Mansion'),
-                ('5', 'Beach House'),
-                ('6', 'Detached House'),
-                ('7', 'Attached House'))
+TYPE_CHOICES = [(types.id, types.type) for types in Types.objects.all()]
 
 SIZE_CHOICES = (('[10, 49]', '10 - 49'),
                 ('[50, 99]', '50 - 99'),
@@ -42,7 +40,7 @@ TAGS_CHOICES = (('elevator', 'Elevator'),
                 ('secret_entrance', 'Secret Entrance'))
 
 
-class SearchForm(forms.Form):
+class Form(forms.Form):
     # Get all countries
     country = CountryField(blank_label='Country').formfield(
         required=False)
@@ -73,4 +71,24 @@ class SearchForm(forms.Form):
                              choices=(('name', 'Name'),
                                       ('price', 'Price')))
 
-    #text = forms.TimeField(initial='<Street name> <house no>, <zip> <city>, <country> ', max_le)#forms.CharField(widget=forms.Textarea, required = False, initial='<Street name> <house no>, <zip> <city>, <country> ', max_length=10)
+    # text = forms.TimeField(initial='<Street name> <house no>, <zip> <city>, <country> ', max_le)#forms.CharField(widget=forms.Textarea, required = False, initial='<Street name> <house no>, <zip> <city>, <country> ', max_length=10)
+
+
+class SearchForm(ModelForm):
+    country = CountryField(blank_label='Country').formfield(required=False)
+
+    class Meta:
+        model = Search
+        exclude = ['id']
+        #fields = ('zip', 'type', 'rooms', 'size', 'price', 'tags', 'sort', 'search')
+        widgets = {required: False,
+            'zip': widgets.NumberInput(attrs={'min': 0, 'required': False, 'type': 'number',}),
+            'type': widgets.CheckboxSelectMultiple(attrs={'class': 'dropdown', 'required': 'false'}, choices=TYPE_CHOICES),
+            'rooms': widgets.NumberInput(attrs={'min': 0, 'required': False, 'type': 'number',}),
+            'size': widgets.CheckboxSelectMultiple(attrs={'class': 'dropdown', 'required': 'false'}, choices=SIZE_CHOICES),
+            'price': widgets.CheckboxSelectMultiple(attrs={'class': 'dropdown', 'required': 'false'}, choices=MAX_PRICE),
+            'tags': widgets.CheckboxSelectMultiple(attrs={'class': 'dropdown', 'required': 'false'}, choices=TAGS_CHOICES),
+            'sort': widgets.Select(attrs={'class': 'dropdown', 'required': 'false'}, choices=(('name', 'Name'),
+                                                                                            ('price', 'Price'))),
+            'search': widgets.Textarea(attrs={'class': 'form-control', 'required': 'false'})
+        }

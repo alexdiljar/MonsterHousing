@@ -10,7 +10,7 @@
                 {% for field in form %}
 
                     {% if field.label == 'Country' or field.label == 'Rooms' or field.label == 'Zip' %}
-                        <div class="btn btn-outline-primary toggle btn-lg">{{ field }}</div>
+                        <div class="btn btn-outline toggle btn-lg">{{ field }}</div>
                     {% else %}
                         <div class="dropdown">
                             <button class="btn btn-outline-primary toggle btn-lg" type="button" id="dropdownMenuButton"
@@ -22,13 +22,10 @@
 
                             </div>
                         </div>
+
+
                     {% endif %}
                 {% endfor %}
-
-
-
-
-
 
 
                 <button class="btn btn-success toggle btn-lg" type="submit">GO!</button>
@@ -50,16 +47,13 @@
 {% endblock %}
 
 
-<div class="btn-group" role="group">
-    <ul class="col-md-12 dropdown">
-        <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {{ field.label_tag }}
-        </button>
-        <ul class="dropdown-menu scrollable-menu" role="menu">
-            {% for country in field %}
-                <li><a href="#">{{ country }}</a></li>
-            {% endfor %}
-        </ul>
-</div>
+<div class="dropdown">
+    <button class="btn btn-outline-primary toggle btn-lg" type="button" id="dropdownMenuButton"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {{ field.label_tag }}
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <div class="dropdown-item">{{ field }}</div>
+
+    </div>
 </div>
