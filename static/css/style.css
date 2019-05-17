@@ -5,7 +5,7 @@
     margin-left: 5%;
     margin-right: 5%;
     width: 100%;
-    height: 17cm;
+    height: auto;
 }
 
 
@@ -24,9 +24,9 @@ a:active {
     color: orangered;
     font-size: 16px;
     float: right;
-    margin-right: 50px;
+    margin-right: 0;
     padding: 0;
-      margin-block-start: 0em;
+    margin-block-start: 0em;
     margin-block-end: 0em;
     padding-inline-start: 0px;  /* minnkar footer og navigation bar */
 }
@@ -122,12 +122,17 @@ a:active {
     padding: 5%;
 }
 
-.about_us_h1 {
-    text-align: center;
-}
-
 .card-body_cc {
     padding: 5%;
 }
 
+.about_us_h1 {
+    text-align: center;
+}
+
+
+
+/* need to change add property form */
+/* need to change sign in */
+/* need to change sign up */
 

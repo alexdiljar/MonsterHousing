@@ -1,22 +1,30 @@
 {% extends 'index.html' %}
 
 {% block content %}
-    <div id="page-container-account-details">
+    <div id="page-container">
         <h1>My Account</h1>
-        <h2>{{ user.username }}</h2>
-        <div class="account_all">
+        <div class="card">
 
-            <img src="{{ user.profile.profile_image }}" alt="user image">
-            <p>Name: {{ user.first_name }} {{ user.last_name }}</p>
-            <p>SSN: {{ user.profile.ssn }}</p>
-            <p>Email: {{ user.email }}</p>
-            <p>Phone: {{ user.profile.phone }}</p>
-            <p>Country: {{ user.profile.address.city.country }}</p>
-            <p>City: {{ user.profile.address.city.city }}</p>
-            <p>Zip: {{ user.profile.address.city.zip }}</p>
-            <p>Street: {{ user.profile.address.street }}</p>
-            <p>House Number: {{ user.profile.address.house_no }}</p>
+            <img class="card-img-top" src="{{ user.profile.profile_image }}" alt="user image">
+            <div class="card-body">
+                <h5 class="card-title">{{ user.username }}</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Name: {{ user.first_name }} {{ user.last_name }}</li>
+                <li class="list-group-item">SSN: {{ user.profile.ssn }}</li>
+                <li class="list-group-item">Email: {{ user.email }}</li>
+                <li class="list-group-item">Phone: {{ user.profile.phone }}</li>
+                <li class="list-group-item">Country: {{ user.profile.address.city.country }}</li>
+                <li class="list-group-item">City: {{ user.profile.address.city.city }}</li>
+                <li class="list-group-item">Zip: {{ user.profile.address.city.zip }}</li>
+                <li class="list-group-item">Street: {{ user.profile.address.street }}</li>
+                <li class="list-group-item">House Number: {{ user.profile.address.house_no }}</li>
+            </ul>
+            <div class="card-body">
+                <a href="ManageAccount.html" class="card-link">Edit Account</a>
+            </div>
         </div>
+
         <div class="account_properties">
             {% if properties %}
                 <a href="{% url 'account_properties' %}"><h2>My Properties</h2></a>
@@ -26,6 +34,5 @@
             {% endif %}
         </div>
     </div>
-
 
 {% endblock %}
