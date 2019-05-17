@@ -23,6 +23,7 @@ class CitiesForm(ModelForm):
         required=True)
         '''
 
+
 class AddressesForm(ModelForm):
     class Meta:
         model = Addresses
@@ -48,7 +49,6 @@ class TagsForm(ModelForm):
 
 class TypesForm(ModelForm):
     class Meta:
-
         CHOICES = [(types.id, types.type) for types in Types.objects.all()]
         model = Types
         exclude = ['id']
@@ -74,6 +74,7 @@ class PropertiesForm(ModelForm):
     class Meta:
         model = Properties
         exclude = ['id', 'address', 'detail', 'user', 'is_active']
+
 
 class CreatePropertyForm:
     TagsForm(ModelForm)
