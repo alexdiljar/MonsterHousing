@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from Properties.models import *
+from Properties.models import Properties
 
 # Create your views here.
 
@@ -18,4 +19,5 @@ def terms_index(request):
 
 
 def front_page_index(request):
-    return render(request, 'base/FrontPage.html')
+    context = {'properties': Properties.objects.all()}
+    return render(request, 'base/FrontPage.html', context)

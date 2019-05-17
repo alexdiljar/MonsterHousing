@@ -107,9 +107,9 @@ a:active {
 }
 
 .card-img-top {
-    width: 100%;
+    width: 250px;
     height: auto;
-    max-width: 20px; /////////////////
+
 }
 
 
@@ -125,8 +125,19 @@ a:active {
 .about_us_h1 {
     text-align: center;
 }
+.card-columns {
+  @include media-breakpoint-only(lg) {
+    column-count: 4;
+  }
 
-
+}
+.property_all{
+    margin: 50px;
+}
+#prop-img{
+    width: 750px;
+    height: auto;
+}
 
 /* need to change add property form */
 /* need to change sign in */

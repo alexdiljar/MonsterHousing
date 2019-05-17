@@ -1,13 +1,14 @@
-
-
-<div class="card">
-    <img class="card-img-top" src="{{ properties.detail.property_image }}" alt="Card image cap">
-    <div class="card-body">
-        <h5 class="card-title">{{ properties.address.street }} {{ properties.address.house_no }}, {{ properties.address.city.country }}</h5>
-        <p class="card-text">{{ properties.detail.description }}</p>
-        <p class="card-text"><small class="text-muted">$ {{ properties.detail.price }}</small></p>
-    </div>
-    <div class="card-body">
-        <a href="{% url 'edit_property' property.id %} "class="card-link">Edit Account</a>
-    </div>
+<div class="card-columns">
+    <a href="/properties/{{ properties.id }}">
+        <div class="card" style="width: 1000px;">
+            <img class="card-img-top" src="{{ properties.detail.property_image }}" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">{{ properties.address.street }} {{ properties.address.house_no }}, {{ properties.address.city.country }}</h5>
+                <p class="card-text">{{ properties.detail.description }}</p>
+                <p class="card-text">
+                    <small class="text-muted">$ {{ properties.detail.price }}</small>
+                </p>
+            </div>
+        </div>
+    </a>
 </div>
