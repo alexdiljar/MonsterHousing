@@ -11,7 +11,6 @@ from User.forms.profile_form import *
 
 
 def register(request):
-
     if request.method == "POST":
         form = RegisterForm(data=request.POST)
         cities_form = CitiesForm(data=request.POST)
@@ -104,7 +103,7 @@ def edit_account(request):
 def account(request):
     return render(request, 'User/AccountDetails.html', {
         'user': get_object_or_404(User, pk=request.user.id),
-        'properties': Properties.objects.filter(user=request.user)
+        'properties': Properties.objects.filter(user=request.user).filter(is_active=True)
     })
 
 
@@ -185,6 +184,7 @@ def sell_property(request, id):
     property.save()
     return
 
+
 def delete_property(request, id):
     property = Properties.objects.get(pk=id)
     property.delete()
@@ -193,7 +193,7 @@ def delete_property(request, id):
 
 def account_properties(request):
     return render(request, 'User/AccountProperties.html', {
-        'properties': Properties.objects.filter(user=request.user)
+        'properties': Properties.objects.filter(user=request.user).filter(is_active=True)
     })
 
 
@@ -246,12 +246,3 @@ def create_property(request):
             'details_form': DetailsForm(),
             'properties_form': PropertiesForm(),
         })
-
-
-# Skoða þetta profile / account
-def account(request):
-    return render(request, 'User/AccountDetails.html', {
-        'user': get_object_or_404(User, pk=request.user.id),
-        'properties': Properties.objects.filter(user=request.user)
-    })
-

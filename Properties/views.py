@@ -85,7 +85,8 @@ def catalog_index(request):
 # /properties/[id]
 def get_property_by_id(request, id):
     return render(request, 'Properties/PropertyDetails.html', {
-        'property': get_object_or_404(Properties, pk=id)
+        'property': get_object_or_404(Properties, pk=id),
+        'user': User.objects.get(pk=request.user.id)
     })
 
 
