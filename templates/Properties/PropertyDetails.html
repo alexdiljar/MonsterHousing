@@ -22,15 +22,15 @@
             <p>{{ property.detail.description }}</p>
         </div>
         <div class="button-banner">
-            {% if request.user.is_authenticated or property.user == request.user.profile.id %}
-                <a class="btn btn-info" href="{% url 'edit_property' property.id %}">Edit Property</a>
-                <a class="btn btn-danger" href="{% url 'delete_property' property.id %}">Delete Property</a>
-            {% else %}
-                <a class="btn btn-primary" href="{% url 'seller_profile' property.id %}">Contact Seller</a>
-                <a class="btn btn-primary" href="{% url 'buy_property' property.id %}">Buy Property</a>
+            {% if user.is_authenticated %}
+                {% if property.user.id == user.id %}
+                    <a class="btn btn-info" href="{% url 'edit_property' property.id %}">Edit Property</a>
+                    <a class="btn btn-danger" href="{% url 'delete_property' property.id %}">Delete Property</a>
+                {% else %}
+                    <a class="btn btn-primary" href="{% url 'seller_profile' property.id %}">Contact Seller</a>
+                    <a class="btn btn-primary" href="{% url 'buy_property' property.id %}">Buy Property</a>
+                {% endif %}
             {% endif %}
         </div>
     </div>
 {% endblock %}
-
-
