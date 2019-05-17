@@ -1,11 +1,10 @@
 {% extends 'index.html' %}
 
 {% block content %}
-    <div id="page-container">
+    <div id="page-container" style="align-items: center;">
         <h1>My Account</h1>
-        <div class="card">
-
-            <img class="card-img-top" src="{{ user.profile.profile_image }}" alt="user image">
+        <div class="card" style="width: 18rem; align-items: center;">
+            <img class="card-img-to" src="{{ user.profile.profile_image }}" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">{{ user.username }}</h5>
             </div>
@@ -28,10 +27,12 @@
         <div class="account_properties">
             {% if properties %}
                 <a href="{% url 'account_properties' %}"><h2>My Properties</h2></a>
-                {% for properties in properties %}
-                    {% include 'Properties/SinglePropertyView.html' with properties=properties %}
-                {% endfor %}
-            {% endif %}
+                <div class="card" style="width: 18rem;">
+                    {% for properties in properties %}
+                        {% include 'Properties/SinglePropertyView.html' with properties=properties %}
+                    {% endfor %}
+                {% endif %}
+            </div>
         </div>
     </div>
 
