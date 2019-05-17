@@ -248,12 +248,3 @@ def account(request):
         'properties': Properties.objects.filter(user=request.user)
     })
 
-
-<<<<<<< HEAD
-
-=======
-def account_properties(request):
-    return render(request, 'User/AccountProperties.html', {
-        'properties': Properties.objects.filter(user=request.user)
-    })
->>>>>>> dad962ba831e9dd3c0af9295b3013a4ba9f5c96c
