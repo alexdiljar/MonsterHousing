@@ -11,7 +11,8 @@
 
                     {% if field.label == 'Country' or field.label == 'Rooms' or field.label == 'Zip' %}
                         <div class="btn btn-outline toggle btn-lg">{{ field }}</div>
-                    {% else %}
+                    {% elif field.label != 'Search' %}
+
                         <div class="dropdown">
                             <button class="btn btn-outline-primary toggle btn-lg" type="button" id="dropdownMenuButton"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -27,8 +28,16 @@
                     {% endif %}
                 {% endfor %}
 
+            </div>
+            <div>
+                {% if form.search %}
 
-                <button class="btn btn-success toggle btn-lg" type="submit">GO!</button>
+                        {{ form.search }}
+
+
+                {% endif %}
+                <input type="submit" class="button" value="GO!"/>
+                {#                <button type="submit">GO!</button>#}
             </div>
         </form>
         {% block content1 %}

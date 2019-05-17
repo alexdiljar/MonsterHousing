@@ -40,38 +40,6 @@ TAGS_CHOICES = (('elevator', 'Elevator'),
                 ('secret_entrance', 'Secret Entrance'))
 
 
-class Form(forms.Form):
-    # Get all countries
-    country = CountryField(blank_label='Country').formfield(
-        required=False)
-
-    zip = forms.CharField(label='Zip', max_length=5, required=False)
-
-    type = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,
-                                     required=False,
-                                     choices=TYPE_CHOICES)
-    # make rooms and size into slider
-    rooms = forms.IntegerField(min_value=1, label='Rooms', widget=forms.NumberInput(
-        attrs={'size': '10'}), required=False, initial='Rooms')
-
-    size = forms.ChoiceField(widget=forms.RadioSelect,
-                             required=False,
-                             choices=SIZE_CHOICES)
-
-    max_price = forms.ChoiceField(widget=forms.RadioSelect,
-                                  required=False,
-                                  choices=MAX_PRICE)
-
-    tags = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,
-                                     required=False,
-                                     choices=TAGS_CHOICES)
-
-    sort = forms.ChoiceField(widget=forms.RadioSelect,
-                             required=False,
-                             choices=(('name', 'Name'),
-                                      ('price', 'Price')))
-
-    # text = forms.TimeField(initial='<Street name> <house no>, <zip> <city>, <country> ', max_le)#forms.CharField(widget=forms.Textarea, required = False, initial='<Street name> <house no>, <zip> <city>, <country> ', max_length=10)
 
 
 class SearchForm(ModelForm):
@@ -80,15 +48,28 @@ class SearchForm(ModelForm):
     class Meta:
         model = Search
         exclude = ['id']
-        #fields = ('zip', 'type', 'rooms', 'size', 'price', 'tags', 'sort', 'search')
-        widgets = {required: False,
-            'zip': widgets.NumberInput(attrs={'min': 0, 'required': False, 'type': 'number',}),
-            'type': widgets.CheckboxSelectMultiple(attrs={'class': 'dropdown', 'required': 'false'}, choices=TYPE_CHOICES),
-            'rooms': widgets.NumberInput(attrs={'min': 0, 'required': False, 'type': 'number',}),
-            'size': widgets.CheckboxSelectMultiple(attrs={'class': 'dropdown', 'required': 'false'}, choices=SIZE_CHOICES),
-            'price': widgets.CheckboxSelectMultiple(attrs={'class': 'dropdown', 'required': 'false'}, choices=MAX_PRICE),
-            'tags': widgets.CheckboxSelectMultiple(attrs={'class': 'dropdown', 'required': 'false'}, choices=TAGS_CHOICES),
-            'sort': widgets.Select(attrs={'class': 'dropdown', 'required': 'false'}, choices=(('name', 'Name'),
+        widgets = {
+            'zip': widgets.NumberInput(attrs={'min': 0, 'type': 'number'}),
+            'type': widgets.CheckboxSelectMultiple(attrs={'class': 'dropdown'}, choices=TYPE_CHOICES),
+            'rooms': widgets.NumberInput(attrs={'min': 0, 'type': 'number', 'default': 0}),
+            'size': widgets.CheckboxSelectMultiple(attrs={'class': 'dropdown'}, choices=SIZE_CHOICES),
+            'price': widgets.CheckboxSelectMultiple(attrs={'class': 'dropdown'}, choices=MAX_PRICE),
+            'tags': widgets.CheckboxSelectMultiple(attrs={'class': 'dropdown'}, choices=TAGS_CHOICES),
+            'sort': widgets.Select(attrs={'class': 'dropdown'}, choices=(('name', 'Name'),
                                                                                             ('price', 'Price'))),
-            'search': widgets.Textarea(attrs={'class': 'form-control', 'required': 'false'})
+            'search': widgets.Textarea(attrs={'class': 'form-control'})
         }
+
+    def save(self, commit=True):
+        #if self.rooms == '':
+         #   self.rooms = 0
+        if commit:
+
+            # If committing, save the instance and the m2m data immediately.
+            self.instance.save()
+
+        return self.instance
+
+    save.alters_data = True
+
+

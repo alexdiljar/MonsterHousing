@@ -78,7 +78,7 @@ def result(request):
         form = SearchForm(data=request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/properties/search/')
+            return HttpResponseRedirect(reversed('/properties/search/'))
         else:
             request.method = "GET"
             pass
@@ -86,18 +86,36 @@ def result(request):
         latest_search = Search.objects.last()
         zip = latest_search.zip
         country = latest_search.country
-        type = latest_search.type
+        type_list = latest_search.type
         rooms = latest_search.rooms
-        tags = latest_search.tags
+        tags_list = latest_search.tags
         price = latest_search.price
         size = latest_search.size
 
-        print(type)
+        print(request.GET["rooms"])
+
+        # For loop will roll through all properties and a
+        for prop in Properties.objects.filter(is_active=True):
+            print(prop.address.city.zip)
+            print(zip)
+            # if prop.address.city.country == country or country is None:
+            #     if prop.address.city.zip == zip:
+            #         if prop.details.rooms == rooms:
+            #             if prop.details.price <= price:
+            #                 if prop.details.size >= size:
+            #                     for type in type_list:
+            #                         if prop.details.type == single_type:
+            #                             pass
 
 
-        for t in type:
+
+
             pass
 
-        context = {'properties': Properties.objects.filter(address__city__zip=zip),  # }
+
+
+
+
+        context = {'properties': Properties.objects.all(),#filter(=zip, ),  # }
                'form': SearchForm()}
         return render(request, 'base/Catalog.html', context)

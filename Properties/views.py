@@ -17,7 +17,7 @@ def properties(request):
 
 
 def catalog_index(request):
-    context = {'properties': Properties.objects.filter(is_active=True),  # }
+    context = {'properties': Properties.objects.filter(is_active=True),
                'form': SearchForm()}
 
     if request.method == "POST":
@@ -31,6 +31,7 @@ def catalog_index(request):
         else:
             request.method = "GET"
             pass
+
 
     if request.method == "GET":
         return render(request, 'base/Catalog.html', context)
