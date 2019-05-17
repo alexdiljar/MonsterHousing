@@ -79,7 +79,7 @@ def edit_account(request):
             cities_saved.save()
             addresses_form.save()
             profile_form.save()
-
+            messages.info(request, 'Your have edited your account successfully!')
             return redirect(reverse('account'))
         # Validation failed - return same data parsed from POST.
         else:
@@ -170,6 +170,7 @@ def edit_property(request, id):
             properties_saved.is_active = True
             properties_saved.save()
 
+            messages.info(request, 'Your have edited your property successfully!')
             return redirect(reverse('account_properties'))
         # Validation failed - return same data parsed from POST.
         else:
@@ -200,13 +201,15 @@ def sell_property(request, id):
     property = Properties.objects.get(id=id)
     property.is_active = False
     property.save()
-    return
+    messages.info(request, 'Property ' + property.address + ' has been sold successfully!')
+    return redirect('account')
 
 
 @login_required
 def delete_property(request, id):
     property = Properties.objects.get(pk=id)
     property.delete()
+    messages.info(request, 'Your have deleted your property from this system successfully!')
     return redirect('account_properties')
 
 
@@ -251,6 +254,7 @@ def create_property(request):
             properties_saved.is_active = True
             properties_saved.save()
 
+            messages.info(request, 'Your have registered your property for sale successfully!')
             return HttpResponseRedirect('account')
 
         else:
