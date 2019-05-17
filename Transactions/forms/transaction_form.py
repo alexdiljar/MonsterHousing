@@ -6,7 +6,7 @@ from django.forms import ModelForm, widgets
 from User.models import Profile
 from Properties.models import Cities, Addresses
 from Transactions.models import CreditCard, Transactions
-from creditcards.forms import CardNumberField, CardExpiryField, SecurityCodeField
+
 
 
 class UserInformationForm(ModelForm):
