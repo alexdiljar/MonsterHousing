@@ -7,34 +7,11 @@
             <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                 {% csrf_token %}
                 {% for field in form %}
-
-
-                    {% if field.label == 'Country' %}
-                        {{ field }}
-
-                    {% elif field.label != 'Text' %}
-                        <div class="btn-group" role="group">
-                            <div class="col-md-12 dropdown">
-                                <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    {{ field.label_tag }}
-                                </button>
-                                <div class="dropdown-menu">
-                                    <div><a href="#">{{ field }}</a></div>
-                                </div>
-                            </div>
-                        </div>
-                    {% endif %}
+                    <label for="{{ form.subject.id_for_label }}" class="MY-CUSTOM-CLASS">Email subject:</label>
+                    {{ form.subject }}
 
                 {% endfor %}
-            </div>
-            <div id="searchbar">
-                {% for field in form %}
-                    {% if field.label == 'Text' %}
 
-                        {{ field }}
-                    {% endif %}
-                {% endfor %}
 
                 <button type="submit">GO!</button>
             </div>
@@ -46,6 +23,23 @@
     </div>
 
 
+
+    {% if field.label == 'Country' %}
+        {{ field }}
+
+    {% elif field.label != 'Text' %}
+        <div class="btn-group" role="group">
+            <div class="col-md-12 dropdown">
+                <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{ field.label_tag }}
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <div><a href="#">{{ field }}</a></div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
 
 
     </div>

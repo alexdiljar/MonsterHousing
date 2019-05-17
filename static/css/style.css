@@ -50,6 +50,7 @@ a:active {
     background-color: #A4B9CE;
     padding-bottom: 2.5rem;
     padding-block-end: 400px;
+    min-height: 100%;
 }
 
 
@@ -212,3 +213,11 @@ a:active {
     text-align: center;
 }
 
+.searchfrom{
+    padding: 30px;
+    margin: 20px;
+}
+
+.dropdown-menu{
+    overflow: ;
+}
