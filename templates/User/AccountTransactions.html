@@ -1,5 +1,23 @@
 {% extends 'index.html' %}
 
 {% block content %}
-<p>This is my transaction view</p>
+    {% if transaction %}
+        <div class="bought properties">
+            <h7>Your Purchases:</h7>
+            {% for properties in transaction. %}
+                {% include 'Properties/SinglePropertyView.html' with properties=properties %}
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% if properties %}
+        <h6>Your Sales:</h6>
+        {% for properties in properties %}
+            {{ properties.}}
+            {% include 'Properties/SinglePropertyView.html' with properties=properties %}
+        {% endfor %}
+    {% endif %}
+    {% if not transactions and not properties %}
+        <h3>You have no transactions!</h3>
+    {% endif %}
+
 {% endblock %}
