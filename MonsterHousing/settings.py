@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'User.apps.UserConfig',
     'Properties.apps.PropertiesConfig',
     'Transactions.apps.TransactionsConfig',
-    'Search.apps.SearchConfig',
     'django_countries',
     'django_filters',
 ]
