@@ -34,14 +34,16 @@ a:active {
 #footer {
     background-color: darkblue;
     position: relative;
-    height: 250px;
+    height: 300px;
+    margin-top: -200px;
     margin-bottom: 0;
     clear: both;
     width: 100%;
     content: 200px;
+
+
     color: white;
     padding: 0;
-    margin: 0;
 }
 
 /* logo in footer: */
@@ -62,12 +64,6 @@ a:active {
     height: 10vh;
     width:7vw;
     border-radius: 50%;
-}
-
-.scrollable-menu {
-    height: auto;
-    max-height: 200px;
-    overflow-x: hidden;
 }
 
 /* article body in TermsAndConditions.html: */
