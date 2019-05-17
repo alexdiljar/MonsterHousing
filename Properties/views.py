@@ -65,10 +65,16 @@ def catalog_index(request):
 
 # /properties/[id]
 def get_property_by_id(request, id):
-    return render(request, 'Properties/PropertyDetails.html', {
-        'property': get_object_or_404(Properties, pk=id),
-        'user': User.objects.get(pk=request.user.id)
-    })
+    if request.user.id is None:
+        context = {
+            'property': get_object_or_404(Properties, pk=id)
+        }
+    else:
+        context = {
+            'property': get_object_or_404(Properties, pk=id),
+            'user': User.objects.get(pk=request.user.id)
+        }
+    return render(request, 'Properties/PropertyDetails.html', context)
 
 
 # /[property id]/seller_profile

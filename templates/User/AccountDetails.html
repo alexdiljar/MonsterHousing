@@ -7,7 +7,7 @@
         <div class="account_all">
 
             <img src="{{ user.profile.profile_image }}" alt="user image">
-            <p>Name:  {{ user.first_name }} {{ user.last_name }}</p>
+            <p>Name: {{ user.first_name }} {{ user.last_name }}</p>
             <p>SSN: {{ user.profile.ssn }}</p>
             <p>Email: {{ user.email }}</p>
             <p>Phone: {{ user.profile.phone }}</p>
@@ -18,15 +18,13 @@
             <p>House Number: {{ user.profile.address.house_no }}</p>
         </div>
         <div class="account_properties">
-        <div class="link_for_my_properties">
-            <a href="{% url 'account_properties' %}"><h2>My Properties</h2></a>
+            {% if properties %}
+                <a href="{% url 'account_properties' %}"><h2>My Properties</h2></a>
+                {% for properties in properties %}
+                    {% include 'Properties/SinglePropertyView.html' with properties=properties %}
+                {% endfor %}
+            {% endif %}
         </div>
-        </div>
-            {% for properties in properties %}
-                {% include 'Properties/SinglePropertyView.html' with properties=properties %}
-            {% endfor %}
-        </div>
-    </div>
     </div>
 
 
