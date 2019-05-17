@@ -168,7 +168,6 @@ a:active {
 .banner  {            /* hvítur litur á forsíðunni */
     color: white;
     background-repeat: no-repeat;
-
 }
 
 .banner img {
@@ -214,9 +213,8 @@ a:active {
 }
 
 .form-control{
-    max-width: 40%;
+    max-width: 30%;
     display: inline-block;
-
 }
 
 .form-horizontal {
