@@ -179,11 +179,17 @@ def edit_property(request, id):
 
 
 # Deletes property of site and database
-def delete_property(request, id):
+def sell_property(request, id):
     property = Properties.objects.get(id=id)
     property.is_active = False
     property.save()
+    return
+
+def delete_property(request, id):
+    property = Properties.objects.get(pk=id)
+    property.delete()
     return redirect('account_properties')
+
 
 def account_properties(request):
     return render(request, 'User/AccountProperties.html', {

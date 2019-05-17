@@ -122,6 +122,26 @@
 
     </footer>
     <!-- Footer -->
+<<<<<<< HEAD
+                <!-- Call to action -->
+
+            {% if request.user.is_authenticated %}
+                <p style="text-align: center">Hello {{ request.user.username }} <p/>
+           {% else %}
+
+                <ul class="list-unstyled list-inline text-center ">
+                    <li class="list-inline-item">
+                        <h5 class="mb-1">Register for free</h5>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="{% url 'register' %}" class="btn btn-success btn-rounded">Sign up!</a>
+                    </li>
+                </ul>
+
+                <!-- Call to action -->
+
+            {% endif %}
+=======
     <!-- Call to action -->
     {% if request.user.is_authenticated %}
         <p style="text-align: center">Hello {{ request.user.username }} <p/>
@@ -137,6 +157,7 @@
         </ul>
         <!-- Call to action -->
     {% endif %}
+>>>>>>> ff930e5e27f65cca9d7ab7944888b700331f1d33
 </div>
 
 

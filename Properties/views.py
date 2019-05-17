@@ -17,7 +17,7 @@ def properties(request):
 
 
 def catalog_index(request):
-    context = {'properties': Properties.objects.all(),  # }
+    context = {'properties': Properties.objects.filter(is_active=True),  # }
                'form': SearchForm()}
     if request.method == "POST":
         form = SearchForm(request.POST)
