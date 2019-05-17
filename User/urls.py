@@ -10,7 +10,7 @@ urlpatterns = [
     path('account', views.account, name='account'),
     path('add_property', views.create_property, name="create_property"),
     path('account_properties', views.account_properties, name='account_properties'),
-    path('transactions', include('Transactions.urls')),
+    # path('transactions', include('Transactions.urls')),
     path('account_properties/<int:id>/edit_property', views.edit_property, name='edit_property'),
     path('account_properties/<int:id>/delete', views.delete_property, name='delete_property')
 ]

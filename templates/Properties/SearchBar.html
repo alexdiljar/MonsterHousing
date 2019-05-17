@@ -6,37 +6,32 @@
         <form method="post" class="searchfrom">
             <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                 {% csrf_token %}
+
                 {% for field in form %}
 
+                    {% if field.label == 'Country' or field.label == 'Rooms' or field.label == 'Zip' %}
+                        <div class="btn btn-outline-primary toggle btn-lg">{{ field }}</div>
+                    {% else %}
+                        <div class="dropdown">
+                            <button class="btn btn-outline-primary toggle btn-lg" type="button" id="dropdownMenuButton"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ field.label_tag }}
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <div class="dropdown-item">{{ field }}</div>
 
-                    {% if field.label == 'Country' %}
-                        {{ field }}
-
-                    {% elif field.label != 'Text' %}
-                        <div class="btn-group" role="group">
-                            <div class="col-md-12 dropdown">
-                                <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    {{ field.label_tag }}
-                                </button>
-                                <div class="dropdown-menu">
-                                    <div><a href="#">{{ field }}</a></div>
-                                </div>
                             </div>
                         </div>
                     {% endif %}
-
-                {% endfor %}
-            </div>
-            <div id="searchbar">
-                {% for field in form %}
-                    {% if field.label == 'Text' %}
-
-                        {{ field }}
-                    {% endif %}
                 {% endfor %}
 
-                <button type="submit">GO!</button>
+
+
+
+
+
+
+                <button class="btn btn-success toggle btn-lg" type="submit">GO!</button>
             </div>
         </form>
         {% block content1 %}

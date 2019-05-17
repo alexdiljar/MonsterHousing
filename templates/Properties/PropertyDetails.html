@@ -13,24 +13,24 @@
                 <p>Rooms: {{ property.detail.rooms }}</p>
             </div>
             <div class="tags-for-property">
-                <p>Elevator: {{ property.detail.tags.elevator }}</p>
-                <p>Garage: {{ property.detail.tags.garage }}</p>
-                <p>Near a blood bank: {{ property.detail.tags.near_bloodbank }}</p>
-                <p>Dungeon: {{ property.detail.tags.dungeon }}</p>
-                <p>Secret entrance: {{ property.detail.tags.secret_entrance }}</p>
+                <p>Elevator: {{ property.detail.tags.elevator|yesno:"Yes,No" }}</p>
+                <p>Garage: {{ property.detail.tags.garage|yesno:"Yes,No" }}</p>
+                <p>Near a blood bank: {{ property.detail.tags.near_bloodbank|yesno:"Yes,No" }}</p>
+                <p>Dungeon: {{ property.detail.tags.dungeon|yesno:"Yes,No" }}</p>
+                <p>Secret entrance: {{ property.detail.tags.secret_entrance|yesno:"Yes,No" }}</p>
             </div>
             <p>{{ property.detail.description }}</p>
         </div>
         <div class="button-banner">
-            {% if request.user.is_authenticated %}
-                {% if property.user == request.user.profile %}
-                    <a class="btn btn-info" href="{% url 'edit_property' properties.id %}">Edit Property</a>
-                    <a class="btn btn-danger" href="{% url 'delete_property' properties.id %}">Delete Property</a>
-                {% else %}
-                    <a class="btn btn-primary" href="{% url 'seller_profile' property.id %}">Contact Seller</a>
-                    <a class="btn btn-primary" href="{% url 'buy_property' property.id %}">Buy Property</a>
-                {% endif %}
+            {% if request.user.is_authenticated or property.user == request.user.profile.id %}
+                <a class="btn btn-info" href="{% url 'edit_property' property.id %}">Edit Property</a>
+                <a class="btn btn-danger" href="{% url 'delete_property' property.id %}">Delete Property</a>
+            {% else %}
+                <a class="btn btn-primary" href="{% url 'seller_profile' property.id %}">Contact Seller</a>
+                <a class="btn btn-primary" href="{% url 'buy_property' property.id %}">Buy Property</a>
             {% endif %}
         </div>
     </div>
 {% endblock %}
+
+

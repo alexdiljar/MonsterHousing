@@ -75,9 +75,3 @@ class PropertiesForm(ModelForm):
         model = Properties
         exclude = ['id', 'address', 'detail', 'user', 'is_active']
 
-class CreatePropertyForm:
-    TagsForm(ModelForm)
-    TypesForm(ModelForm)
-    CitiesForm(ModelForm)
-    AddressesForm(ModelForm)
-    DetailsForm(ModelForm)
