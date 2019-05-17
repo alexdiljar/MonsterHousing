@@ -3,11 +3,11 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 
-from Properties.forms.properties_form import * #TypesForm, TagsForm, DetailsForm, PropertiesForm, AddressesForm
+from Properties.forms.properties_form import *
 from User.models import Profile
 from Properties.models import Properties, Addresses, Cities
 from django.shortcuts import render, redirect, reverse, get_object_or_404
-from User.forms.profile_form import * #CustomUserChangeForm, ProfileForm, AddressesForm, CitiesForm, RegisterForm
+from User.forms.profile_form import *
 
 
 def register(request):
@@ -110,15 +110,80 @@ def account(request):
 
 # Edits property information
 def edit_property(request, id):
-    return render(request, 'Properties/CreateProperty.html', {
-        'properties': get_object_or_404(Properties, pk=id)
-    })
+    property = Properties.objects.get(id=id)
+    if request.method == 'POST':
+        # User has a property and now needs to post changes
+        # Step 2: Validate parsed data.
+        tags_form = TagsForm(instance=property.detail.tags, data=request.POST)
+        type_form = TypesForm(instance=property.detail.type, data=request.POST)
+        cities_form = CitiesForm(instance=property.address.city, data=request.POST)
+        addresses_form = AddressesForm(instance=property.address, data=request.POST)
+        details_form = DetailsForm(instance=property.detail, data=request.POST)
+        properties_form = PropertiesForm(instance=property, data=request.POST)
+        # profile_form = ProfileForm(instance=Properties.objects.get(id=id).user, data=request.POST)
+        # Step 2: Validate parsed data.
+        if tags_form.is_valid() and type_form.is_valid() and cities_form.is_valid() and addresses_form.is_valid() \
+                and details_form.is_valid() and properties_form.is_valid():
+            # Firstly we need to clean cities
+            country_input = cities_form.cleaned_data['country']
+            # We create saved objects where commit == False
+            # We can access parameters when fixing constraints on tables
+            city_saved = cities_form.save(commit=False)
+            # profile_saved = profile_form.save(commit=False)
+            address_saved = addresses_form.save(commit=False)
+            tags_saved = tags_form.save()
+            details_saved = details_form.save(commit=False)
+            properties_saved = properties_form.save(commit=False)
+
+            city_saved.country = country_input
+            city_saved.save()
+
+            address_saved.city = city_saved
+            address_saved.save()
+
+            # profile_saved.address = address_saved
+            # profile_form.save()
+
+            details_saved.tags = tags_saved
+            details_saved.type = Types.objects.get(id=request.POST['type'])
+            details_saved.save()
+
+            properties_saved.address = address_saved
+            properties_saved.detail = details_saved
+            properties_saved.user = request.user
+            properties_saved.is_active = True
+            properties_saved.save()
+
+            return redirect(reverse('account_properties'))
+        # Validation failed - return same data parsed from POST.
+        else:
+            return render(request, 'Properties/CreateProperty.html', {
+                # not sure about having properties here
+                'type_form': type_form,
+                'cities_form': cities_form,
+                'addresses_form': addresses_form,
+                'tags_form': tags_form,
+                'details_form': details_form,
+                'properties_form': properties_form,
+            })
+    if request.method == "GET":
+        # User has logged information and we want to GET all info
+        return render(request, 'Properties/CreateProperty.html', {
+            'tags_form': TagsForm(instance=property.detail.tags),
+            'type_form': TypesForm(instance=property.detail.type),
+            'cities_form': CitiesForm(instance=property.address.city),
+            'addresses_form': AddressesForm(instance=property.address),
+            'details_form': DetailsForm(instance=property.detail),
+            'properties_form': PropertiesForm(instance=property),
+        })
 
 
 # Deletes property of site and database
 def delete_property(request, id):
-    pass
-
+    property = Properties.objects.get(id=id)
+    property.is_active = False
+    property.save()
+    return redirect('account_properties')
 
 def account_properties(request):
     return render(request, 'User/AccountProperties.html', {
@@ -126,6 +191,7 @@ def account_properties(request):
     })
 
 
+@login_required
 def create_property(request):
     if request.method == "POST":
         type_form = TypesForm(data=request.POST)
@@ -136,11 +202,10 @@ def create_property(request):
         properties_form = PropertiesForm(data=request.POST)
         if cities_form.is_valid() and addresses_form.is_valid() and type_form.is_valid and tags_form.is_valid() \
                 and details_form.is_valid():
+            # We need to clean 'country' data
             country_input = cities_form.cleaned_data['country']
-            print(country_input)
             city_saved = cities_form.save(commit=False)
             address_saved = addresses_form.save(commit=False)
-            type_saved = type_form.save()
             tags_saved = tags_form.save()
             details_saved = details_form.save(commit=False)
             properties_saved = properties_form.save(commit=False)
@@ -152,7 +217,7 @@ def create_property(request):
             addresses_form.save()
 
             details_saved.tags = tags_saved
-            details_saved.type = type_saved
+            details_saved.type = Types.objects.get(id=request.POST['type'])
             details_saved.save()
 
             properties_saved.address = address_saved
@@ -162,6 +227,7 @@ def create_property(request):
             properties_saved.save()
 
             return HttpResponseRedirect('account')
+
         else:
             request.method = "GET"
             pass
@@ -174,3 +240,12 @@ def create_property(request):
             'details_form': DetailsForm(),
             'properties_form': PropertiesForm(),
         })
+
+
+# Skoða þetta profile / account
+def account(request):
+    return render(request, 'User/AccountDetails.html', {
+        'user': get_object_or_404(User, pk=request.user.id),
+        'properties': Properties.objects.filter(user=request.user)
+    })
+

@@ -23,8 +23,13 @@
         </div>
         <div class="button-banner">
             {% if user.is_authenticated %}
-                <a class="btn btn-primary" href="{% url 'seller_profile' property.id %}">Contact Seller</a>
-                <a class="btn btn-primary" href="{% url 'buy_property' property.id %}">Buy Property</a>
+                {% if property.user == request.user.profile %}
+                    <a class="btn btn-info" href="{% url 'edit_property' properties.id %}">Edit Property</a>
+                    <a class="btn btn-danger" href="{% url 'delete_property' properties.id %}">Delete Property</a>
+                {% else %}
+                    <a class="btn btn-primary" href="{% url 'seller_profile' property.id %}">Contact Seller</a>
+                    <a class="btn btn-primary" href="{% url 'buy_property' property.id %}">Buy Property</a>
+                {% endif %}
             {% endif %}
         </div>
     </div>
