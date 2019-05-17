@@ -4,12 +4,18 @@
     <div id="page-container">
         <form class="form form-horizontal" method="post">
             {% csrf_token %}
-            {{ cities_form }}
-            {{ addresses_form }}
-            {{ type_form }}
-            {{ details_form }}
-            {{ tags_form }}
-            {{ properties_form }}
+            <div class="property_info_form">
+                <h3>Property Information: </h3>
+                    {{ cities_form }}
+                    {{ addresses_form }}
+            </div>
+            <div class="additional_info_form">
+                <h3>Additional Information: </h3>
+                    {{ type_form }}
+                    {{ details_form }}
+                    {{ tags_form }}
+                    {{ properties_form }}
+            </div>
             <input type="submit" class="btn btn-success" value="Sell property"/>
         </form>
     </div>
