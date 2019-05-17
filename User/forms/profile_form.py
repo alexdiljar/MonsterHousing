@@ -6,21 +6,6 @@ from Properties.models import Cities, Addresses
 from django_countries.fields import CountryField
 from django import forms
 
-'''class CitiesForm(ModelForm):
-    country = CountryField(blank_label='Country').formfield(required=True)
-
-    class Meta:
-        model = Cities
-        exclude = ['id', 'country']
-        widgets = {
-
-            'zip': widgets.NumberInput(attrs={'class': 'form-control', 'min': 0}),
-            'city': widgets.TextInput(attrs={'class': 'form-control'})
-        }
-'''
-
-
-
 class AddressesForm(ModelForm):
     class Meta:
         model = Addresses

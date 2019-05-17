@@ -1,0 +1,27 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <h2>Your Transactions:</h2>
+    {% if buy_transactions %}
+        <h5>Your Purchases:</h5>
+        <div class="bought properties">
+            {% for transaction in buy_transactions %}
+                {% include 'Properties/SinglePropertyView.html' with properties=transaction.property %}
+                <p>Sold By: {{ transaction.property.user.first_name }} {{ transaction.property.user.last_name }}</p>
+                <p>Bought On: {{ transaction.transaction_date }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% if sale_transactions %}
+        <h5>Your Sales:</h5>
+        {% for transaction in sale_transactions %}
+            {% include 'Properties/SinglePropertyView.html' with properties=transaction.property %}
+            <p>Bought by: {{ transaction.buyer.first_name }} {{ transaction.buyer.last_name}}</p>
+            <p>Bought on: {{ transaction.transaction_date }}</p>
+        {% endfor %}
+    {% endif %}
+    {% if not sale_transactions and not buy_transactions %}
+        <h3>You have no transactions!</h3>
+    {% endif %}
+
+{% endblock %}

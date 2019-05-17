@@ -1,0 +1,133 @@
+
+/* General margin: */
+.main_div {
+    display: block;
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 100%;
+    height: 17cm;
+}
+
+
+/* css for links in different states: */
+a:hover {
+  color: darkblue;
+    text-decoration: underline black;
+}
+
+a:active {
+  color: black;
+}
+
+/* footer style: */
+#rhs_footer_links {
+    color: orangered;
+    font-size: 16px;
+    float: right;
+    margin-right: 50px;
+    padding: 0;
+      margin-block-start: 0em;
+    margin-block-end: 0em;
+    padding-inline-start: 0px;  /* minnkar footer og navigation bar */
+}
+
+#footer {
+    background-color: darkblue;
+    position: relative;
+    height: 250px;
+    margin-bottom: 0;
+    clear: both;
+    width: 100%;
+    content: 200px;
+    color: white;
+    padding: 0;
+    margin: 0;
+}
+
+/* logo in footer: */
+.mr-3 {
+    width: 12.5vw;
+    height: 12.5vh;
+}
+
+
+/* css changes to navbar :*/
+#navbarDropdown img:hover {
+    opacity: 60%;
+}
+
+/* profile picture in navbar now circle and small: */
+#navbarDropdown img {
+    width: 100%;
+    height: 10vh;
+    width:7vw;
+    border-radius: 50%;
+}
+
+.scrollable-menu {
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+}
+
+/* article body in TermsAndConditions.html: */
+#article-body_1-0 {
+    margin-left: 200px;
+    margin-right: 200px;
+    padding-block-end: 600px;
+}
+
+/* forms: */
+.form form-horizontal {
+    width: 400px;
+}
+
+.form-control{
+    max-width: 30%;
+    display: inline-block;
+}
+
+.form-horizontal {
+    text-align: left;
+    width: 25%;
+    padding-left: 3%;
+    padding-top: 5%;
+}
+
+.form-horizontal label {
+    width: 15%;
+    display: inline-block;
+}
+
+/* banner on FrontPage.html: */
+.banner { /* hvítur litur á forsíðunni */
+    display: inline-block;
+    margin: 0%;
+    padding: 0%;
+    width: 100%;
+    height: 12cm;
+    color: lightslategray;
+    background-repeat: no-repeat;
+}
+
+.card-img-top {
+    width: 100%;
+    height: auto;
+    max-width: 20px; /////////////////
+}
+
+
+/* css style for AboutUs.html: */
+.accordion {
+    padding: 5%;
+}
+
+.about_us_h1 {
+    text-align: center;
+}
+
+.card-body_cc {
+    padding: 5%;
+}
+
+
