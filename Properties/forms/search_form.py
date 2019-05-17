@@ -72,3 +72,5 @@ class SearchForm(forms.Form):
                              required=False,
                              choices=(('name', 'Name'),
                                       ('price', 'Price')))
+
+    #text = forms.TimeField(initial='<Street name> <house no>, <zip> <city>, <country> ', max_le)#forms.CharField(widget=forms.Textarea, required = False, initial='<Street name> <house no>, <zip> <city>, <country> ', max_length=10)

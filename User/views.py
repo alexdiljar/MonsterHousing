@@ -158,7 +158,6 @@ def edit_property(request, id):
         else:
             return render(request, 'Properties/CreateProperty.html', {
                 # not sure about having properties here
-                'properties': get_object_or_404(Properties, pk=id),
                 'type_form': type_form,
                 'cities_form': cities_form,
                 'addresses_form': addresses_form,
@@ -169,7 +168,6 @@ def edit_property(request, id):
     if request.method == "GET":
         # User has logged information and we want to GET all info
         return render(request, 'Properties/CreateProperty.html', {
-            # 'properties': get_object_or_404(Properties, pk=id),
             'tags_form': TagsForm(instance=property.detail.tags),
             'type_form': TypesForm(instance=property.detail.type),
             'cities_form': CitiesForm(instance=property.address.city),
@@ -181,8 +179,10 @@ def edit_property(request, id):
 
 # Deletes property of site and database
 def delete_property(request, id):
-    pass
-
+    property = Properties.objects.get(id=id)
+    property.is_active = False
+    property.save()
+    return redirect('account_properties')
 
 def account_properties(request):
     return render(request, 'User/AccountProperties.html', {
@@ -249,4 +249,11 @@ def account(request):
     })
 
 
+<<<<<<< HEAD
 
+=======
+def account_properties(request):
+    return render(request, 'User/AccountProperties.html', {
+        'properties': Properties.objects.filter(user=request.user)
+    })
+>>>>>>> dad962ba831e9dd3c0af9295b3013a4ba9f5c96c

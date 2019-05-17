@@ -1,4 +1,4 @@
-/* https://medium.freecodecamp.org/how-to-keep-your-footer-where-it-belongs-59c6aa05c59c skoða*/
+
 *{
     margin: 0;
     padding: 0;
@@ -56,7 +56,7 @@ a:active {
 #footer {
     background-color: darkblue;
     position: relative;
-    height: 300px;
+    height: 250px;
     margin-bottom: 0;
     clear: both;
     width: 100%;
@@ -80,21 +80,23 @@ a:active {
 }
 
 #navbarDropdown img {
-    width: 15%;
-    height: 7vh;
+    width: 100%;
+    height: 10vh;
+    width:7vw;
     border-radius: 50%;
 } /*mynd sem sést í Navbar, Index.html*/
 
 
 
 .single_property_item img {
-    max-height: 20vh;
-    max-width: 20vh;
+    max-height: 40vh;
+    max-width: 40vh;
 }
 
 
-.single_property_item img:hover{
-    opacity: 70%;
+.single_property_item img:hover {
+    opacity: 50%;
+    filter: alpha(opacity=50);
 }
 
 .properties {
@@ -122,6 +124,7 @@ a:active {
     padding: 20px;
     width: 500px;
     height: 500px;
+    overflow: hidden;
 }
 
 #price_of_property_id { /* verð ætti að vera grænt á litinn. */
@@ -133,11 +136,14 @@ a:active {
 }
 
 #rhs_footer_links {
-    text-align: right;
-    color: white;
-    font-size: 12px;
-    position: right;
-
+    color: orangered;
+    font-size: 16px;
+    float: right;
+    margin-right: 50px;
+    padding: 0;
+      margin-block-start: 0em;
+    margin-block-end: 0em;
+    padding-inline-start: 0px;  /* minnkar footer og navigation bar */
 
 }
 
@@ -153,25 +159,20 @@ a:active {
     padding-block-end: 600px;
 }
 
-.navbarDropdown{
-    width:0px;
+.form form-horizontal {
+    width: 400px;
 }
 
-.nav-item dropdown {
-    width: 100%;
-}
 
-#rhs_footer_links {    /* minnka bootstrap svo það komi footer með lægri hæð */
-        margin-block-start: 0em;
-    margin-block-end: 0em;
-        padding-inline-start: 0px;
-    padding: 0.1rem;   /* minnkar footer og navigation bar */
-}
 
 .banner  {            /* hvítur litur á forsíðunni */
     color: white;
+    background-repeat: no-repeat;
+
 }
 
+.banner img {
+}
 
 #SignUp_Title_id {
     color: green;
@@ -212,3 +213,20 @@ a:active {
     text-align: center;
 }
 
+.form-control{
+    max-width: 40%;
+    display: inline-block;
+
+}
+
+.form-horizontal {
+    text-align: left;
+    width: 25%;
+    padding-left: 3%;
+    padding-top: 5%;
+}
+
+.form-horizontal label {
+    width: 15%;
+    display: inline-block;
+}
