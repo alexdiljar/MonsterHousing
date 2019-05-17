@@ -8,8 +8,9 @@ from Properties.forms.properties_form import TypesForm, TagsForm, DetailsForm, P
 from User.models import Profile
 from Properties.models import Properties, Addresses, Cities
 from django.shortcuts import render, redirect, reverse, get_object_or_404
-from User.forms.profile_form import CustomUserChangeForm, ProfileForm, AddressesForm, CitiesForm, RegisterForm
+from User.forms.profile_form import CustomUserChangeForm, ProfileForm, AddressesForm, RegisterForm
 from Transactions.forms.transaction_form import UserInformationForm, PaymentForm
+from Properties.forms.properties_form import CitiesForm
 from Transactions.models import CreditCard
 
 
@@ -66,7 +67,7 @@ def user_information_purchase(request, id):
         })
 
 
-def review_purchase(request, id):
+def review_purchase(request, p_id, ):
     print(id)
 
     return render(request, 'Transactions/Review.html', {
