@@ -1,12 +1,13 @@
 {% extends 'index.html' %}
+{% load crispy_forms_tags %}
 
 {% block content %}
     <div id="page-container">
         <h1>This site is for signing in </h1>
 
-        <form class="form form-horizontal" method="post">
+        <form class="form form-control" method="post">
             {% csrf_token %}
-            {{ form }}
+            {{ form|crispy }}
             <input type="submit" class="btn btn-primary" value="Login"/>
         </form>
     </div>

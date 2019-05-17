@@ -40,8 +40,6 @@ TAGS_CHOICES = (('elevator', 'Elevator'),
                 ('secret_entrance', 'Secret Entrance'))
 
 
-
-
 class SearchForm(ModelForm):
     country = CountryField(blank_label='Country').formfield(required=False)
 
@@ -56,20 +54,15 @@ class SearchForm(ModelForm):
             'price': widgets.CheckboxSelectMultiple(attrs={'class': 'dropdown'}, choices=MAX_PRICE),
             'tags': widgets.CheckboxSelectMultiple(attrs={'class': 'dropdown'}, choices=TAGS_CHOICES),
             'sort': widgets.Select(attrs={'class': 'dropdown'}, choices=(('name', 'Name'),
-                                                                                            ('price', 'Price'))),
+                                                                         ('price', 'Price'))),
             'search': widgets.Textarea(attrs={'class': 'form-control'})
         }
 
     def save(self, commit=True):
-        #if self.rooms == '':
-         #   self.rooms = 0
         if commit:
-
             # If committing, save the instance and the m2m data immediately.
             self.instance.save()
 
         return self.instance
 
     save.alters_data = True
-
-

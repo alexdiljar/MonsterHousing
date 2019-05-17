@@ -4,7 +4,8 @@
     <img class="card-img-top" src="{{ properties.detail.property_image }}" alt="Card image cap">
     <div class="card-body">
         <a href="{% url 'property_details' properties.id %}">
-        <h5 class="card-title">{{ properties.address.street }} {{ properties.address.house_no }}, {{ properties.address.city.country }}</h5>
+        <h5 class="card-title">{{ properties.address.street }} {{ properties.address.house_no }}</h5>
+        <h6 class="card-title">{{ properties.address.city.zip }}{{ properties.address.city.city }}, {{ properties.address.city.country }} </h6>
         </a>
         <p class="card-text"></p>
         <p class="card-text">{{ properties.detail.description }}</p>

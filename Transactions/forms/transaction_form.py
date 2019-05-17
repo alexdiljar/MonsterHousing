@@ -9,7 +9,6 @@ from Transactions.models import CreditCard
 from Transactions.models import CreditCard, Transactions
 
 
-
 class UserInformationForm(ModelForm):
     class Meta:
         model = Profile
@@ -17,7 +16,7 @@ class UserInformationForm(ModelForm):
             'ssn'
         ]
         widgets = {
-            'ssn': widgets.TextInput(attrs={'class': 'form-control'})
+            'ssn': widgets.TextInput(attrs={'class': 'form-control', 'placeholder': 'Social Security Number'})
         }
 
 
@@ -32,10 +31,10 @@ class PaymentForm(ModelForm):
             'cc_code'
         ]
         widgets = {
-            'cc_number': widgets.TextInput(attrs={'class': 'form-control', 'title': '0000-0000-0000-0000'}),
-            'cc_month': widgets.TextInput(attrs={'class': 'form-control', 'title': 'MM'}),
-            'cc_year': widgets.TextInput(attrs={'class': 'form-control', 'title': 'YY'}),
-            'cc_code': widgets.TextInput(attrs={'class': 'form-control', 'title': 'cvv'})
+            'cc_number': widgets.TextInput(attrs={'class': 'form-control', 'placeholder': '0000-0000-0000-0000'}),
+            'cc_month': widgets.TextInput(attrs={'class': 'form-control', 'placeholder': 'MM'}),
+            'cc_year': widgets.TextInput(attrs={'class': 'form-control', 'placeholder': 'YY'}),
+            'cc_code': widgets.TextInput(attrs={'class': 'form-control', 'placeholder': 'cvv'})
         }
 
 
