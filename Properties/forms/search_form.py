@@ -1,8 +1,4 @@
-# import required as required
 
-#from Search.models import Search
-from django.forms import ModelForm, widgets
-from typing import List
 
 from django import forms
 from Properties.models import *
