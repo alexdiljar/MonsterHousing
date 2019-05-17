@@ -105,10 +105,9 @@ def edit_account(request):
 @login_required
 def account_transactions(request):
     context = {
-        'transaction': Transactions.objects.all().filter(buyer=request.user.id),
-
-        # 'transaction_properties': Transactions.objects.filter(buyer=request.user.id)
-        'properties': Properties.objects.filter(user=request.user.id).filter(is_active=False)
+        'buy_transactions': Transactions.objects.filter(buyer=request.user.id),
+        'sale_transactions': Transactions.objects.filter(property__is_active=False).filter(
+            property__user_id=request.user.id)
     }
     print(context)
     return render(request, 'User/AccountTransactions.html', context)
