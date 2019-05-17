@@ -3,7 +3,9 @@
 <div class="card">
     <img class="card-img-top" src="{{ properties.detail.property_image }}" alt="Card image cap">
     <div class="card-body">
+        <a href="{% url 'property_details' properties.id %}">
         <h5 class="card-title">{{ properties.address.street }} {{ properties.address.house_no }}, {{ properties.address.city.country }}</h5>
+        </a>
         <p class="card-text">{{ properties.detail.description }}</p>
         <p class="card-text"><small class="text-muted">$ {{ properties.detail.price }}</small></p>
     </div>

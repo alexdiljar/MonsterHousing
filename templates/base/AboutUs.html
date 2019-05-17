@@ -1,69 +1,70 @@
 {% extends 'index.html' %}
 {% load static %}
 {% block content %}
-    <div id="page-container">
-        <div class="faq" style="padding: 5%;">
-            <h1>FAQ</h1>
-            <div class="accordion" id="accordionExample">
-                <div class="card">
-                    <div class="card-header" id="headingOne">
-                        <h2 class="mb-0">
-                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
-                                    aria-expanded="true" aria-controls="collapseOne">
-                                How to buy property?
-                            </button>
-                        </h2>
-                    </div>
 
-                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
-                         data-parent="#accordionExample">
-                        <div class="card-body">
-                            <ul>
-                                <li>Start by signing up free of charge <b>Accounts>Sign up</b></li>
-                                <li>Browse for properties, you can customise you search to your needs in the search
-                                    bar
-                                </li>
-                                <li>Proceed to buy properties once you have found the ONE</li>
-                                <li>Follow the payment stepps</li>
-                                <li>Get your new property licence via email</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header" id="headingTwo">
-                        <h2 class="mb-0">
-                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
-                                    data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                How to sell property?
-                            </button>
-                        </h2>
-                    </div>
-                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                        <div class="card-body">
-                            <ul>
-                                <li>Start by signing up free of charge <b>Accounts>Sign up</b></li>
-                                <li>View your profile and press <b>Add property</b></li>
-                                <li>Fill in the information about your property</li>
-                                <li>Your property will be added now watch as you make some coin</li>
-                            </ul>
-                        </div>
+    <div id="page-container">
+    <div class="faq">
+    <h1>FAQ</h1>
+    <div class="accordion" id="accordionExample">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+                            aria-expanded="true" aria-controls="collapseOne">
+                        How to buy property?
+                    </button>
+                </h5>
+            </div>
+        </div>
+
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+                    <div class="card-body">
+                        <ul>
+                            <li>Start by signing up free of charge <b>Accounts>Sign up</b></li>
+                            <li>Browse for properties, you can customise you search to your needs in the search
+                                bar
+                            </li>
+                            <li>Proceed to buy properties once you have found the ONE</li>
+                            <li>Follow the payment steps</li>
+                            <li>Get your new property licence via email</li>
+                        </ul>
                     </div>
                 </div>
             </div>
             <div class="card">
                 <div class="card-header" id="headingThree">
-                    <h2 class="mb-0">
+                    <h5 class="mb-0">
                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
                                 data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            How to contact seller?
+                            How to sell property?
                         </button>
-                    </h2>
+                    </h5>
                 </div>
-                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div id="collapseThree" class="collapse show" aria-labelledby="headingThree" data-parent="#accordionExample">
                     <div class="card-body">
                         <ul>
-                            <li>Find a property your intrested in</li>
+                            <li>Start by signing up free of charge <b>Accounts>Sign up</b></li>
+                            <li>View your profile and press <b>Add property</b></li>
+                            <li>Fill in the information about your property</li>
+                            <li>Your property will be added now watch as you make some coin</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingFour">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            How to contact seller?
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseFour" class="collapse show" aria-labelledby="headingFour" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <ul>
+                            <li>Find a property your interested in</li>
                             <li>Click the link to the seller</li>
                             <li>Send the seller an email regarding the property</li>
                         </ul>
@@ -71,15 +72,15 @@
                 </div>
             </div>
             <div class="card">
-                <div class="card-header" id="headingFour">
-                    <h2 class="mb-0">
+                <div class="card-header" id="headingFive">
+                    <h5 class="mb-0">
                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
-                                data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
                             Why we care about monsters?
                         </button>
-                    </h2>
+                    </h5>
                 </div>
-                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                <div id="collapseFive" class="collapse show" aria-labelledby="headingFive" data-parent="#accordionExample">
                     <div class="card-body">
                         <p>“You guys know about vampires? … You know, vampires have no reflections in a mirror? There’s
                             this idea that monsters don’t have reflections in a mirror. And what I’ve always thought
@@ -94,6 +95,9 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        </div>
         </div>
         <div class="the-team"> <!--style="margin: 5%;"-->
             <h1>MEET THE TEAM</h1>
@@ -124,14 +128,14 @@
                     <div class="card-body">
                         <h5 class="card-title">Bergur Þór</h5>
                         <p class="card-text">Bergur Þór is our Python and shortcut advisor. Did you know the opposite
-                        of ctrl+z is ctrl+y, or that ctrl+x is "cut". and you can do everything with the tab? </p>
+                            of ctrl+z is ctrl+y, or that ctrl+x is "cut". and you can do everything with the tab? </p>
                     </div>
                 </div>
                 <div class="card">
                     <img src="{% static 'images/solla.jpg' %}" class="card-img-top" alt="creator-solrun">
                     <div class="card-body">
                         <h5 class="card-title">Sólrún Ásta</h5>
-                        <p class="card-text"> Sólrún is our MTV software developer and debugger. She is a dubugger fan.
+                        <p class="card-text"> Sólrún is our MTV software developer and debugger. She is a debugger fan.
                             She loves errors. whether it is syntax errors, system failure(her favorite), server error
                             or solving github conflicts, Sólrún is there to help.</p>
                     </div>
@@ -142,7 +146,7 @@
                         <h5 class="card-title">Vignir Heiðars</h5>
                         <p class="card-text">Vignir was an accident. We were missing a team member and Vignir was
                             negotiating with the computer science department for getting him replaced to another group.
-                           We saw how desperate he was felt pitty for him so we adopted him into our group.</p>
+                            We saw how desperate he was felt pitty for him so we adopted him into our group.</p>
                     </div>
                 </div>
             </div>
