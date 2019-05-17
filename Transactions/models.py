@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 from Properties.models import Properties
-from creditcards.models import CardNumberField, CardExpiryField, SecurityCodeField
 
 
 class CreditCard(models.Model):
