@@ -22,7 +22,7 @@
             <p>{{ property.detail.description }}</p>
         </div>
         <div class="button-banner">
-            {% if user.is_authenticated %}
+            {% if request.user.is_authenticated %}
                 {% if property.user == request.user.profile %}
                     <a class="btn btn-info" href="{% url 'edit_property' properties.id %}">Edit Property</a>
                     <a class="btn btn-danger" href="{% url 'delete_property' properties.id %}">Delete Property</a>
