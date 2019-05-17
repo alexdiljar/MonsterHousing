@@ -9,6 +9,7 @@ from User.models import Profile
 from Properties.models import Properties, Addresses, Cities
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from User.forms.profile_form import *
+from Transactions.models import Transactions
 
 
 def register(request):
@@ -101,15 +102,25 @@ def edit_account(request):
             })
 
 
+@login_required
+def account_transactions(request):
+    return render(request, 'User/AccountTransactions.html', {
+        'transactions': Transactions.objects.get(buyer=request.user.id),
+        'properties': Properties.objects.filter(user=request.user.id)
+    })
+
+
 # Goes to account profile
+@login_required
 def account(request):
     return render(request, 'User/AccountDetails.html', {
-        'user': get_object_or_404(User, pk=request.user.id),
+        'user': User.objects.get(pk=request.user.id),
         'properties': Properties.objects.filter(user=request.user).filter(is_active=True)
     })
 
 
 # Edits property information
+@login_required
 def edit_property(request, id):
     property = Properties.objects.get(id=id)
     if request.method == 'POST':
@@ -180,6 +191,7 @@ def edit_property(request, id):
 
 
 # Deletes property of site and database
+@login_required
 def sell_property(request, id):
     property = Properties.objects.get(id=id)
     property.is_active = False
@@ -187,16 +199,17 @@ def sell_property(request, id):
     return
 
 
+@login_required
 def delete_property(request, id):
     property = Properties.objects.get(pk=id)
     property.delete()
     return redirect('account_properties')
 
 
+@login_required
 def account_properties(request):
-    return render(request, 'User/AccountProperties.html', {
-        'properties': Properties.objects.filter(user=request.user).filter(is_active=True)
-    })
+    return render(request, 'User/AccountProperties.html',
+                  {'properties': Properties.objects.filter(user=request.user).filter(is_active=True)})
 
 
 @login_required

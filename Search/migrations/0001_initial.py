@@ -15,13 +15,14 @@ class Migration(migrations.Migration):
             name='Search',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('country', models.CharField(max_length=255)),
-                ('zip', models.IntegerField()),
-                ('type', models.CharField(max_length=999)),
-                ('tags', models.CharField(max_length=999)),
-                ('size', models.CharField(max_length=255)),
-                ('price', models.FloatField()),
-                ('rooms', models.IntegerField()),
+                ('country', models.CharField(max_length=255, blank=True, null=True)),
+                ('zip', models.IntegerField(blank=True, null=True)),
+                ('type', models.CharField(max_length=999, blank=True)),
+                ('tags', models.CharField(max_length=999, blank=True)),
+                ('size', models.CharField(max_length=255, blank=True)),
+                ('price', models.FloatField(blank=True, null=True)),
+                ('rooms', models.IntegerField(blank=True, null=True)),
+                ('search', models.CharField(max_length=255, blank=True, null=True))
             ],
         ),
     ]

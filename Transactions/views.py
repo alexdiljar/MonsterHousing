@@ -1,17 +1,13 @@
-from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserCreationForm
+
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
-from django.forms import forms
-from Properties.forms.properties_form import TypesForm, TagsForm, DetailsForm, PropertiesForm
 from User.models import Profile
 from Properties.models import Properties, Addresses, Cities
-from django.shortcuts import render, redirect, reverse, get_object_or_404
-from User.forms.profile_form import CustomUserChangeForm, ProfileForm, AddressesForm, RegisterForm
+from django.shortcuts import render
+from User.forms.profile_form import AddressesForm
 from Transactions.forms.transaction_form import UserInformationForm, PaymentForm, TransactionForm
 from Properties.forms.properties_form import CitiesForm
-from Transactions.models import CreditCard, Transactions
+from Transactions.models import CreditCard
 from User.views import sell_property
 
 
@@ -94,6 +90,7 @@ def confirm_purchase(request, id):
             transaction_saved.property = Properties.objects.get(pk=id)
             transaction_saved.save()
             sell_property(request, id)
+            delete_transaction(request)
             return HttpResponseRedirect('/')
     if request.method == 'GET':
         return render(request, 'Transactions/Confirm.html', {
