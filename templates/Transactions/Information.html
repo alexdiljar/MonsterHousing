@@ -7,16 +7,18 @@
 
         <form class="form form-horizontal" method="POST">
             {% csrf_token %}
+            {{ user_form }}
             {{ addresses_form }}
             {{ cities_form }}
             {{ payment_form }}
-{#            {% for field in payment_form %}#}
-{#                {{ field.label_tag }}#}
-{#            {% endfor %}#}
             <input type="submit" class="btn btn-primary" value="Continue"/>
+            <a href="{% url 'front_page_index' %}">Back</a>
         </form>
+
+            
+
     </div>
-    <a href='#'><input type="button" class="cancel-link" value="Cancel"></a>
+
     {#    <a href='{% url 'payment_information_purchase' %}'><input type="submit" class="btn btn-primary" value="Continue"/></a>#}
 
 

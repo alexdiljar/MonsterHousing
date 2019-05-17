@@ -4,9 +4,55 @@
 
 @login_required
 {% block content %}
+
     <div id="page-container">
-        <h1>Review</h1>
-        <p>{{ property.user.profile.address.house_no }}</p>
+        <form action="Post">
+            <h1>Review</h1>
+            <div class="property_info">
+                <h2>Property Information:</h2>
+                <h4>{{ property.address.street }} {{ property.address.house_no }}</h4>
+                <h5>{{ property.address.city.zip }} {{ property.address.city.city }}, {{ property.address.city.country }}</h5>
+                <img src="{{ property.detail.property_image }}" alt="Property image">
+                <div class="detail-banner">
+                    <div class="details-about-property">
+                        <p>Type: {{ property.detail.type.type }}</p>
+                        <p>Price: {{ property.detail.price }}</p>
+                        <p>Size: {{ property.detail.size }}</p>
+                        <p>Rooms: {{ property.detail.rooms }}</p>
+                    </div>
+                    <div class="tags-for-property">
+                        <p>Elevator: {{ property.detail.tags.elevator }}</p>
+                        <p>Garage: {{ property.detail.tags.garage }}</p>
+                        <p>Near a blood bank: {{ property.detail.tags.near_bloodbank }}</p>
+                        <p>Dungeon: {{ property.detail.tags.dungeon }}</p>
+                        <p>Secret entrance: {{ property.detail.tags.secret_entrance }}</p>
+                    </div>
+                    <p>{{ property.detail.description }}</p>
+                </div>
+            </div>
+            <div class="user_info">
+                <h2>Buyer Information:</h2>
+                <div class="buyer_info">
+                    <h4>Personal Information:</h4>
+                    <p>Name: {{ user.first_name }} {{ user.last_name }}</p>
+                    <p>Social Security Number: {{ user.profile.ssn }}</p>
+                </div>
+                <div class="home_info">
+                    <h4>Home Information:</h4>
+                    <p>Address: {{ user.profile.address.street }} {{ user.profile.address.house_no }}</p>
+                    <p>City: {{ user.profile.address.city.city }}, {{ user.profile.address.city.zip }}</p>
+                    <p>Country: {{ user.profile.address.city.country }}</p>
+                </div>
+            </div>
+            <div class="payment_info">
+                <h2>Payment Information:</h2>
+                <p>Credit Card Number: {{ payment.cc_number}}</p>
+                <p>Expiration Date: {{ payment.cc_month }}/{{ payment.cc_year }}</p>
+            </div>
+            <a href="{% url 'buy_property' property.id%}">Previous</a>
+            <input type="submit" class="btn btn-primary" value="Continue"
+                   formaction="{% url 'confirm_purchase' property.id %}"/>
+        </form>
     </div>
 
 {% endblock %}
