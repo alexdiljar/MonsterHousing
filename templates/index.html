@@ -118,24 +118,16 @@
                 </div>
             </div>
             <hr>
-<<<<<<< HEAD
-
-
-
-
-
-
 
 
     </footer>
     <!-- Footer -->
-            {% if not user.is_authenitcated %}
                 <!-- Call to action -->
-=======
+
             {% if request.user.is_authenticated %}
                 <p style="text-align: center">Hello {{ request.user.username }} <p/>
            {% else %}
->>>>>>> dad962ba831e9dd3c0af9295b3013a4ba9f5c96c
+
                 <ul class="list-unstyled list-inline text-center ">
                     <li class="list-inline-item">
                         <h5 class="mb-1">Register for free</h5>
@@ -144,10 +136,9 @@
                         <a href="{% url 'register' %}" class="btn btn-success btn-rounded">Sign up!</a>
                     </li>
                 </ul>
-<<<<<<< HEAD
+
                 <!-- Call to action -->
-=======
->>>>>>> dad962ba831e9dd3c0af9295b3013a4ba9f5c96c
+
             {% endif %}
 </div>
 
