@@ -47,7 +47,7 @@ class SearchForm(ModelForm):
 
     class Meta:
         model = Search
-        exclude = ['id']
+        exclude = ['id', 'user']
         widgets = {
             'zip': widgets.NumberInput(attrs={'min': 0, 'type': 'number'}),
             'type': widgets.CheckboxSelectMultiple(attrs={'class': 'dropdown'}, choices=TYPE_CHOICES),
