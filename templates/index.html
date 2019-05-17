@@ -11,6 +11,9 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}?v={% now "H:i:s" %}">
+
+
+
     <title>Monster Housing</title>
 </head>
 
@@ -52,6 +55,7 @@
                         {% if user.is_authenticated %}
                             <a class="dropdown-item" href="{% url 'account' %}">My Account</a>
                             <a class="dropdown-item" href="{% url 'account_properties' %} ">My Properties</a>
+                            <a class="dropdown-item" href="{% url 'account_transactions' %} ">My Transactions</a>
                             <a class="dropdown-item" href="{% url 'edit_account' %}">Manage Account</a>
                             <a class="dropdown-item" href="{% url 'logout' %}">Sign Out</a>
                         {% else %}
@@ -66,7 +70,17 @@
     </nav>
 
     <div class="content" style="margin: 0%">
+        <div class="alert alert-primary" role="alert">
+            {% if messages %}
 
+            <ul class="messages">
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+
+            </ul>
+            {% endif %}
+        </div>
         {% block content %}
 
         {% endblock %}
@@ -98,7 +112,7 @@
                     <!-- Links -->
                     <h5 class="font-weight-bold text-uppercase "></h5>
 
-                    <ul class="list-unstyled ml-right" >
+                    <ul class="list-unstyled ml-right">
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'front_page_index' %}">Home</a>
                         </li>
@@ -115,22 +129,25 @@
                 </div>
             </div>
             <hr>
-            {% if request.user.is_authenticated %}
-                <p style="text-align: center">Hello {{ request.user.username }} <p/>
-           {% else %}
-                <ul class="list-unstyled list-inline text-center ">
-                    <li class="list-inline-item">
-                        <h5 class="mb-1">Register for free</h5>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="{% url 'register' %}" class="btn btn-success btn-rounded">Sign up!</a>
-                    </li>
-                </ul>
-            {% endif %}
 
 
     </footer>
     <!-- Footer -->
+                <!-- Call to action -->
+    <!-- Call to action -->
+    {% if request.user.is_authenticated %}
+        <p style="text-align: center">Hello {{ request.user.username }} <p/>
+    {% else %}
+        <ul class="list-unstyled list-inline text-center ">
+            <li class="list-inline-item">
+                <h5 class="mb-1">Register for free</h5>
+            </li>
+            <li class="list-inline-item">
+                <a href="{% url 'register' %}" class="btn btn-success btn-rounded">Sign up!</a>
+            </li>
+        </ul>
+        <!-- Call to action -->
+    {% endif %}
 </div>
 
 

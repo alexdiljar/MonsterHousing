@@ -1,10 +1,12 @@
-<div class="single_property_menu">
-    <div class="single_property_item">
-        <a href="/properties/{{ properties.id }}">
-            <img class="property_image" src="{{ properties.detail.property_image }}" alt="Image of property">
-            <h4>{{ properties.address.street }} {{ properties.address.house_no }}, {{ properties.address.city.country }}</h4>
-            <p id="price_of_property_id">{{ properties.detail.price }}</p>
-            <p>{{ properties.detail.description }}</p>
+
+
+<div class="card">
+    <img class="card-img-top" src="{{ properties.detail.property_image }}" alt="Card image cap">
+    <div class="card-body">
+        <a href="{% url 'property_details' properties.id %}">
+        <h5 class="card-title">{{ properties.address.street }} {{ properties.address.house_no }}, {{ properties.address.city.country }}</h5>
         </a>
+        <p class="card-text">{{ properties.detail.description }}</p>
+        <p class="card-text"><small class="text-muted">$ {{ properties.detail.price }}</small></p>
     </div>
 </div>

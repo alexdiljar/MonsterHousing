@@ -4,9 +4,15 @@
 
     <div id="page-container">
         <h1>Confirm</h1>
-
-        <a class="btn btn-primary" href="{% url 'seller_profile' property.user.id %}">Back</a>
-        <a class="btn btn-primary" href="{% url 'buy_property' property.id %}">Continue</a>
+        <form method="POST">
+            {% csrf_token %}
+            <h4>Are you want to buy this property?</h4>
+            <h6>{{ property.address.street }} {{ property.address.house_no }}</h6>
+            <h6>{{ property.address.city.zip }} {{ property.address.city.city }}, {{ property.address.city.country }}</h6>
+             <a href="{% url 'review_purchase' property.id%}">Previous</a>
+            <input type="submit" class="btn btn-primary" value="Buy!"
+                   formaction="{% url 'confirm_purchase' property.id %}"/>
+        </form>
     </div>
 
 {% endblock %}

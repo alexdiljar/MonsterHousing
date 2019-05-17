@@ -3,11 +3,13 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 
-from Properties.forms.properties_form import *  # TypesForm, TagsForm, DetailsForm, PropertiesForm, AddressesForm
+from django.contrib import messages
+from Properties.forms.properties_form import *
 from User.models import Profile
 from Properties.models import Properties, Addresses, Cities
 from django.shortcuts import render, redirect, reverse, get_object_or_404
-from User.forms.profile_form import *  # CustomUserChangeForm, ProfileForm, AddressesForm, CitiesForm, RegisterForm
+from User.forms.profile_form import *
+from Transactions.models import Transactions
 
 
 def register(request):
@@ -34,6 +36,7 @@ def register(request):
             profile_saved.user = form_saved
             profile_saved.save()
 
+            messages.info(request, 'Your have created a new account successfully!')
             return HttpResponseRedirect('login')
         else:
             request.method = "GET"
@@ -47,6 +50,7 @@ def register(request):
         })
 
 
+@login_required
 def edit_account(request):
     user = User.objects.get(pk=request.user.id)
     if request.method == 'POST':
@@ -75,7 +79,7 @@ def edit_account(request):
             cities_saved.save()
             addresses_form.save()
             profile_form.save()
-
+            messages.info(request, 'Your have edited your account successfully!')
             return redirect(reverse('account'))
         # Validation failed - return same data parsed from POST.
         else:
@@ -98,15 +102,29 @@ def edit_account(request):
             })
 
 
-# Skoða þetta profile / account
+@login_required
+def account_transactions(request):
+    context = {
+        'buy_transactions': Transactions.objects.filter(buyer=request.user.id),
+        'sale_transactions': Transactions.objects.filter(property__is_active=False).filter(
+            property__user_id=request.user.id)
+    }
+    print(context)
+    return render(request, 'User/AccountTransactions.html', context)
+    # })
+
+
+# Goes to account profile
+@login_required
 def account(request):
     return render(request, 'User/AccountDetails.html', {
-        'user': get_object_or_404(User, pk=request.user.id),
-        'properties': Properties.objects.filter(user=request.user)
+        'user': User.objects.get(pk=request.user.id),
+        'properties': Properties.objects.filter(user=request.user).filter(is_active=True)
     })
 
 
 # Edits property information
+@login_required
 def edit_property(request, id):
     property = Properties.objects.get(id=id)
     if request.method == 'POST':
@@ -152,7 +170,8 @@ def edit_property(request, id):
             properties_saved.is_active = True
             properties_saved.save()
 
-            return HttpResponseRedirect('account_properties')
+            messages.info(request, 'Your have edited your property successfully!')
+            return redirect(reverse('account_properties'))
         # Validation failed - return same data parsed from POST.
         else:
             return render(request, 'Properties/CreateProperty.html', {
@@ -177,16 +196,27 @@ def edit_property(request, id):
 
 
 # Deletes property of site and database
-def delete_property(request, id):
+@login_required
+def sell_property(request, id):
     property = Properties.objects.get(id=id)
     property.is_active = False
     property.save()
+    messages.info(request, 'Property ' + property.address + ' has been sold successfully!')
+    return redirect('account')
+
+
+@login_required
+def delete_property(request, id):
+    property = Properties.objects.get(pk=id)
+    property.delete()
+    messages.info(request, 'Your have deleted your property from this system successfully!')
     return redirect('account_properties')
 
+
+@login_required
 def account_properties(request):
-    return render(request, 'User/AccountProperties.html', {
-        'properties': Properties.objects.filter(user=request.user)
-    })
+    return render(request, 'User/AccountProperties.html',
+                  {'properties': Properties.objects.filter(user=request.user).filter(is_active=True)})
 
 
 @login_required
@@ -224,6 +254,7 @@ def create_property(request):
             properties_saved.is_active = True
             properties_saved.save()
 
+            messages.info(request, 'Your have registered your property for sale successfully!')
             return HttpResponseRedirect('account')
 
         else:
@@ -238,17 +269,3 @@ def create_property(request):
             'details_form': DetailsForm(),
             'properties_form': PropertiesForm(),
         })
-
-
-# Skoða þetta profile / account
-def account(request):
-    return render(request, 'User/AccountDetails.html', {
-        'user': get_object_or_404(User, pk=request.user.id),
-        'properties': Properties.objects.filter(user=request.user)
-    })
-
-
-def account_properties(request):
-    return render(request, 'User/AccountProperties.html', {
-        'properties': Properties.objects.filter(user=request.user)
-    })
