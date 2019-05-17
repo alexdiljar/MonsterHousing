@@ -116,7 +116,7 @@ def edit_property(request, id):
         tags_form = TagsForm(instance=property.detail.tags, data=request.POST)
         type_form = TypesForm(instance=property.detail.type, data=request.POST)
         cities_form = CitiesForm(instance=property.address.city, data=request.POST)
-        addresses_form = CitiesForm(instance=property.address, data=request.POST)
+        addresses_form = AddressesForm(instance=property.address, data=request.POST)
         details_form = DetailsForm(instance=property.detail, data=request.POST)
         properties_form = PropertiesForm(instance=property, data=request.POST)
         # profile_form = ProfileForm(instance=Properties.objects.get(id=id).user, data=request.POST)
@@ -153,7 +153,7 @@ def edit_property(request, id):
             properties_saved.is_active = True
             properties_saved.save()
 
-            return HttpResponseRedirect('account_properties')
+            return redirect(reverse('account_properties'))
         # Validation failed - return same data parsed from POST.
         else:
             return render(request, 'Properties/CreateProperty.html', {
@@ -173,7 +173,7 @@ def edit_property(request, id):
             'tags_form': TagsForm(instance=property.detail.tags),
             'type_form': TypesForm(instance=property.detail.type),
             'cities_form': CitiesForm(instance=property.address.city),
-            'addresses_form': CitiesForm(instance=property.address),
+            'addresses_form': AddressesForm(instance=property.address),
             'details_form': DetailsForm(instance=property.detail),
             'properties_form': PropertiesForm(instance=property),
         })
@@ -249,12 +249,4 @@ def account(request):
     })
 
 
-# Deletes property of site and database
-def delete_property(request, id):
-    pass
 
-
-def account_properties(request):
-    return render(request, 'User/AccountProperties.html', {
-        'properties': Properties.objects.filter(user=request.user)
-    })

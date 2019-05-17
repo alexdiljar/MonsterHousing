@@ -5,7 +5,6 @@ from django import forms
 from Properties.models import *
 from django_countries.fields import CountryField
 
-
 class CitiesForm(ModelForm):
     country = CountryField(blank_label='Country').formfield(required=True)
 
@@ -17,11 +16,6 @@ class CitiesForm(ModelForm):
             'city': widgets.TextInput(attrs={'class': 'form-control'})
         }
 
-    '''
-    country = CountryField(
-        blank_label='Country').formfield(
-        required=True)
-        '''
 
 class AddressesForm(ModelForm):
     class Meta:
@@ -75,9 +69,3 @@ class PropertiesForm(ModelForm):
         model = Properties
         exclude = ['id', 'address', 'detail', 'user', 'is_active']
 
-class CreatePropertyForm:
-    TagsForm(ModelForm)
-    TypesForm(ModelForm)
-    CitiesForm(ModelForm)
-    AddressesForm(ModelForm)
-    DetailsForm(ModelForm)
