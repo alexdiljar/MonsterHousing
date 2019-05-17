@@ -9,7 +9,7 @@ from User.models import Profile
 from Properties.models import Properties, Addresses, Cities
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from User.forms.profile_form import CustomUserChangeForm, ProfileForm, AddressesForm, RegisterForm
-from Transactions.forms.transaction_form import UserInformationForm, PaymentForm
+from Transactions.forms.transaction_form import PaymentForm
 from Properties.forms.properties_form import CitiesForm
 from Transactions.models import CreditCard
 
