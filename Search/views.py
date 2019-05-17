@@ -3,6 +3,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 from Properties.forms.properties_form import *
 from Properties.forms.search_form import SearchForm
+from Properties.models import *
+from Search.models import Search
 
 
 
@@ -16,7 +18,7 @@ def index(request):
             # Type is multi select will be returned as list must iterate when comparing
             type_input_list = form.cleaned_data['type']
             size_input = form.cleaned_data['size']
-            max_price_input = form.cleaned_data['max_price']
+            max_price_input = form.cleaned_data['price']
             tags_input = form.cleaned_data['tags']
             sort_input = form.cleaned_data['sort']
             rooms_input = form.cleaned_data['rooms']
@@ -55,6 +57,7 @@ def index(request):
 
 
 def search(request):
+
     if request.method == "POST":
         form = SearchForm(data=request.POST)
         if form.is_valid():
@@ -69,5 +72,51 @@ def search(request):
 
 
 def result(request):
+    print('HELLOOO')
 
-    pass
+    if request.method == "POST":
+        form = SearchForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            try:
+                return HttpResponseRedirect(reversed('/properties/search/'))
+            except TypeError:
+                return HttpResponseRedirect('/properties/search/')
+        else:
+            request.method = "GET"
+            pass
+    if request.method == "GET":
+        latest_search = Search.objects.last()
+        zip = latest_search.zip
+        country = latest_search.country
+        type_list = latest_search.type
+        rooms = latest_search.rooms
+        tags_list = latest_search.tags
+        price = latest_search.price
+        size = latest_search.size
+
+        # For loop will roll through all properties and a
+        for prop in Properties.objects.filter(is_active=True):
+            print(prop.address.city.zip)
+            print(zip)
+            # if prop.address.city.country == country or country is None:
+            #     if prop.address.city.zip == zip:
+            #         if prop.details.rooms == rooms:
+            #             if prop.details.price <= price:
+            #                 if prop.details.size >= size:
+            #                     for type in type_list:
+            #                         if prop.details.type == single_type:
+            #                             pass
+
+
+
+
+            pass
+
+
+
+
+
+        context = {'properties': Properties.objects.all(),#filter(=zip, ),  # }
+               'form': SearchForm()}
+        return render(request, 'base/Catalog.html', context)
