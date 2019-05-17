@@ -214,19 +214,22 @@ a:active {
 }
 
 .form-control{
-    max-width: 40%;
+    max-width: 35%;
     display: inline-block;
 
 }
 
 .form-horizontal {
     text-align: left;
-    width: 25%;
+    width: 40%;
     padding-left: 3%;
     padding-top: 5%;
 }
 
 .form-horizontal label {
-    width: 15%;
+    max-width: 20%;
     display: inline-block;
+}
+.form-horizontal label + .form-control {
+    display: block;
 }
