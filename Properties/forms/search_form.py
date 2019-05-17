@@ -1,6 +1,6 @@
 import required as required
 
-from Search.models import Search
+#from Search.models import Search
 from django.forms import ModelForm, widgets
 from typing import List
 
@@ -40,36 +40,16 @@ TAGS_CHOICES = (('elevator', 'Elevator'),
                 ('secret_entrance', 'Secret Entrance'))
 
 
+class SearchForm(forms.Form):
+    # Only three fields that we slimmed the search down to
+    country = CountryField(blank_label='Country').formfield(
+        required=False)
 
+    zip = forms.CharField(label='Zip', max_length=5, required=False)
 
-class SearchForm(ModelForm):
-    country = CountryField(blank_label='Country').formfield(required=False)
-
-    class Meta:
-        model = Search
-        exclude = ['id']
-        widgets = {
-            'zip': widgets.NumberInput(attrs={'min': 0, 'type': 'number'}),
-            'type': widgets.CheckboxSelectMultiple(attrs={'class': 'dropdown'}, choices=TYPE_CHOICES),
-            'rooms': widgets.NumberInput(attrs={'min': 0, 'type': 'number', 'default': 0}),
-            'size': widgets.CheckboxSelectMultiple(attrs={'class': 'dropdown'}, choices=SIZE_CHOICES),
-            'price': widgets.CheckboxSelectMultiple(attrs={'class': 'dropdown'}, choices=MAX_PRICE),
-            'tags': widgets.CheckboxSelectMultiple(attrs={'class': 'dropdown'}, choices=TAGS_CHOICES),
-            'sort': widgets.Select(attrs={'class': 'dropdown'}, choices=(('name', 'Name'),
-                                                                                            ('price', 'Price'))),
-            'search': widgets.Textarea(attrs={'class': 'form-control'})
-        }
-
-    def save(self, commit=True):
-        #if self.rooms == '':
-         #   self.rooms = 0
-        if commit:
-
-            # If committing, save the instance and the m2m data immediately.
-            self.instance.save()
-
-        return self.instance
-
-    save.alters_data = True
+    sort = forms.ChoiceField(widget=forms.RadioSelect,
+                             required=False,
+                             choices=(('address__street', 'Name'),
+                                      ('detail__price', 'Price')))
 
 
