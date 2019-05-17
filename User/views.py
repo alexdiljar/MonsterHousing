@@ -3,14 +3,15 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 
-from Properties.forms.properties_form import *  # TypesForm, TagsForm, DetailsForm, PropertiesForm, AddressesForm
+from Properties.forms.properties_form import *
 from User.models import Profile
 from Properties.models import Properties, Addresses, Cities
 from django.shortcuts import render, redirect, reverse, get_object_or_404
-from User.forms.profile_form import *  # CustomUserChangeForm, ProfileForm, AddressesForm, CitiesForm, RegisterForm
+from User.forms.profile_form import *
 
 
 def register(request):
+
     if request.method == "POST":
         form = RegisterForm(data=request.POST)
         cities_form = CitiesForm(data=request.POST)
@@ -47,6 +48,7 @@ def register(request):
         })
 
 
+@login_required
 def edit_account(request):
     user = User.objects.get(pk=request.user.id)
     if request.method == 'POST':
@@ -98,7 +100,7 @@ def edit_account(request):
             })
 
 
-# Skoða þetta profile / account
+# Goes to account profile
 def account(request):
     return render(request, 'User/AccountDetails.html', {
         'user': get_object_or_404(User, pk=request.user.id),
@@ -152,7 +154,7 @@ def edit_property(request, id):
             properties_saved.is_active = True
             properties_saved.save()
 
-            return HttpResponseRedirect('account_properties')
+            return redirect(reverse('account_properties'))
         # Validation failed - return same data parsed from POST.
         else:
             return render(request, 'Properties/CreateProperty.html', {
@@ -247,8 +249,3 @@ def account(request):
         'properties': Properties.objects.filter(user=request.user)
     })
 
-
-def account_properties(request):
-    return render(request, 'User/AccountProperties.html', {
-        'properties': Properties.objects.filter(user=request.user)
-    })

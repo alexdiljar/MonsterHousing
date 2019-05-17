@@ -5,10 +5,13 @@
 @login_required
 {% block content2 %}
     <div id="page-container">
-        <h1>Payment</h1>
-
-        <a class="btn btn-primary" href="{% url 'seller_profile' property.id %}">Back</a>
-        <a class="btn btn-success" href="{% url 'buy_property' property.id %}">Continue</a>
+        <form class="form form-horizontal" method="POST">
+            {% csrf_token %}
+            {{ payment_form }}
+            <input type="submit" class="btn btn-primary" value="Continue"/>
+        </form>
+        {#        <a class="btn btn-primary" href="{% url 'user_information_purchase' property.id %}">Back</a>#}
+        {#        <a class="btn btn-primary" href="{% url 'review_purchase' property.id %}">Continue</a>#}
 
     </div>
 
