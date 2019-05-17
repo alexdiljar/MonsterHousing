@@ -1,5 +1,7 @@
 
-
+from django.forms import ModelForm, widgets
+from django import forms
+from Search.models import Search
 from django import forms
 from Properties.models import *
 from django_countries.fields import CountryField
@@ -47,5 +49,12 @@ class SearchForm(forms.Form):
                              required=False,
                              choices=(('address__street', 'Name'),
                                       ('detail__price', 'Price')))
+
+
+class SearchHistoryForm(ModelForm):
+    class Meta:
+        model = Search
+        exclude = ['id', 'user', 'property']
+
 
 

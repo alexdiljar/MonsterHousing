@@ -1,13 +1,11 @@
 from django.db.models import Q
-from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseRedirect
 from django.http import HttpResponse
-from Properties.models import Properties
 from django.contrib.auth.decorators import login_required
 from Properties.forms.properties_form import *
-from Properties.forms.search_form import SearchForm
+from Search.forms.search_form import SearchForm, SearchHistoryForm
 from Properties.filters import PropertiesFilter
-import operator
 
 
 # TODO : connect views/ the urls to html files under User in this file
@@ -65,6 +63,9 @@ def get_property_by_id(request, id):
             'property': get_object_or_404(Properties, pk=id)
         }
     else:
+        #search_form = SearchHistoryForm(data=request.GET)
+        #if search_form.is_valid():
+         #   search_form.save()
         context = {
             'property': get_object_or_404(Properties, pk=id),
             'user': User.objects.get(pk=request.user.id)
