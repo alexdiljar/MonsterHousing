@@ -50,24 +50,19 @@ class SearchForm(ModelForm):
             'zip': widgets.NumberInput(attrs={'min': 0, 'type': 'number'}),
             'type': widgets.CheckboxSelectMultiple(attrs={'class': 'dropdown'}, choices=TYPE_CHOICES),
             'rooms': widgets.NumberInput(attrs={'min': 0, 'type': 'number', 'default': 0}),
-            'size': widgets.RadioSelect(attrs={'class': 'dropdown'}, choices=SIZE_CHOICES),
-            'price': widgets.RadioSelect(attrs={'class': 'dropdown'}, choices=MAX_PRICE),
+            'size': widgets.CheckboxSelectMultiple(attrs={'class': 'dropdown'}, choices=SIZE_CHOICES),
+            'price': widgets.CheckboxSelectMultiple(attrs={'class': 'dropdown'}, choices=MAX_PRICE),
             'tags': widgets.CheckboxSelectMultiple(attrs={'class': 'dropdown'}, choices=TAGS_CHOICES),
-            'sort': widgets.RadioSelect(attrs={'class': 'dropdown'}, choices=(('name', 'Name'),
-                                                                        ('price', 'Price'), )),
+            'sort': widgets.Select(attrs={'class': 'dropdown'}, choices=(('name', 'Name'),
+                                                                         ('price', 'Price'))),
             'search': widgets.Textarea(attrs={'class': 'form-control'})
         }
 
     def save(self, commit=True):
-        #if self.rooms == '':
-         #   self.rooms = 0
         if commit:
-
             # If committing, save the instance and the m2m data immediately.
             self.instance.save()
 
         return self.instance
 
     save.alters_data = True
-
-

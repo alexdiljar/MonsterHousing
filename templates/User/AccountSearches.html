@@ -1,0 +1,10 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+    <h1>My Search History</h1>
+    {% for properties in properties %}
+        {% include 'Properties/SinglePropertyView.html' with properties=properties %}
+
+    {% endfor %}
+{% endblock %}

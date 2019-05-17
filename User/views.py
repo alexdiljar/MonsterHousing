@@ -269,3 +269,4 @@ def create_property(request):
             'details_form': DetailsForm(),
             'properties_form': PropertiesForm(),
         })
+

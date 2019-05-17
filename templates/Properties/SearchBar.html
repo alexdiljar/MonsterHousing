@@ -3,23 +3,24 @@
 {% load static %}
 {% block content %}
     <div id="page-container">
-        <form method="post" class="searchfrom">
+        <form method="get" class="searchfrom">
             <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                {% csrf_token %}
+
 
                 {% for field in form %}
-
-                    {% if field.label == 'Country' or field.label == 'Rooms' or field.label == 'Zip' %}
+                    {% if field.label == 'Country' or field.label == 'Zip' %}
                         <div class="btn btn-outline toggle btn-lg">{{ field }}</div>
-                    {% elif field.label != 'Search' %}
+                    {% elif field.label == 'Sort' %}
 
                         <div class="dropdown">
                             <button class="btn btn-outline-primary toggle btn-lg" type="button" id="dropdownMenuButton"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{ field.label_tag }}
+                                Order By:
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <div class="dropdown-item">{{ field }}</div>
+                                {% for name in field %}
+                                <div class="dropdown-item">{{ name }}</div>
+                                {% endfor %}
 
                             </div>
                         </div>
@@ -30,12 +31,6 @@
 
             </div>
             <div>
-                {% if form.search %}
-
-                        {{ form.search }}
-
-
-                {% endif %}
                 <input type="submit" class="button" value="GO!"/>
                 {#                <button type="submit">GO!</button>#}
             </div>
@@ -56,13 +51,3 @@
 {% endblock %}
 
 
-<div class="dropdown">
-    <button class="btn btn-outline-primary toggle btn-lg" type="button" id="dropdownMenuButton"
-            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        {{ field.label_tag }}
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <div class="dropdown-item">{{ field }}</div>
-
-    </div>
-</div>

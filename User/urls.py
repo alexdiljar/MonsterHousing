@@ -12,5 +12,6 @@ urlpatterns = [
     path('account_properties', views.account_properties, name='account_properties'),
     path('account_properties/<int:id>/edit_property', views.edit_property, name='edit_property'),
     path('account_properties/<int:id>/delete', views.delete_property, name='delete_property'),
-    path('account_transactions', views.account_transactions, name='account_transactions')
+    path('account_transactions', views.account_transactions, name='account_transactions'),
+    path('search_history/', include('Search.urls'))
 ]
