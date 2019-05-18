@@ -2,9 +2,7 @@
 
 from Search.models import Search
 from django.forms import ModelForm, widgets
-from typing import List
 
-from django import forms
 from Properties.models import *
 from django_countries.fields import CountryField
 
