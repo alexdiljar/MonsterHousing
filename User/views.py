@@ -17,21 +17,6 @@ def register(request):
         addresses_form = AddressesForm(data=request.POST)
         profile_form = ProfileForm(data=request.POST)
 
-        # print(form.email)
-        # print(form.first_name)
-        # print(form.last_name)
-        # print(form.username)
-
-
-        if form.is_valid():
-            print("form")
-        if profile_form.is_valid():
-            print("profile")
-        if cities_form.is_valid():
-            print("cities")
-        if addresses_form.is_valid():
-            print("addresses")
-
         if cities_form.is_valid() and addresses_form.is_valid() and profile_form.is_valid and form.is_valid():
 
             country_input = cities_form.cleaned_data['country']
