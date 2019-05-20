@@ -40,6 +40,7 @@ def register(request):
         else:
             request.method = "GET"
             pass
+
     if request.method == "GET":
         return render(request, 'User/SignUp.html', {
             'form': RegisterForm(),
@@ -79,7 +80,8 @@ def edit_account(request):
             addresses_form.save()
             profile_form.save()
             messages.info(request, 'Your have edited your account successfully!')
-            return redirect(reverse('account'))
+            return redirect(reverse('front_page_index'))
+
         # Validation failed - return same data parsed from POST.
         else:
             return render(request, 'User/ManageAccount.html', {
@@ -87,7 +89,6 @@ def edit_account(request):
                 'cities_form': cities_form,
                 'addresses_form': addresses_form,
                 'profile_form': profile_form,
-
             })
     if request.method == "GET":
         # User has logged information and we want to GET all info
