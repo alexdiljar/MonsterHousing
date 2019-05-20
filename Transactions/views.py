@@ -33,6 +33,10 @@ def user_information_purchase(request, id):
 
         # Step 2: Validate parsed data.
         # Payment form will never be valid, because we do not intend for this payment to go through
+        print('cities_form.is_valid()' ,cities_form.is_valid())
+        print('addresses_form.is_valid()' ,addresses_form.is_valid())
+        print('payment_form.is_valid()', payment_form.is_valid())
+        print('user_form.is_valid()', user_form.is_valid())
         if cities_form.is_valid() and addresses_form.is_valid() and payment_form.is_valid() and user_form.is_valid():
             print('inside is valid')
             country_input = cities_form.cleaned_data['country']
@@ -50,6 +54,7 @@ def user_information_purchase(request, id):
             cc_code_input = payment_form.cleaned_data['cc_code']
             payment_saved = payment_form.save(commit=False)
             payment_saved.user = request.user
+
             payment_saved.save()
             user_form.save()
 

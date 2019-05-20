@@ -33,6 +33,9 @@
                 <div class="col3">
                     {{ payment_form.cc_year|as_crispy_field }}
                 </div>
+                <div>
+                    {{ payment_form.cc_code| as_crispy_field }}
+                </div>
             </div>
             {{ payment_form.cc_code| as_crispy_field }}
             <a href="{% url 'front_page_index' %}">Back</a>
