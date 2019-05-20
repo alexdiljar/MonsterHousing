@@ -13,7 +13,6 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}?v={% now "H:i:s" %}">
 
 
-
     <title>Monster Housing</title>
 </head>
 
@@ -29,7 +28,8 @@
         <div class="collapse navbar-collapse flex-grow-1 text-left" id="myNavbar7" style="text-align: right!important;">
             <ul class="navbar-nav ml-auto flex-nowrap">
                 <li class="nav-item active">
-                    <a class="nav-link " href="{% url 'catalog_index' %}">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link " href="{% url 'catalog_index' %}">Home <span
+                            class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " href="{% url 'catalog_index' %}">Catalog</a>
@@ -73,19 +73,19 @@
         <div class="alert alert-primary" role="alert">
             {% if messages %}
 
-            <ul class="messages">
-                {% for message in messages %}
-                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                {% endfor %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
 
-            </ul>
+                </ul>
             {% endif %}
         </div>
-    <div class='main_div'>
-        {% block content %}
+        <div class='main_div'>
+            {% block content %}
 
-        {% endblock %}
-    </div>
+            {% endblock %}
+        </div>
     </div>
     <!-- Footer -->
     <!-- Footer -->
@@ -135,7 +135,7 @@
 
     </footer>
     <!-- Footer -->
-                <!-- Call to action -->
+    <!-- Call to action -->
     <!-- Call to action -->
     {% if request.user.is_authenticated %}
         <p style="text-align: center">Hello {{ request.user.username }} <p/>
