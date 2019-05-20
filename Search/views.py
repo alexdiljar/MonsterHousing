@@ -6,10 +6,6 @@ from Properties.models import *
 from Search.models import Search
 
 
-
-
-
-
 def search_history(request):
     return render(request, 'User/AccountSearches.html', {
         'user': User.objects.get(pk=request.user.id),

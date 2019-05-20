@@ -18,6 +18,22 @@ def register(request):
         cities_form = CitiesForm(data=request.POST)
         addresses_form = AddressesForm(data=request.POST)
         profile_form = ProfileForm(data=request.POST)
+
+        # print(form.email)
+        # print(form.first_name)
+        # print(form.last_name)
+        # print(form.username)
+
+
+        if form.is_valid():
+            print("form")
+        if profile_form.is_valid():
+            print("profile")
+        if cities_form.is_valid():
+            print("cities")
+        if addresses_form.is_valid():
+            print("addresses")
+
         if cities_form.is_valid() and addresses_form.is_valid() and profile_form.is_valid and form.is_valid():
 
             country_input = cities_form.cleaned_data['country']
@@ -138,10 +154,16 @@ def edit_property(request, id):
         properties_form = PropertiesForm(instance=property, data=request.POST)
         # profile_form = ProfileForm(instance=Properties.objects.get(id=id).user, data=request.POST)
         # Step 2: Validate parsed data.
+
+
+
         if tags_form.is_valid() and type_form.is_valid() and cities_form.is_valid() and addresses_form.is_valid() \
                 and details_form.is_valid() and properties_form.is_valid():
-            # Firstly we need to clean cities
+            # Firstly we need to clean the data
+            # username_input =
+
             country_input = cities_form.cleaned_data['country']
+
             # We create saved objects where commit == False
             # We can access parameters when fixing constraints on tables
             city_saved = cities_form.save(commit=False)
