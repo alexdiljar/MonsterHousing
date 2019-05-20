@@ -1,7 +1,4 @@
-from typing import List
-
 from django.forms import ModelForm, widgets
-from django import forms
 from Properties.models import *
 from django_countries.fields import CountryField
 

@@ -1,6 +1,4 @@
-
-from django.forms import ModelForm, widgets
-from django import forms
+from django.forms import ModelForm
 from Search.models import Search
 from django import forms
 from Properties.models import *
