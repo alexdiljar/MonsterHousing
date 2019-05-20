@@ -6,7 +6,7 @@ from Properties.models import Properties
 # Create your models here.
 class Search(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    property = models.ForeignKey(Properties, on_delete=models.CASCADE)
+    #property = models.ForeignKey(Properties, on_delete=models.CASCADE)
 
 
 

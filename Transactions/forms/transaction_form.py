@@ -18,7 +18,8 @@ class UserInformationForm(ModelForm):
         }
 
 
-class PaymentForm(ModelForm):
+class \
+        PaymentForm(ModelForm):
     class Meta:
         model = CreditCard
         exclude = ['id', 'user']

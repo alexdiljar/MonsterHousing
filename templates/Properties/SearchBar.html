@@ -2,6 +2,7 @@
 
 {% load static %}
 {% block content %}
+{% csrf_token %}
     <div id="page-container">
         <form method="get" class="searchfrom">
             <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
