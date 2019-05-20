@@ -17,7 +17,6 @@ from User.views import sell_property
 
 
 def user_information_purchase(request, id):
-    delete_transaction(request)
     # user = User.objects.get(pk=request.user.id)
     # properties = Properties.objects.get(pk=id)
     if request.method == 'POST':
@@ -60,6 +59,7 @@ def user_information_purchase(request, id):
             pass
 
     if request.method == "GET":
+        delete_transaction(request)
         # User has logged information and we want to GET all info
         profile = Profile.objects.get(user=request.user)
         return render(request, 'Transactions/Information.html', {
