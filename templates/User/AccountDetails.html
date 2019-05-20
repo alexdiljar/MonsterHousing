@@ -20,7 +20,7 @@
                 <li class="list-group-item">House Number: {{ user.profile.address.house_no }}</li>
             </ul>
             <div class="card-body">
-                <a href="ManageAccount.html" class="card-link">Edit Account</a>
+                <a href="{% url 'edit_account' %}" class="card-link">Edit Account</a>
             </div>
         </div>
 

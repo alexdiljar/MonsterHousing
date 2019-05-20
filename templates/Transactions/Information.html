@@ -5,7 +5,7 @@
         <h1>Check if your information is correct</h1>
         <h2>Then continue to the next step</h2>
 
-        <form method="POST">
+        <form method="post">
             {% csrf_token %}
             {{ user_form.ssn|as_crispy_field }}
             <div class="row">
@@ -34,8 +34,9 @@
                     {{ payment_form.cc_year|as_crispy_field }}
                 </div>
             </div>
-            <input type="submit" class="btn btn-success" value="Continue"/>
             <a href="{% url 'front_page_index' %}">Back</a>
+            <input type="submit" class="btn btn-success" value="Continue"/>
+
         </form>
 
 
