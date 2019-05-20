@@ -4,7 +4,7 @@ from Properties.models import Properties
 
 
 class CreditCard(models.Model):
-    cc_number = models.CharField(max_length=16)
+    cc_number = models.CharField(max_length=19)
     cc_month = models.CharField(max_length=2)
     cc_year = models.CharField(max_length=2)
     cc_code = models.CharField(max_length=3)

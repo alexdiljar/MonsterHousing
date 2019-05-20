@@ -16,6 +16,7 @@ def register(request):
         cities_form = CitiesForm(data=request.POST)
         addresses_form = AddressesForm(data=request.POST)
         profile_form = ProfileForm(data=request.POST)
+
         if cities_form.is_valid() and addresses_form.is_valid() and profile_form.is_valid and form.is_valid():
 
             country_input = cities_form.cleaned_data['country']
@@ -39,6 +40,7 @@ def register(request):
         else:
             request.method = "GET"
             pass
+
     if request.method == "GET":
         return render(request, 'User/SignUp.html', {
             'form': RegisterForm(),
@@ -78,7 +80,8 @@ def edit_account(request):
             addresses_form.save()
             profile_form.save()
             messages.info(request, 'Your have edited your account successfully!')
-            return redirect(reverse('account'))
+            return redirect(reverse('front_page_index'))
+
         # Validation failed - return same data parsed from POST.
         else:
             return render(request, 'User/ManageAccount.html', {
@@ -86,7 +89,6 @@ def edit_account(request):
                 'cities_form': cities_form,
                 'addresses_form': addresses_form,
                 'profile_form': profile_form,
-
             })
     if request.method == "GET":
         # User has logged information and we want to GET all info
@@ -136,10 +138,16 @@ def edit_property(request, id):
         properties_form = PropertiesForm(instance=property, data=request.POST)
         # profile_form = ProfileForm(instance=Properties.objects.get(id=id).user, data=request.POST)
         # Step 2: Validate parsed data.
+
+
+
         if tags_form.is_valid() and type_form.is_valid() and cities_form.is_valid() and addresses_form.is_valid() \
                 and details_form.is_valid() and properties_form.is_valid():
-            # Firstly we need to clean cities
+            # Firstly we need to clean the data
+            # username_input =
+
             country_input = cities_form.cleaned_data['country']
+
             # We create saved objects where commit == False
             # We can access parameters when fixing constraints on tables
             city_saved = cities_form.save(commit=False)

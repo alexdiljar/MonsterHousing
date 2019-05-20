@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from User.models import Profile
 from Properties.models import Properties, Addresses, Cities
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
 from User.forms.profile_form import AddressesForm
 from Transactions.forms.transaction_form import UserInformationForm, PaymentForm, TransactionForm
 from Properties.forms.properties_form import CitiesForm
@@ -12,13 +12,12 @@ from User.views import sell_property
 
 
 # Create your views here.
-# def user_information_purchase(request, id):
-#     return render(request, 'Transactions/Information.html', {'user': get_object_or_404(User, pk=request.user.id)})
 
 
 def user_information_purchase(request, id):
     # user = User.objects.get(pk=request.user.id)
     # properties = Properties.objects.get(pk=id)
+
     if request.method == 'POST':
         # User has some saved information and need to update them
         # Step 1: Parse data from POST.
@@ -27,18 +26,18 @@ def user_information_purchase(request, id):
 
         addresses_form = AddressesForm(instance=Addresses.objects.get(city=request.user.profile.address.city),
                                        data=request.POST)
+
         user_form = UserInformationForm(instance=Profile.objects.get(user=request.user.id), data=request.POST)
 
         payment_form = PaymentForm(data=request.POST)
 
         # Step 2: Validate parsed data.
-        # print(payment_form.is_valid())
         # Payment form will never be valid, because we do not intend for this payment to go through
         if cities_form.is_valid() and addresses_form.is_valid() and payment_form.is_valid() and user_form.is_valid():
+            print('inside is valid')
             country_input = cities_form.cleaned_data['country']
             cities_saved = cities_form.save(commit=False)
             cities_saved.country = country_input
-
             # user_form.save()
             cities_saved.save()
 
@@ -53,15 +52,19 @@ def user_information_purchase(request, id):
             payment_saved.user = request.user
             payment_saved.save()
             user_form.save()
-            return HttpResponseRedirect('review_purchase')
+
+            return redirect(reverse('account'))
         # Validation failed - return same data parsed from POST.
         else:
+            print('did not validate')
             pass
 
     if request.method == "GET":
         delete_transaction(request)
         # User has logged information and we want to GET all info
         profile = Profile.objects.get(user=request.user)
+        # We want to make sure that Credit Card is empty if user is going back one step
+        delete_transaction(request)
         return render(request, 'Transactions/Information.html', {
             'cities_form': CitiesForm(instance=profile.address.city),
             'addresses_form': AddressesForm(instance=profile.address),
