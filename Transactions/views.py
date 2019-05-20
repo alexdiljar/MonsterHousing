@@ -20,12 +20,12 @@ def user_information_purchase(request, id):
     delete_transaction(request)
     # user = User.objects.get(pk=request.user.id)
     # properties = Properties.objects.get(pk=id)
+
     if request.method == 'POST':
         # User has some saved information and need to update them
         # Step 1: Parse data from POST.
         cities_form = CitiesForm(instance=Cities.objects.get(id=request.user.profile.address.city.id),
                                  data=request.POST)
-
         addresses_form = AddressesForm(instance=Addresses.objects.get(city=request.user.profile.address.city),
                                        data=request.POST)
         user_form = UserInformationForm(instance=Profile.objects.get(user=request.user.id), data=request.POST)
@@ -39,7 +39,6 @@ def user_information_purchase(request, id):
             country_input = cities_form.cleaned_data['country']
             cities_saved = cities_form.save(commit=False)
             cities_saved.country = country_input
-
             # user_form.save()
             cities_saved.save()
 
@@ -54,7 +53,7 @@ def user_information_purchase(request, id):
             payment_saved.user = request.user
             payment_saved.save()
             user_form.save()
-            return HttpResponseRedirect('review_purchase')
+            return render(request, 'base/AboutUs.html')#HttpResponseRedirect('review_purchase')
         # Validation failed - return same data parsed from POST.
         else:
             pass
@@ -62,6 +61,7 @@ def user_information_purchase(request, id):
     if request.method == "GET":
         # User has logged information and we want to GET all info
         profile = Profile.objects.get(user=request.user)
+
         return render(request, 'Transactions/Information.html', {
             'cities_form': CitiesForm(instance=profile.address.city),
             'addresses_form': AddressesForm(instance=profile.address),
@@ -71,6 +71,7 @@ def user_information_purchase(request, id):
 
 
 def review_purchase(request, id):
+    print('tussa')
     if request.method == 'GET':
         return render(request, 'Transactions/Review.html', {
             'property': Properties.objects.get(pk=id),
