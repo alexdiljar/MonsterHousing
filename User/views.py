@@ -139,8 +139,6 @@ def edit_property(request, id):
         # profile_form = ProfileForm(instance=Properties.objects.get(id=id).user, data=request.POST)
         # Step 2: Validate parsed data.
 
-
-
         if tags_form.is_valid() and type_form.is_valid() and cities_form.is_valid() and addresses_form.is_valid() \
                 and details_form.is_valid() and properties_form.is_valid():
             # Firstly we need to clean the data
@@ -207,8 +205,8 @@ def sell_property(request, id):
     property = Properties.objects.get(id=id)
     property.is_active = False
     property.save()
-    messages.info(request, 'Property ' + property.address + ' has been sold successfully!')
-    return redirect('account')
+    messages.info(request, 'Property has been bought successfully!')
+    return
 
 
 @login_required
@@ -216,7 +214,7 @@ def delete_property(request, id):
     property = Properties.objects.get(pk=id)
     property.delete()
     messages.info(request, 'Your have deleted your property from this system successfully!')
-    return redirect('account_properties')
+    return
 
 
 @login_required
@@ -275,4 +273,3 @@ def create_property(request):
             'details_form': DetailsForm(),
             'properties_form': PropertiesForm(),
         })
-

@@ -14,5 +14,5 @@ def terms_index(request):
 
 
 def front_page_index(request):
-    context = {'properties': Properties.objects.all()}
+    context = {'properties': Properties.objects.all().filter(is_active=True)}
     return render(request, 'base/FrontPage.html', context)

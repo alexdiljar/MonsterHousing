@@ -53,7 +53,7 @@ def user_information_purchase(request, id):
             payment_saved.save()
             user_form.save()
 
-            return redirect(reverse('account'))
+            return HttpResponseRedirect('review_purchase')
         # Validation failed - return same data parsed from POST.
         else:
             print('did not validate')
