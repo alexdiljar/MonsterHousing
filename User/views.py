@@ -214,7 +214,7 @@ def delete_property(request, id):
     property = Properties.objects.get(pk=id)
     property.delete()
     messages.info(request, 'Your have deleted your property from this system successfully!')
-    return
+    return HttpResponseRedirect('/')
 
 
 @login_required
