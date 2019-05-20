@@ -1,15 +1,66 @@
 {% extends 'index.html' %}
+{% load crispy_forms_tags %}
 
 {% block content %}
-    <div id="page-container">
-        <h1 id="SignUp_Title_id">This site is for signing up</h1>
-        <form class="form form-horizontal" method="post">
-            {% csrf_token %}
-            {{ form }}
-            {{ profile_form }}
-            {{ addresses_form }}
-            {{ cities_form }}
-            <input type="submit" class="btn btn-success" value="Sign Up"/>
-        </form>
-    </div>
+    {#    <div id="page-container">#}
+    <h1 id="SignUp_Title_id">This site is for signing up</h1>
+    <form class="form form-control" method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-3">
+                {{ form.username|as_crispy_field }}
+            </div>
+            <div class="col-3">
+                {{ profile_form.ssn|as_crispy_field }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3">
+                {{ form.password1|as_crispy_field }}
+            </div>
+            <div class="col-3">
+                {{ form.password2|as_crispy_field }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3">
+                {{ form.first_name|as_crispy_field }}
+            </div>
+            <div class="col-3">
+                {{ form.last_name|as_crispy_field }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3">
+                {{ profile_form.phone|as_crispy_field }}
+            </div>
+            <div class="col-3">
+                {{ form.email|as_crispy_field }}
+            </div>
+        </div>
+        {{ profile_form.profile_image|as_crispy_field }}
+        <div class="row">
+            <div class="col-3">
+                {{ cities_form.country|as_crispy_field }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3">
+                {{ cities_form.city|as_crispy_field }}
+            </div>
+            <div class="col-2">
+                {{ cities_form.zip|as_crispy_field }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3">
+                {{ addresses_form.street|as_crispy_field }}
+            </div>
+            <div class="col-2">
+                {{ addresses_form.house_no|as_crispy_field }}
+            </div>
+        </div>
+        <input type="submit" class="btn btn-success" value="Sign Up"/>
+    </form>
+    {#    </div>#}
 {% endblock %}

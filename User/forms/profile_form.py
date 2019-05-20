@@ -1,4 +1,4 @@
-from django.contrib.auth.forms import UserChangeForm, UserCreationForm
+from django.contrib.auth.forms import UserChangeForm, UserCreationForm, PasswordChangeForm
 from django.contrib.auth.models import User
 from django.forms import ModelForm, widgets
 from User.models import Profile
@@ -6,13 +6,14 @@ from Properties.models import Cities, Addresses
 from django_countries.fields import CountryField
 from django import forms
 
+
 class AddressesForm(ModelForm):
     class Meta:
         model = Addresses
         exclude = ['id', 'city']
         widgets = {
-            'street': widgets.TextInput(attrs={'class': 'form-control'}),
-            'house_no': widgets.NumberInput(attrs={'class': 'form-control'}),
+            'street': widgets.TextInput(attrs={'class': 'form-control', 'placeholder': 'Street'}),
+            'house_no': widgets.NumberInput(attrs={'class': 'form-control', 'placeholder': 'House Number'}),
         }
 
 
@@ -21,9 +22,9 @@ class ProfileForm(ModelForm):
         model = Profile
         exclude = ['id', 'user', 'address']
         widgets = {
-            'ssn': widgets.TextInput(attrs={'class': 'form-control'}),
-            'phone': widgets.TextInput(attrs={'class': 'form-control'}),
-            'profile_image': widgets.URLInput(attrs={'class': 'form-control'}),
+            'ssn': widgets.TextInput(attrs={'class': 'form-control', 'placeholder': 'Social Security Number'}),
+            'phone': widgets.TextInput(attrs={'class': 'form-control', 'placeholder': 'Phone'}),
+            'profile_image': widgets.URLInput(attrs={'class': 'form-control', 'placeholder': 'Profile Image Url'}),
         }
 
 
@@ -39,10 +40,10 @@ class CustomUserChangeForm(UserChangeForm):
         ]
 
         widgets = {
-            'last_name': widgets.TextInput(attrs={'class': 'form-control'}),
-            'first_name': widgets.TextInput(attrs={'class': 'form-control'}),
-            'email': widgets.TextInput(attrs={'class': 'form-control'}),
-            'username': widgets.TextInput(attrs={'class': 'form-control'}),
+            'last_name': widgets.TextInput(attrs={'class': 'form-control', 'placeholder': 'Last Name'}),
+            'first_name': widgets.TextInput(attrs={'class': 'form-control', 'placeholder': 'First Name'}),
+            'email': widgets.TextInput(attrs={'class': 'form-control', 'placeholder': 'Email'}),
+            'username': widgets.TextInput(attrs={'class': 'form-control', 'placeholder': 'Username'}),
         }
 
 

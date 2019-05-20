@@ -15,10 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.auth.views import PasswordChangeView
 
 urlpatterns = [
     path('', include('BaseApp.urls')),
     path('admin/', admin.site.urls),
     path('properties/', include('Properties.urls')),
     path('User/', include('User.urls')),
+    path('password/',
+         PasswordChangeView.as_view(template_name='User/ChangePassword.html', success_url='/'),
+         name='password_change')
 ]
